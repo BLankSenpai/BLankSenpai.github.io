@@ -1,8 +1,12 @@
 body {
   background-color: #b0bca7;
-  text-align: center;
+  margin: 0 auto;
 }
 
 h1 {
   font-size: xx-large;
+}
+
+center {
+  margin: 0; 
 }
