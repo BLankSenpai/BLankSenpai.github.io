@@ -1,9 +1,9 @@
-center {
-  margin: 0 auto;
-}
 body {
-  background-color: #ddeadd
+  background-color: #b0bca7;
+  align-items: center;
+  justify-content: center;
 }
+
 h1 {
-  font-size: 150%;
+  font-size: 200%;
 }
