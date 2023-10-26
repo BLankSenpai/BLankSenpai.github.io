@@ -1,13 +1,7 @@
 body {
   background-color: #b0bca7;
-  max-width: max-content;
-  margin: auto;
+  align = "center"
 }
-
 h1 {
-  font-size: xx-large;
-}
-
-center {
-  margin: 0; 
+  color: antiquewhite;
 }
