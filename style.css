@@ -3,3 +3,10 @@ body {
 }
  nav li {
    display: inline;
+   padding: 20%;
+ }
+ .crumb {
+  color: #2e2f10
+  background-color: #def1ed;
+  background-border: solid 20px;
+ }
