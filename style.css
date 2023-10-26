@@ -1,9 +1,8 @@
 body {
   background-color: #b0bca7;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 }
 
 h1 {
-  font-size: 200%;
+  font-size: xx-large;
 }
