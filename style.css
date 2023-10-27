@@ -1,16 +1,16 @@
 body {
   background-color: #b0bca7;
 }
- nav .crumbs {
+ nav {
    border-bottom: 20px solid black;
 }
-.crumb ul a {
+.crumb ul {
   list-style-type: none;
   padding: 0%;
   text-decoration: none;
 }
 
-  .crumb {
+.crumb a {
   display: inline-block;
   color: black;
 }
