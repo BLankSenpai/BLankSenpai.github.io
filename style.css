@@ -2,13 +2,11 @@ body {
   background-color: #b0bca7;
   text-align: center;
 }
-
 nav {
   border-bottom: 5px solid black;
   width: 100%;
   background: none;
 }
-
 .crumb ul {
   list-style: none;
   padding: 0;
@@ -44,13 +42,11 @@ body {
   background-color: #b0bca7;
   text-align: center;
 }
-
 nav {
   border-bottom: 5px solid black;
   width: 100%;
   background: none;
 }
-
 .crumb ul {
   list-style: none;
   padding: 0;
@@ -78,17 +74,24 @@ h1 {
   letter-spacing: 8px;
 }
 a {
+  text-decoration: none;
   font-family: Arial;
   font-weight: lighter;
-  letter-spacing: 5px;
+  letter-spacing: 3px;
+  text-align: center;
+  padding: 38px 0;
+  position: relative;
+}
+img {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 footer {
   font-family: Arial;
   font-weight: lighter;
-  letter-spacing: 8px;
+  letter-spacing: 5px;
   width: 100%;
   text-align: center;
   background-color: #b0bca7;
-  padding: 10px 0;
+  padding: 40px 0;
   position: relative;
 }
