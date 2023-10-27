@@ -10,4 +10,5 @@ body {
 }
 .crumb {
   display: inline-block;
+  color: black;
 }
