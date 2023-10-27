@@ -3,14 +3,10 @@ body {
 }
  nav li {
    display: inline;
-   padding: 0%;
    border-bottom: 1px solid black;
  }
 .crumb a::after {
   display: inline-block;
-  color: #000;
-  content: '>';
   font-size: 80%;
-  font-weight: bold;
   padding: 0px;
 }
