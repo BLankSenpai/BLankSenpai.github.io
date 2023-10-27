@@ -19,6 +19,9 @@ nav {
   text-decoration: none;
   color: black;
 }
+.crumb {
+  display: inline-block;
+}
 .crumb li {
   display: inline;
   margin-right: 10px;
