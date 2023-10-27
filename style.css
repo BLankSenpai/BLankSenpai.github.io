@@ -2,7 +2,8 @@ body {
   background-color: #b0bca7;
 }
 nav {
-   border-bottom: 20px solid black;
+  border-bottom: 10px solid black;
+  width: 100%;
 }
 .crumb ul {
   list-style-type: none;
@@ -11,7 +12,5 @@ nav {
 .crumb a {
   text-decoration: none;
   color: black;
-}
-.crumb {
   display: inline-block;
 }
