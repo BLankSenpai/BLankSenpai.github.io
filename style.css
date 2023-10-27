@@ -1,11 +1,17 @@
 body {
   background-color: #b0bca7;
-  text-align: center;
+  text-align: center; /* Center text in the body */
 }
 
 nav {
   background-color: black;
-  text-align: center;
+  text-align: center; /* Center text within the navigation bar */
+}
+
+.crumb ul {
+  list-style: none; /* Remove list-style dots */
+  padding: 0;
+  margin: 0;
 }
 
 .crumb {
