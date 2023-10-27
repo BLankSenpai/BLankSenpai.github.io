@@ -1,11 +1,13 @@
 body {
   background-color: #b0bca7;
-  text-align: center; /* Center text in the body */
+  text-align: center;
 }
 
 nav {
   width: 100%;
   border-bottom: 20px solid black;
+  display: flex;
+  justify-content: center; 
 }
 
 .crumb ul {
