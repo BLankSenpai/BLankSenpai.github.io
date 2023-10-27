@@ -4,8 +4,10 @@ body {
 }
 
 nav {
+  width: 100%;
   background-color: black;
   text-align: center; /* Center text within the navigation bar */
+  border-bottom: 20px solid black; /* Add a bottom border */
 }
 
 .crumb ul {
