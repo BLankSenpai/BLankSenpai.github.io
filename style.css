@@ -40,13 +40,55 @@ a {
   font-weight: lighter;
   letter-spacing: 5px;
 }
+body {
+  background-color: #b0bca7;
+  text-align: center;
+}
+
+nav {
+  border-bottom: 5px solid black;
+  width: 100%;
+  background: none;
+}
+
+.crumb ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+.crumb a {
+  font-family: Arial;
+  font-weight: light;
+  letter-spacing: 5px;
+  text-decoration: none;
+  color: black;
+}
+.crumb {
+  display: inline-block;
+}
+.crumb li {
+  display: inline;
+  margin-right: 10px;
+}
+h1 {
+  font-size: 300%;
+  font-family: Arial;
+  letter-spacing: 8px;
+}
+a {
+  font-family: Arial;
+  font-weight: lighter;
+  letter-spacing: 5px;
+}
 footer {
   font-family: Arial;
   font-weight: lighter;
   letter-spacing: 8px;
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
   text-align: center;
+  background-color: #b0bca7;
+  padding: 10px 0;
+  position: relative;
 }
