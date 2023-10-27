@@ -7,11 +7,10 @@ nav {
 .crumb ul {
   list-style-type: none;
   padding: 0%;
-  text-decoration: none;
 }
-.crumbs .crumb a {
+.crumb a {
   text-decoration: none;
-  text-color: black;
+  color: black;
 }
 .crumb {
   display: inline-block;
