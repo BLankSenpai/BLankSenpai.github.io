@@ -45,10 +45,9 @@ body {
 nav {
   border-bottom: 5px solid black;
   width: 100%;
-  background: none;
+  background: rgba(0, 0, 0, 0.5);
 }
 .crumb ul {
-  background-color: rgba(0, 0, 0, 0.5)
   list-style: none;
   padding: 0;
   margin: 0;
@@ -81,8 +80,6 @@ a {
   letter-spacing: 3px;
   text-align: center;
   color: black;
-  padding: 100px 0;
-  position: relative;
 }
 img {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
@@ -94,6 +91,7 @@ footer {
   width: 100%;
   text-align: center;
   background-color: #b0bca7;
-  padding: 400px 0;
-  position: relative;
+  padding: 10px 0;
+  position: absolute;
+  bottom: 0;
 }
