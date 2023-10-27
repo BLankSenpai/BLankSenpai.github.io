@@ -1,6 +1,6 @@
 body {
   background-color: #b0bca7;
-  text-align: center; /* Center text in the body */
+  text-align: center;
 }
 
 nav {
@@ -9,7 +9,7 @@ nav {
 }
 
 .crumb ul {
-  list-style: none; /* Remove list-style dots */
+  list-style: none;
   padding: 0;
   margin: 0;
 }
