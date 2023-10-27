@@ -1,16 +1,28 @@
 body {
   background-color: #b0bca7;
+  text-align: center; /* Center text in the body */
 }
+
 nav {
-  border-bottom: 10px solid black;
   width: 100%;
+  border-bottom: 20px solid black;
 }
+
 .crumb ul {
   list-style-type: none;
-  padding: 0%;
+  padding: 0;
 }
+
+.crumb {
+  display: inline;
+}
+
 .crumb a {
   text-decoration: none;
   color: black;
-  display: inline-block;
+}
+
+h1 {
+  font-size: 300%;
+  font-family: arial;
 }
