@@ -17,13 +17,12 @@ nav {
   justify-content: center;
 }
 .crumb a::after {
+  content: "||";
   font: arial;
   font-weight: light;
   letter-spacing: 5px;
   text-decoration: none;
   color: black;
-  display: inline-block;
-  content: "||";
 }
 .crumb {
   display: inline-block;
