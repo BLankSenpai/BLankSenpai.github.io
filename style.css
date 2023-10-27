@@ -1,7 +1,7 @@
 body {
   background-color: #b0bca7;
 }
- nav {
+nav {
    border-bottom: 20px solid black;
 }
 .crumb ul {
@@ -9,9 +9,10 @@ body {
   padding: 0%;
   text-decoration: none;
 }
-
-.crumb a {
-  display: inline-block;
-  color: black;
+.crumbs .crumb a {
   text-decoration: none;
+  text-color: black;
+}
+.crumb {
+  display: inline-block;
 }
