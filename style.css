@@ -16,8 +16,7 @@ nav {
   display: flex;
   justify-content: center;
 }
-.crumb a::after {
-  content: "||";
+.crumb a {
   font: arial;
   font-weight: light;
   letter-spacing: 5px;
