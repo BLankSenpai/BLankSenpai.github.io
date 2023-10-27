@@ -19,12 +19,20 @@ nav {
 .crumb a {
   font: arial;
   font-weight: light;
-  letter-spacing: 8px;
+  letter-spacing: 5px;
   text-decoration: none;
   color: black;
 }
 .crumb {
   display: inline-block;
+}
+.crumb a::after {
+  display: inline-block;
+  color: #000;
+  content: '||';
+  font-size: 80%;
+  font-weight: bold;
+  padding: 0 3px;
 }
 .crumb li {
   display: inline;
@@ -35,3 +43,6 @@ h1 {
   font-family: arial;
   letter-spacing: 8px;
 }
+a {
+  font: arial;
+  font-weight: light;
