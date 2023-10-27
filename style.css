@@ -4,6 +4,7 @@ body {
 }
 
 nav {
+  border-bottom: 5px solid black;
   width: 100%;
   background: none;
 }
@@ -16,6 +17,9 @@ nav {
   justify-content: center;
 }
 .crumb a {
+  font: arial;
+  font-weight: light;
+  letter-spacing: 8px;
   text-decoration: none;
   color: black;
 }
@@ -29,5 +33,5 @@ nav {
 h1 {
   font-size: 300%;
   font-family: arial;
-  letter-spacing: 5px;
+  letter-spacing: 8px;
 }
