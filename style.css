@@ -1,7 +1,7 @@
 body {
   background-color: #b0bca7;
 }
- nav li {
+ nav {
    border-bottom: 1px solid black;
 }
 .crumb ul {
@@ -10,9 +10,4 @@ body {
 }
 .crumb {
   display: inline-block;
-}
-.crumb a::after {
-  display: inline-block;
-  font-size: 80%;
-  padding: 0px;
 }
