@@ -12,13 +12,15 @@ nav {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
 }
 .crumb a {
   text-decoration: none;
   color: black;
-  display: inline;
 }
-
+.crumb li {
+  dislay: inline;
+  margin-right: 10px;
 h1 {
   font-size: 300%;
   font-family: arial;
