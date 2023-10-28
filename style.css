@@ -1,10 +1,10 @@
 body {
-  background-color: #C3C1AB;
+  background-color: #C0C7AB;
   text-align: center;
 }
 
 nav {
-  border-bottom: 5px solid #D9BFB1;
+  border-bottom: 5px solid #989f7e;
   width: 100%;
 }
 
@@ -17,7 +17,7 @@ nav {
 }
 
 .crumb a {
-  background-color:#D9BFB1;
+  background-color:#B6AD90;
   padding: 10px;
   display: inline-block;
   margin: 5px;
@@ -43,7 +43,7 @@ h1 {
   font-size: 300%;
   font-family: Arial;
   letter-spacing: 8px;
-  color: #AE887B
+  color: #6d7361;
 }
 
 a {
@@ -68,4 +68,8 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
+  color: #989f7e;
+}
+h3 {
+  color: #AC855E;
 }
