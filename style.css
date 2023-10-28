@@ -1,10 +1,10 @@
 body {
-  background-color: #5E5946;
+  background-color: #F0DED0;
   text-align: center;
 }
 
 nav {
-  border-bottom: 5px solid rgb(D9BFB1);
+  border-bottom: 5px solid #D9BFB1;
   width: 100%;
 }
 
@@ -17,7 +17,7 @@ nav {
 }
 
 .crumb a {
-  background-color: rgba(#D9BFB1);
+  background-color:#D9BFB1;
   padding: 10px;
   display: inline-block;
   margin: 5px;
