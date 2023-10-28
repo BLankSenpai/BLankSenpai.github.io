@@ -17,7 +17,7 @@ nav {
 }
 
 .crumb a {
-  background-color:#B6AD90;
+  background-color:#989f7e;
   padding: 10px;
   display: inline-block;
   margin: 5px;
@@ -52,7 +52,7 @@ a {
   font-weight: lighter;
   letter-spacing: 3px;
   text-align: center;
-  color: #AE887B;
+  color: #989f7e;
 }
 
 img {
@@ -71,5 +71,5 @@ footer {
   color: #989f7e;
 }
 h3 {
-  color: #AC855E;
+  color: #6d7361;
 }
