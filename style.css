@@ -57,7 +57,6 @@ body {
 nav {
   border-bottom: 5px solid black;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5);
 }
 .crumb ul {
   list-style: none;
@@ -67,7 +66,7 @@ nav {
   justify-content: center;
 }
 .crumb a {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.288);
   padding: 10px;
   display: inline-block;
   margin: 5px;
