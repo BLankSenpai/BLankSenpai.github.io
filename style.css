@@ -19,7 +19,9 @@ nav {
 .crumb a {
   background-color:#989f7e;
   padding: 10px;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 5px;
   font-family: Arial;
   font-weight: light;
