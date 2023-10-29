@@ -6,10 +6,9 @@ main {
   bottom: 0;
 }
 nav {
-  border-bottom: 5px solid #666f7e;
   width: 100%;
   text-align: center;
-  top: 20px;
+  top: 10px;
 }
 
 .crumb ul {
@@ -28,6 +27,7 @@ nav {
   margin: 5px;
   font-family: Arial;
   font-weight: light;
+  font-size: 80%;
   letter-spacing: 5px;
   text-decoration: none;
   color: #666f7e;
@@ -43,7 +43,7 @@ nav {
 }
 
 h1 {
-  font-size: 300%;
+  font-size: 200%;
   font-family: Arial;
   letter-spacing: 8px;
   color: #666f7e;
