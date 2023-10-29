@@ -64,7 +64,8 @@ a {
 }
 
 img {
-  align-items: center;
+  display: block;
+  margin: 0 auto;
   width: 799px;
   height: 366px;
 }
@@ -74,8 +75,8 @@ footer {
   font-weight: lighter;
   letter-spacing: 5px;
   text-align: left;
-  padding: 10px 0;
   position: relative;
+  top: 0;
   left: 0;
   font-size: 220%;
   color: #666f7e;
