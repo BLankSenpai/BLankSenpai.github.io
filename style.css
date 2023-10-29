@@ -72,12 +72,11 @@ footer {
   font-family: Arial;
   font-weight: lighter;
   letter-spacing: 5px;
-  text-align: center;
+  text-align: left;
   padding: 10px 0;
   position: absolute;
   bottom: 0;
   left: 0;
-  font-size: 100%;
-  width: 100%;
+  font-size: 150%;
   color: #666f7e;
 }
