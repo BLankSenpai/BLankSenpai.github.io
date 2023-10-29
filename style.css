@@ -82,6 +82,7 @@ img {
   font-size: 350%;
   color: #666f7e;
   border-bottom: 5px solid #666f7e;
+  border-bottom-width: 50px;
 }
 .copyright {
   font-family: Arial;
