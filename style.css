@@ -82,7 +82,7 @@ footer {
 p {
   color: #666f7e;
   font-size: 100px;
-  font: Arial;
+  font-family: Arial;
   letter-spacing: 5px;
   position: relative;
   bottom: 0;
