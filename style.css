@@ -1,10 +1,12 @@
 body {
-  background-color: #C0C7AB;
-  text-align: center;
+  background-color: #ffffff;
+  text-align: left;
+  position: absolute;
+  bottom: 0;
 }
 
 nav {
-  border-bottom: 5px solid #989f7e;
+  border-bottom: 5px solid #666f7e;
   width: 100%;
 }
 
@@ -17,7 +19,6 @@ nav {
 }
 
 .crumb a {
-  background-color:#989f7e;
   padding: 10px;
   display: flex;
   justify-content: center;
@@ -27,9 +28,7 @@ nav {
   font-weight: light;
   letter-spacing: 5px;
   text-decoration: none;
-  color: #6d7361;
-  border-radius: 20px;
-  height: 10px;
+  color: #666f7e;
 }
 
 .crumb {
@@ -54,7 +53,7 @@ a {
   font-weight: lighter;
   letter-spacing: 3px;
   text-align: center;
-  color: #989f7e;
+  color: #666f7e;
 }
 
 img {
@@ -70,8 +69,9 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  color: #989f7e;
+  color: #666f7e;
 }
-h3 {
-  color: #6d7361;
+p {
+  color: #666f7e;
+  font-size: 150%;
 }
