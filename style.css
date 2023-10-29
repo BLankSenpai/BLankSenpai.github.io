@@ -48,7 +48,7 @@ h1 {
   letter-spacing: 8px;
   color: #666f7e;
   text-align: center;
-  position:relative;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -64,7 +64,11 @@ a {
 }
 
 img {
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  align-items: center;
+  justify-items: center;
+  height: 955px;
+  width: 437px;
 }
 
 footer {
