@@ -71,6 +71,7 @@ img {
 }
 
 .caption {
+  display: inline-block; 
   font-family: Arial;
   font-weight: lighter;
   letter-spacing: 5px;
