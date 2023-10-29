@@ -70,7 +70,7 @@ img {
   height: 366px;
 }
 
-footer {
+.caption {
   font-family: Arial;
   font-weight: lighter;
   letter-spacing: 5px;
@@ -78,6 +78,6 @@ footer {
   position: relative;
   top: 0;
   left: 0;
-  font-size: 220%;
+  font-size: 250%;
   color: #666f7e;
 }
