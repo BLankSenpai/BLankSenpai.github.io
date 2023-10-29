@@ -84,4 +84,6 @@ p {
   font-size: 100px;
   font: Arial;
   letter-spacing: 5px;
+  position: relative;
+  bottom: 0;
 }
