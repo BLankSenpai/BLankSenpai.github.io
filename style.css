@@ -64,11 +64,8 @@ a {
 }
 
 img {
-  position: absolute;
-  align-items: center;
-  justify-items: center;
-  height: 955px;
-  width: 437px;
+  width: 955px;
+  height: 437px;
 }
 
 footer {
