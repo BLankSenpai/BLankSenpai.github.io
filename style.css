@@ -44,7 +44,10 @@ h1 {
   font-size: 300%;
   font-family: Arial;
   letter-spacing: 8px;
-  color: #6d7361;
+  color: #666f7e;
+  text-align: center;
+  top: 0;
+
 }
 
 a {
