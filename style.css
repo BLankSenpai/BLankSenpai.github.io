@@ -78,12 +78,3 @@ footer {
   width: 100%;
   color: #666f7e;
 }
-
-p {
-  color: #666f7e;
-  font-size: 100px;
-  font-family: Arial;
-  letter-spacing: 5px;
-  position: relative;
-  bottom: 0;
-}
