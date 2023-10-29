@@ -64,6 +64,7 @@ a {
 }
 
 img {
+  align-items: center;
   width: 799px;
   height: 366px;
 }
@@ -76,6 +77,6 @@ footer {
   padding: 10px 0;
   position: relative;
   left: 0;
-  font-size: 190%;
+  font-size: 220%;
   color: #666f7e;
 }
