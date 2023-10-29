@@ -9,6 +9,7 @@ nav {
   border-bottom: 5px solid #666f7e;
   width: 100%;
   text-align: center;
+  top: 20px;
 }
 
 .crumb ul {
@@ -81,5 +82,7 @@ footer {
 
 p {
   color: #666f7e;
-  font-size: 150px;
+  font-size: 100px;
+  font: Arial;
+  letter-spacing: 5px;
 }
