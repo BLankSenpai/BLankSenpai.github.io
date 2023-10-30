@@ -100,8 +100,9 @@ img {
   font-family: Arial;
   font-weight: lighter;
   letter-spacing: 5px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  width: 100%;
   color: #666f7e;
 }
 .reveal{
