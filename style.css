@@ -121,7 +121,7 @@ img {
 .main-content {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 1.5s, transform 1.5s;
 }
 
 .main-content.show {
