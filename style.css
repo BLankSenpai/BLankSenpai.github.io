@@ -42,7 +42,7 @@ nav {
   margin-right: 10px;
 }
 
-h1 {
+.logo {
   font-size: 200%;
   font-family: Arial;
   letter-spacing: 8px;
@@ -79,6 +79,19 @@ img {
   position: relative;
   top: 0;
   left: 0;
+  font-size: 350%;
+  color: #666f7e;
+  border-bottom: 5px solid #666f7e;
+}
+.caption1 {
+  display: inline-block; 
+  font-family: Arial;
+  font-weight: lighter;
+  letter-spacing: 5px;
+  text-align: right;
+  position: relative;
+  top: 0;
+  right: 0;
   font-size: 350%;
   color: #666f7e;
   border-bottom: 5px solid #666f7e;
