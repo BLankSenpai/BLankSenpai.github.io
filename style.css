@@ -101,6 +101,7 @@ img {
   font-weight: lighter;
   letter-spacing: 5px;
   position: fixed;
+  font-size: 80%;
   bottom: 0;
   width: 100%;
   color: #666f7e;
