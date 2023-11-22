@@ -1,10 +1,12 @@
 body {
   background-color: #ffffff;
 }
+
 main {
   text-align: left;
   bottom: 0;
 }
+
 nav {
   width: 100%;
   text-align: center;
@@ -83,6 +85,7 @@ img {
   color: #666f7e;
   border-bottom: 5px solid #666f7e;
 }
+
 .caption1 {
   display: inline-block; 
   font-family: Arial;
@@ -96,6 +99,7 @@ img {
   color: #666f7e;
   border-bottom: 5px solid #666f7e;
 }
+
 .copyright {
   font-family: Arial;
   font-weight: lighter;
@@ -106,6 +110,7 @@ img {
   width: 100%;
   color: #666f7e;
 }
+
 .reveal{
   position: relative;
   transform: translateY(150px);
@@ -118,6 +123,7 @@ img {
   opacity: 1;
   
 }
+
 .main-content {
   opacity: 0;
   transform: translateY(20px);
@@ -128,6 +134,7 @@ img {
   opacity: 1;
   transform: translateY(0);
 }
+
 .space {
-  margin: 150px 0;
+  margin: 120px 0;
 }
