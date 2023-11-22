@@ -74,19 +74,6 @@ img {
   color: #666f7e;
 }
 
-.reveal {
-  position: relative;
-  transform: translateY(150px);
-  opacity: 0;
-  transition: 1s all ease;
-}
-
-.reveal.active{
-  transform: translateY(0);
-  opacity: 1;
-  
-}
-
 .main-content {
   opacity: 0;
   transform: translateY(20px);
@@ -106,7 +93,7 @@ body
 {
   margin: 0;
   padding: 0;
-  background: #232323;
+  background: #ffffff;
   color: #cdcdcd;
   font-family: "Avenir Next", "Avenir", sans-serif;
 }
