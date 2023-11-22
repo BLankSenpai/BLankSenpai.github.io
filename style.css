@@ -111,7 +111,7 @@ img {
   color: #666f7e;
 }
 
-.reveal{
+.reveal {
   position: relative;
   transform: translateY(150px);
   opacity: 0;
@@ -136,5 +136,5 @@ img {
 }
 
 .space {
-  margin: 120px 0;
+  margin: 90px 0;
 }
