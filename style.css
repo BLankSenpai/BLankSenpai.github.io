@@ -8,15 +8,15 @@ main {
 }
 
 .logo {
-  font-size: 100%;
+  font-size: 80%;
   font-family: Arial;
   letter-spacing: 8px;
   color: #666f7e;
-  text-align: center;
-  position: relative;
+  text-align: right;
+  position: absolute;
   top: 0;
   left: 0;
-  right: 100;
+  right: 0;
 }
 
 a {
