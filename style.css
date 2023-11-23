@@ -1,31 +1,6 @@
-body {
-  background-color: #ffffff;
-}
-
 main {
   text-align: left;
   bottom: 0;
-}
-
-.logo {
-  font-size: 80%;
-  font-family: Arial;
-  letter-spacing: 8px;
-  color: #666f7e;
-  text-align: right;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-a {
-  text-decoration: none;
-  font-family: Arial;
-  font-weight: lighter;
-  letter-spacing: 3px;
-  text-align: center;
-  color: #666f7e;
 }
 
 img {
@@ -89,13 +64,63 @@ img {
   margin: 90px 0;
 }
 
-body
-{
+body {
   margin: 0;
   padding: 0;
   background: #ffffff;
   color: #cdcdcd;
   font-family: "Avenir Next", "Avenir", sans-serif;
+}
+
+header {
+  position: relative;
+}
+
+nav {
+  display: inline-block; /* Ensures that the nav and .logo are on the same line */
+}
+
+.logo {
+  font-size: 80%;
+  font-family: Arial;
+  letter-spacing: 8px;
+  color: #666f7e;
+  text-align: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+a {
+  text-decoration: none;
+  font-family: Arial;
+  font-weight: lighter;
+  letter-spacing: 3px;
+  text-align: center;
+  color: #666f7e;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  width: 799px;
+  height: 366px;
+}
+
+/* Remove animation styles for the first .main-content */
+.main-content:not(:first-child) {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.5s, transform 1.5s;
+}
+
+.main-content:not(:first-child).show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.space {
+  margin: 90px 0;
 }
 
 #menuToggle
