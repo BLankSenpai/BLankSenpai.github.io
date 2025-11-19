@@ -11,12 +11,14 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #fef2f2; /* Very light red/white */
+            background-color: #ecf9ff
         }
+
+        // if you are reading this, you are a faggot.
+        
         .paper-shadow {
             box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 5px 15px -5px rgba(0, 0, 0, 0.05);
         }
-        /* Custom checkbox style logic using Tailwind 'peer' class instead of custom CSS for better control over children */
         canvas {
             position: fixed;
             top: 0;
@@ -28,13 +30,10 @@
 </head>
 <body class="min-h-screen relative overflow-x-hidden">
 
-    <!-- Snow Effect Canvas -->
     <canvas id="snow"></canvas>
 
-    <!-- Main Content Container -->
     <div class="relative z-10 w-full max-w-3xl mx-auto px-6 py-12 flex flex-col items-center">
         
-        <!-- Header: Large Sans-Serif Anchored Top Center -->
         <header class="text-center mb-12 w-full">
             <h1 class="text-5xl md:text-7xl font-normal text-black tracking-tight uppercase drop-shadow-sm">
                 Matthew's<br>
@@ -42,7 +41,6 @@
             </h1>
         </header>
 
-        <!-- The List -->
         <main class="w-full bg-white p-8 md:p-12 rounded-xl paper-shadow">
             <div class="flex justify-between items-end mb-6 border-b pb-2">
                 <h2 class="text-xl font-bold text-gray-800 uppercase tracking-wide">Wishlist Items</h2>
@@ -50,7 +48,6 @@
             </div>
             
             <div class="space-y-6">
-                <!-- Item 1 -->
                 <div class="flex items-start space-x-4 group relative">
                     <input type="checkbox" class="peer mt-1.5 w-5 h-5 text-red-600 rounded border-gray-300 focus:ring-red-500 cursor-pointer">
                     
@@ -65,7 +62,6 @@
                     </div>
                 </div>
 
-                <!-- Item 2 -->
                 <div class="flex items-start space-x-4 group relative">
                     <input type="checkbox" class="peer mt-1.5 w-5 h-5 text-red-600 rounded border-gray-300 focus:ring-red-500 cursor-pointer">
                     
@@ -80,7 +76,6 @@
                     </div>
                 </div>
 
-                <!-- Item 3 -->
                 <div class="flex items-start space-x-4 group relative">
                     <input type="checkbox" class="peer mt-1.5 w-5 h-5 text-red-600 rounded border-gray-300 focus:ring-red-500 cursor-pointer">
                     
@@ -95,7 +90,6 @@
                     </div>
                 </div>
 
-                <!-- Item 4 -->
                 <div class="flex items-start space-x-4 group relative">
                     <input type="checkbox" class="peer mt-1.5 w-5 h-5 text-red-600 rounded border-gray-300 focus:ring-red-500 cursor-pointer">
                     
@@ -110,7 +104,6 @@
                     </div>
                 </div>
 
-                 <!-- Item 5 -->
                  <div class="flex items-start space-x-4 group relative">
                     <input type="checkbox" class="peer mt-1.5 w-5 h-5 text-red-600 rounded border-gray-300 focus:ring-red-500 cursor-pointer">
                     
@@ -134,7 +127,6 @@
     </div>
 
     <script>
-        // Simple Snowfall Effect
         const canvas = document.getElementById('snow');
         const ctx = canvas.getContext('2d');
 
@@ -149,7 +141,7 @@
         function createParticle() {
             return {
                 x: Math.random() * width,
-                y: Math.random() * height - height, // Start above screen
+                y: Math.random() * height - height, 
                 radius: Math.random() * 3 + 1,
                 speed: Math.random() * 2 + 0.5,
                 wind: Math.random() * 0.5 - 0.25
@@ -161,7 +153,6 @@
             for (let i = 0; i < 100; i++) {
                 particles.push(createParticle());
             }
-            // Distribute initially
             particles.forEach(p => p.y = Math.random() * height);
         }
 
@@ -174,14 +165,12 @@
                 ctx.moveTo(p.x, p.y);
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                 
-                // Update position
                 p.y += p.speed;
                 p.x += p.wind;
 
-                // Reset if out of bounds
                 if (p.y > height) {
                     particles[i] = createParticle();
-                    particles[i].y = -10; // Reset to top
+                    particles[i].y = -10; 
                 }
             });
             
