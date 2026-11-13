@@ -1,4 +1,32 @@
 const PRESET_RECIPES = {
+    salmon: {
+        name: "Pan-Seared Salmon Bites (Honey Sesame Soy)",
+        url: "https://www.bowlofdelicious.com/salmon-bites/",
+        meta: {
+            "Prep Time": "5 mins",
+            "Cook Time": "5 mins",
+            "Total Time": "10 mins",
+            "Servings": "4 servings"
+        },
+        ingredients: [
+            "1 lb salmon fillet, skinless or skin-on, cut into 1-inch bite-sized cubes",
+            "2 tablespoons low-sodium soy sauce (or tamari / coconut aminos)",
+            "1 tablespoon honey (or maple syrup)",
+            "1 tablespoon toasted sesame oil",
+            "1 tablespoon olive oil or avocado oil, for searing",
+            "1 tablespoon toasted sesame seeds, for garnish",
+            "2 green onions, thinly sliced, for garnish"
+        ],
+        instructions: [
+            "Pat the salmon fillet dry with a paper towel and cut into even 1-inch bite-sized cubes.",
+            "In a medium bowl, whisk together the soy sauce, honey, and toasted sesame oil. Add the salmon cubes and toss gently to coat.",
+            "Heat 1 tablespoon of cooking oil in a large non-stick or cast-iron skillet over medium-high heat until shimmering and very hot.",
+            "Add the salmon bites to the skillet in a single layer using a slotted spoon, reserving the excess marinade in the bowl. Work in batches if needed so the pan is not crowded.",
+            "Sear undisturbed for 2 minutes until golden-brown and caramelized on the bottom.",
+            "Flip or toss the salmon bites, pour in any remaining marinade from the bowl, and cook for 1 to 2 minutes more until the sauce glazes the salmon and the fish is cooked through.",
+            "Remove from heat immediately, garnish with sesame seeds and sliced green onions, and serve warm over rice or vegetables."
+        ]
+    },
     cookies: {
         name: "Classic Chewy Chocolate Chip Cookies",
         url: "https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/",
@@ -181,6 +209,10 @@ function hideStatus() {
     statusBox.textContent = '';
 }
 
+function normalizeUrlForCompare(u) {
+    return u.trim().toLowerCase().replace(/\/+$/, '');
+}
+
 function loadPreset(key) {
     const preset = PRESET_RECIPES[key];
     if (!preset) return;
@@ -200,16 +232,9 @@ async function handleScanUrl() {
         return;
     }
 
-    for (const [key, preset] of Object.entries(PRESET_RECIPES)) {
-        if (preset.url.toLowerCase() === rawUrl.toLowerCase()) {
-            loadPreset(key);
-            return;
-        }
-    }
-
     let parsedUrl;
     try {
-        parsedUrl = new URL(rawUrl);
+        parsedUrl = new URL(rawUrl.startsWith('http') ? rawUrl : `https://${rawUrl}`);
     } catch {
         showStatus('Invalid URL format. Make sure the link starts with https://', 'error');
         return;
@@ -220,18 +245,30 @@ async function handleScanUrl() {
     showStatus('Scanning webpage for recipe ingredients and instructions...', 'loading');
 
     try {
-        const htmlContent = await fetchExternalHtml(parsedUrl.href);
-        const extracted = parseRecipeFromHtml(htmlContent, parsedUrl.href);
-
-        if (!extracted) {
-            showStatus('No structured recipe data found on that link. Switch to "Paste Text / HTML" to paste the recipe directly.', 'error');
-            scanUrlBtn.disabled = false;
+        const extracted = await scanRecipeFromUrl(parsedUrl);
+        if (extracted) {
+            hideStatus();
+            displayRecipe(extracted);
             return;
         }
 
-        hideStatus();
-        displayRecipe(extracted);
+        const normalizedInput = normalizeUrlForCompare(parsedUrl.href);
+        for (const [key, preset] of Object.entries(PRESET_RECIPES)) {
+            if (normalizeUrlForCompare(preset.url) === normalizedInput) {
+                loadPreset(key);
+                return;
+            }
+        }
+
+        showStatus('No structured recipe data found on that link. Switch to "Paste Text / HTML" to paste the recipe directly.', 'error');
     } catch {
+        const normalizedInput = normalizeUrlForCompare(parsedUrl.href);
+        for (const [key, preset] of Object.entries(PRESET_RECIPES)) {
+            if (normalizeUrlForCompare(preset.url) === normalizedInput) {
+                loadPreset(key);
+                return;
+            }
+        }
         showStatus('Unable to reach that website due to browser CORS protection. Use the "Paste Text / HTML" tab or try a sample link above.', 'error');
     } finally {
         scanUrlBtn.disabled = false;
@@ -247,7 +284,7 @@ function handleScanText() {
         return;
     }
 
-    const extracted = parseRecipeFromHtml(raw, '') || parseRecipeFromPlainText(raw);
+    const extracted = parseRecipeFromHtml(raw, '') || parseRecipeFromPlainText(raw, '');
     if (!extracted) {
         showStatus('Could not detect ingredients and instructions. Make sure lines are under "Ingredients" and "Instructions" headings.', 'error');
         return;
@@ -257,36 +294,176 @@ function handleScanText() {
     displayRecipe(extracted);
 }
 
-async function fetchExternalHtml(targetUrl) {
-    const proxyEndpoints = [
+async function fetchWithTimeout(resource, options = {}, timeoutMs = 8000) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+        return await fetch(resource, { ...options, signal: controller.signal });
+    } finally {
+        clearTimeout(timer);
+    }
+}
+
+function decodeDataUriIfNeeded(content) {
+    if (!content || typeof content !== 'string') return '';
+    const trimmed = content.trim();
+    if (!trimmed.startsWith('data:')) return content;
+
+    const base64Marker = ';base64,';
+    const idx = trimmed.indexOf(base64Marker);
+    if (idx === -1) return content;
+
+    try {
+        const b64 = trimmed.slice(idx + base64Marker.length);
+        const binary = atob(b64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) {
+            bytes[i] = binary.charCodeAt(i);
+        }
+        return new TextDecoder('utf-8').decode(bytes);
+    } catch {
+        return content;
+    }
+}
+
+async function scanRecipeFromUrl(parsedUrl) {
+    const targetUrl = parsedUrl.href;
+
+    const wpRecipe = await tryWordPressRestApi(parsedUrl);
+    if (wpRecipe) return wpRecipe;
+
+    const htmlStrategies = [
         async () => {
-            const r = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`);
-            if (!r.ok) throw new Error('allorigins failed');
+            const r = await fetchWithTimeout(`https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`);
+            if (!r.ok) throw new Error('allorigins get failed');
             const j = await r.json();
-            if (!j.contents) throw new Error('empty');
-            return j.contents;
+            return decodeDataUriIfNeeded(j.contents);
         },
         async () => {
-            const r = await fetch(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`);
+            const r = await fetchWithTimeout(`https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`);
+            if (!r.ok) throw new Error('allorigins raw failed');
+            return await r.text();
+        },
+        async () => {
+            const r = await fetchWithTimeout(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`);
             if (!r.ok) throw new Error('codetabs failed');
             return await r.text();
         },
         async () => {
-            const r = await fetch(`https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`);
+            const r = await fetchWithTimeout(`https://corsproxy.io/?${encodeURIComponent(targetUrl)}`);
             if (!r.ok) throw new Error('corsproxy failed');
             return await r.text();
         }
     ];
 
-    for (const attempt of proxyEndpoints) {
+    for (const getHtml of htmlStrategies) {
         try {
-            const text = await attempt();
-            if (text && text.length > 100) return text;
+            const html = await getHtml();
+            if (!html || html.length < 100) continue;
+            const recipe = parseRecipeFromHtml(html, targetUrl);
+            if (recipe) return recipe;
         } catch {
             continue;
         }
     }
-    throw new Error('All proxy fetches failed');
+
+    try {
+        const r = await fetchWithTimeout(`https://r.jina.ai/${targetUrl}`, {}, 10000);
+        if (r.ok) {
+            const readerText = await r.text();
+            const recipe = parseRecipeFromPlainText(readerText, targetUrl);
+            if (recipe) return recipe;
+        }
+    } catch {
+        // Ignore reader fallback error
+    }
+
+    return null;
+}
+
+async function tryWordPressRestApi(parsedUrl) {
+    const pathSegments = parsedUrl.pathname.split('/').filter(Boolean);
+    if (!pathSegments.length) return null;
+
+    const slug = pathSegments[pathSegments.length - 1];
+    if (!slug || slug.includes('.')) return null;
+
+    const wpApiUrl = `${parsedUrl.origin}/wp-json/wp/v2/posts?slug=${encodeURIComponent(slug)}`;
+
+    const fetchJsonCandidates = [
+        async () => {
+            const r = await fetchWithTimeout(wpApiUrl, {}, 5000);
+            if (!r.ok) throw new Error('direct wp-json failed');
+            return await r.json();
+        },
+        async () => {
+            const r = await fetchWithTimeout(`https://api.allorigins.win/get?url=${encodeURIComponent(wpApiUrl)}`, {}, 6000);
+            if (!r.ok) throw new Error('proxied wp-json failed');
+            const wrapper = await r.json();
+            const decoded = decodeDataUriIfNeeded(wrapper.contents);
+            return JSON.parse(decoded);
+        },
+        async () => {
+            const r = await fetchWithTimeout(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(wpApiUrl)}`, {}, 6000);
+            if (!r.ok) throw new Error('codetabs wp-json failed');
+            return await r.json();
+        }
+    ];
+
+    for (const getJson of fetchJsonCandidates) {
+        try {
+            const posts = await getJson();
+            if (!Array.isArray(posts) || !posts.length) continue;
+            const post = posts[0];
+
+            if (post.yoast_head_json && post.yoast_head_json.schema) {
+                const fromSchema = extractFromSchemaObject(post.yoast_head_json.schema, parsedUrl.href);
+                if (fromSchema) return fromSchema;
+            }
+
+            const combinedHtml = `
+                <!DOCTYPE html><html><head>${post.yoast_head || ''}</head>
+                <body>
+                    <h1>${post.title?.rendered || ''}</h1>
+                    ${post.content?.rendered || ''}
+                </body></html>
+            `;
+            const fromHtml = parseRecipeFromHtml(combinedHtml, parsedUrl.href);
+            if (fromHtml) return fromHtml;
+        } catch {
+            continue;
+        }
+    }
+
+    return null;
+}
+
+function extractFromSchemaObject(schemaObj, sourceUrl) {
+    const matches = [];
+    const walk = (node) => {
+        if (!node || typeof node !== 'object') return;
+        if (Array.isArray(node)) {
+            node.forEach(walk);
+            return;
+        }
+        const typeVal = node['@type'];
+        const types = Array.isArray(typeVal) ? typeVal : [typeVal];
+        if (types.some(t => typeof t === 'string' && t.toLowerCase().includes('recipe'))) {
+            matches.push(node);
+        }
+        if (node['@graph']) walk(node['@graph']);
+    };
+
+    walk(schemaObj);
+
+    for (const item of matches) {
+        const formatted = formatSchemaRecipe(item);
+        if (formatted) {
+            if (sourceUrl && !formatted.url) formatted.url = sourceUrl;
+            return formatted;
+        }
+    }
+    return null;
 }
 
 function parseRecipeFromHtml(htmlString, sourceUrl) {
@@ -304,7 +481,7 @@ function parseRecipeFromHtml(htmlString, sourceUrl) {
 }
 
 function extractJsonLdRecipe(doc) {
-    const scripts = doc.querySelectorAll('script[type="application/ld+json"]');
+    const scripts = doc.querySelectorAll('script[type*="ld+json"]');
     for (const script of scripts) {
         let json;
         try {
@@ -313,36 +490,17 @@ function extractJsonLdRecipe(doc) {
             continue;
         }
 
-        const matches = [];
-        const walk = (node) => {
-            if (!node || typeof node !== 'object') return;
-            if (Array.isArray(node)) {
-                node.forEach(walk);
-                return;
-            }
-            const typeVal = node['@type'];
-            const types = Array.isArray(typeVal) ? typeVal : [typeVal];
-            if (types.some(t => typeof t === 'string' && t.toLowerCase().includes('recipe'))) {
-                matches.push(node);
-            }
-            if (node['@graph']) walk(node['@graph']);
-        };
-
-        walk(json);
-
-        for (const item of matches) {
-            const formatted = formatSchemaRecipe(item);
-            if (formatted) return formatted;
-        }
+        const found = extractFromSchemaObject(json, '');
+        if (found) return found;
     }
     return null;
 }
 
 function formatSchemaRecipe(data) {
     const name = cleanStr(data.name || 'Extracted Recipe');
-    const ingredients = (data.recipeIngredient || data.ingredients || [])
-        .map(cleanStr)
-        .filter(Boolean);
+    const rawIng = data.recipeIngredient || data.ingredients || [];
+    const ingArray = Array.isArray(rawIng) ? rawIng : [rawIng];
+    const ingredients = ingArray.map(cleanIngredientStr).filter(Boolean);
 
     const instructions = parseSchemaInstructions(data.recipeInstructions || data.instructions || []);
 
@@ -369,19 +527,26 @@ function formatSchemaRecipe(data) {
 function parseSchemaInstructions(raw) {
     const result = [];
     if (typeof raw === 'string') {
-        return raw.split(/\r?\n+/).map(cleanStr).filter(Boolean);
+        return raw.split(/\r?\n+/).map(cleanStepStr).filter(Boolean);
     }
-    if (!Array.isArray(raw)) return result;
+    if (!Array.isArray(raw)) {
+        if (raw && typeof raw === 'object') {
+            return parseSchemaInstructions([raw]);
+        }
+        return result;
+    }
 
     for (const entry of raw) {
         if (typeof entry === 'string') {
-            const s = cleanStr(entry);
+            const s = cleanStepStr(entry);
             if (s) result.push(s);
         } else if (entry && typeof entry === 'object') {
             if (Array.isArray(entry.itemListElement)) {
                 result.push(...parseSchemaInstructions(entry.itemListElement));
+            } else if (entry.itemListElement) {
+                result.push(...parseSchemaInstructions([entry.itemListElement]));
             } else {
-                const s = cleanStr(entry.text || entry.name || '');
+                const s = cleanStepStr(entry.text || entry.description || entry.name || '');
                 if (s) result.push(s);
             }
         }
@@ -395,28 +560,42 @@ function extractMicrodataRecipe(doc) {
 
     const name = cleanStr(root.querySelector('[itemprop="name"]')?.textContent || 'Extracted Recipe');
     const ingredients = [...root.querySelectorAll('[itemprop="recipeIngredient"], [itemprop="ingredients"]')]
-        .map(el => cleanStr(el.textContent))
+        .map(el => cleanIngredientStr(extractSpacedText(el)))
         .filter(Boolean);
     const instructions = [...root.querySelectorAll('[itemprop="recipeInstructions"]')]
-        .map(el => cleanStr(el.textContent))
+        .map(el => cleanStepStr(extractSpacedText(el)))
         .filter(Boolean);
 
     if (!ingredients.length && !instructions.length) return null;
     return { name, url: '', meta: {}, ingredients, instructions };
 }
 
+function extractSpacedText(el) {
+    if (!el) return '';
+    const clone = el.cloneNode(true);
+    clone.querySelectorAll('.wprm-checkbox-container, input, svg, style, script').forEach(n => n.remove());
+    clone.querySelectorAll('*').forEach(child => {
+        child.insertAdjacentText('afterend', ' ');
+    });
+    return clone.textContent || '';
+}
+
 function extractDomSelectorsRecipe(doc) {
     const ingQueries = [
         '.wprm-recipe-ingredient',
         '.tasty-recipe-ingredients li',
+        '.tasty-recipes-ingredients li',
         '.mv-create-ingredients li',
         '.mntl-structured-ingredients__list-item',
         '.recipe-ingredients li',
+        '.ingredients-item',
         '[class*="ingredient"] li'
     ];
     const stepQueries = [
+        '.wprm-recipe-instruction',
         '.wprm-recipe-instruction-text',
         '.tasty-recipe-instructions li',
+        '.tasty-recipes-instructions li',
         '.mv-create-instructions li',
         '.recipe-directions__list--item',
         '.recipe-instructions li',
@@ -426,7 +605,9 @@ function extractDomSelectorsRecipe(doc) {
 
     let ingredients = [];
     for (const q of ingQueries) {
-        const list = [...doc.querySelectorAll(q)].map(el => cleanStr(el.textContent)).filter(Boolean);
+        const list = [...doc.querySelectorAll(q)]
+            .map(el => cleanIngredientStr(extractSpacedText(el)))
+            .filter(Boolean);
         if (list.length >= 2) {
             ingredients = list;
             break;
@@ -435,7 +616,9 @@ function extractDomSelectorsRecipe(doc) {
 
     let instructions = [];
     for (const q of stepQueries) {
-        const list = [...doc.querySelectorAll(q)].map(el => cleanStr(el.textContent)).filter(Boolean);
+        const list = [...doc.querySelectorAll(q)]
+            .map(el => cleanStepStr(extractSpacedText(el)))
+            .filter(Boolean);
         if (list.length >= 1) {
             instructions = list;
             break;
@@ -443,46 +626,82 @@ function extractDomSelectorsRecipe(doc) {
     }
 
     if (!ingredients.length && !instructions.length) return null;
-    const name = cleanStr(doc.querySelector('h1')?.textContent || 'Extracted Recipe');
+
+    const titleEl = doc.querySelector(
+        '.wprm-recipe-name, .tasty-recipes-title, .mv-create-title, h1.entry-title, h1'
+    );
+    const name = cleanStr(titleEl?.textContent || 'Extracted Recipe');
     return { name, url: '', meta: {}, ingredients, instructions };
 }
 
-function parseRecipeFromPlainText(text) {
-    const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-    if (lines.length < 2) return null;
+function parseRecipeFromPlainText(text, sourceUrl = '') {
+    const rawLines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    if (rawLines.length < 3) return null;
 
-    let section = 'ingredients';
+    let name = 'Extracted Recipe';
+    const titleMatch = text.match(/^Title:\s*(.+)$/im) || text.match(/^#\s+(.+)$/m);
+    if (titleMatch) {
+        name = cleanStr(titleMatch[1]);
+    } else if (rawLines[0].length < 80 && !/^(ingredients|instructions|directions)/i.test(rawLines[0])) {
+        name = cleanStr(rawLines[0].replace(/^#+\s*/, ''));
+    }
+
+    let section = null;
     const ingredients = [];
     const instructions = [];
-    let name = 'Custom Pasted Recipe';
 
-    for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-        if (i === 0 && !/^(ingredients|instructions|directions)/i.test(line) && line.length < 70) {
-            name = line.replace(/^#+\s*/, '');
-            continue;
-        }
-        if (/^(ingredients|ingredient list)[:\s]*$/i.test(line)) {
+    for (const line of rawLines) {
+        const headingClean = line.replace(/^[#*_\-\s]+|[#*_:.\s]+$/g, '').trim();
+
+        if (/^(ingredients|ingredient list|what you'll need|what you need)$/i.test(headingClean)) {
             section = 'ingredients';
             continue;
         }
-        if (/^(instructions|directions|steps|method|preparation)[:\s]*$/i.test(line)) {
+        if (/^(instructions|directions|steps|method|preparation|how to make.*)$/i.test(headingClean)) {
             section = 'instructions';
             continue;
         }
+        if (section === 'instructions' && /^(notes|recipe notes|nutrition|nutrition information|did you make this|leave a reply|comments)$/i.test(headingClean)) {
+            break;
+        }
 
-        const cleaned = line.replace(/^[-*•\d+.)\s]+/, '').trim();
-        if (!cleaned) continue;
+        if (!section) continue;
+
+        if (/^!\[.*\]\(.*\)$/.test(line) || /^https?:\/\//i.test(line)) continue;
+        if (/^(prep time|cook time|total time|servings|yield|course|cuisine|calories|author)\b/i.test(headingClean)) continue;
 
         if (section === 'ingredients') {
-            ingredients.push(cleaned);
-        } else {
-            instructions.push(cleaned);
+            const item = cleanIngredientStr(line);
+            if (item && item.length > 2 && item.length < 220) {
+                ingredients.push(item);
+            }
+        } else if (section === 'instructions') {
+            const step = cleanStepStr(line);
+            if (step && step.length > 8) {
+                instructions.push(step);
+            }
         }
     }
 
-    if (!ingredients.length && !instructions.length) return null;
-    return { name, url: '', meta: {}, ingredients, instructions };
+    if (!ingredients.length && !instructions.length) {
+        let fallbackSection = 'ingredients';
+        for (let i = 1; i < rawLines.length; i++) {
+            const l = rawLines[i];
+            const c = cleanIngredientStr(l);
+            if (!c) continue;
+            if (c.length > 90 || /^\d+\.\s/.test(l)) {
+                fallbackSection = 'instructions';
+            }
+            if (fallbackSection === 'ingredients') {
+                ingredients.push(c);
+            } else {
+                instructions.push(cleanStepStr(l));
+            }
+        }
+    }
+
+    if (ingredients.length < 2 || instructions.length < 1) return null;
+    return { name, url: sourceUrl, meta: {}, ingredients, instructions };
 }
 
 function displayRecipe(recipe) {
@@ -657,9 +876,55 @@ function formatIsoDuration(iso) {
     return iso;
 }
 
-function cleanStr(str) {
+const entityDecoder = document.createElement('textarea');
+
+function decodeEntities(str) {
     if (!str) return '';
-    return String(str).replace(/\s+/g, ' ').trim();
+    const withoutTags = String(str).replace(/<[^>]*>/g, ' ');
+    entityDecoder.innerHTML = withoutTags;
+    return entityDecoder.value;
 }
 
-loadPreset('cookies');
+function replaceUnicodeFractions(str) {
+    const map = {
+        '½': ' 1/2',
+        '⅓': ' 1/3',
+        '⅔': ' 2/3',
+        '¼': ' 1/4',
+        '¾': ' 3/4',
+        '⅕': ' 1/5',
+        '⅖': ' 2/5',
+        '⅗': ' 3/5',
+        '⅘': ' 4/5',
+        '⅙': ' 1/6',
+        '⅚': ' 5/6',
+        '⅛': ' 1/8',
+        '⅜': ' 3/8',
+        '⅝': ' 5/8',
+        '⅞': ' 7/8'
+    };
+    return str.replace(/[½⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞]/g, m => map[m] || m);
+}
+
+function cleanStr(str) {
+    if (!str) return '';
+    return replaceUnicodeFractions(decodeEntities(str))
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
+function cleanIngredientStr(str) {
+    if (!str) return '';
+    return cleanStr(str)
+        .replace(/^[▢□☐☑✓✔\-*•+·\s]+/, '')
+        .trim();
+}
+
+function cleanStepStr(str) {
+    if (!str) return '';
+    return cleanStr(str)
+        .replace(/^(step\s*\d+[:.)\-]*|\d+[:.)\-]+|[-*•▢□☐\s]+)\s*/i, '')
+        .trim();
+}
+
+loadPreset('salmon');
