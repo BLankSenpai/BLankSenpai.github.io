@@ -298,7 +298,7 @@ async function fetchWithTimeout(resource, options = {}, timeoutMs = 8000) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
-        return await fetch(resource, { ...options, signal: controller.signal });
+        return await fetch(resource, { cache: 'no-store', ...options, signal: controller.signal });
     } finally {
         clearTimeout(timer);
     }

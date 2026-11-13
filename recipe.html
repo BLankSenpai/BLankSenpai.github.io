@@ -3,8 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Recipe Reader | Matthew Calogrides</title>
     <link rel="stylesheet" type="text/css" href="recipe.css">
+    <script>
+        window.addEventListener('pageshow', (e) => {
+            if (e.persisted) window.location.reload();
+        });
+        if ('caches' in window) {
+            caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+        }
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+        }
+        if (location.protocol.startsWith('http')) {
+            const ts = Date.now();
+            const freshCss = document.createElement('link');
+            freshCss.rel = 'stylesheet';
+            freshCss.type = 'text/css';
+            freshCss.href = 'recipe.css?v=' + ts;
+            document.head.appendChild(freshCss);
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('a[href$=".html"]').forEach(a => {
+                    const href = a.getAttribute('href');
+                    if (href && !href.startsWith('http')) {
+                        a.setAttribute('href', href.split('?')[0] + '?v=' + ts);
+                    }
+                });
+            });
+        }
+    </script>
 </head>
 <body>
 
@@ -153,6 +183,12 @@
         <p>&copy;2023 Matthew Calogrides</p>
     </footer>
 
-    <script src="recipe.js"></script>
+    <script>
+        (function() {
+            const s = document.createElement('script');
+            s.src = 'recipe.js' + (location.protocol.startsWith('http') ? '?v=' + Date.now() : '');
+            document.body.appendChild(s);
+        })();
+    </script>
 </body>
 </html>
