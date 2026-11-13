@@ -69,31 +69,55 @@ main {
     padding-right: 1.5rem;
 }
 
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.project-card > a {
+    display: block;
+    width: 100%;
+}
+
+.caption-wrap {
+    margin-top: 1rem;
+}
+
 img {
     display: block;
     margin: 0 auto;
-    width: 100%; /* Make images responsive */
-    max-width: 799px; /* Max width as per your original */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1280 / 820;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .caption, .caption1 {
     display: inline-block;
     font-family: Arial;
     font-weight: 200;
-    letter-spacing: 5px;
-    font-size: 350%; /* Adjust for responsiveness with Tailwind */
+    letter-spacing: 3px;
+    font-size: clamp(1.25rem, 2.2vw, 2.1rem);
     color: #666f7e;
-    border-bottom: 5px solid #666f7e;
-    margin-top: 1rem; /* Add some space above captions */
-}
-
-.caption {
-    text-align: left;
-}
-
-.caption1 {
-    text-align: right;
+    border-bottom: 4px solid #666f7e;
+    padding-bottom: 0.2rem;
+    margin-top: 0.75rem;
+    text-align: center;
 }
 
 .copyright {
@@ -122,7 +146,7 @@ img {
 }
 
 .space {
-    margin: 90px 0;
+    margin: 50px 0;
 }
 
 /* Hamburger Menu Styles */
@@ -253,18 +277,22 @@ img {
         padding-bottom: 60px;
     }
 
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
     img {
         max-width: 100%;
         border-radius: 6px;
     }
 
     .caption, .caption1 {
-        font-size: 160%;
+        font-size: 140%;
         letter-spacing: 2px;
         border-bottom-width: 3px;
-        display: block;
+        display: inline-block;
         text-align: center;
-        width: 100%;
         box-sizing: border-box;
     }
 
