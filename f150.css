@@ -1,0 +1,156 @@
+body {
+    background-color: #09090b;
+    color: #f4f4f5;
+}
+
+.dot-matrix {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.04) 1px, transparent 0);
+    background-size: 24px 24px;
+}
+
+.part-node {
+    cursor: pointer;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 0.3s ease, 
+                filter 0.3s ease;
+    transform-origin: center;
+}
+
+.part-node path,
+.part-node rect,
+.part-node polygon,
+.part-node circle,
+.part-node ellipse,
+.part-node line {
+    transition: stroke 0.25s ease, stroke-width 0.25s ease, fill 0.25s ease;
+}
+
+.part-node:hover {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.75));
+    opacity: 1 !important;
+}
+
+.part-node:hover path,
+.part-node:hover rect,
+.part-node:hover polygon,
+.part-node:hover circle {
+    stroke: #ffffff !important;
+    stroke-width: 2.2px !important;
+}
+
+.part-node.active {
+    filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.95)) !important;
+    opacity: 1 !important;
+}
+
+.part-node.active path,
+.part-node.active rect,
+.part-node.active polygon,
+.part-node.active circle {
+    stroke: #ffffff !important;
+    stroke-width: 2.8px !important;
+}
+
+.exploded #part-hood {
+    transform: translate(-35px, -95px);
+}
+
+.exploded #part-bumper-front {
+    transform: translate(-120px, 20px);
+}
+
+.exploded #part-grille-lights {
+    transform: translate(-90px, -50px);
+}
+
+.exploded #part-fender-front {
+    transform: translate(-50px, -40px);
+}
+
+.exploded #part-cab {
+    transform: translate(0px, -90px);
+}
+
+.exploded #part-mirrors {
+    transform: translate(-40px, -120px);
+}
+
+.exploded #part-bed {
+    transform: translate(90px, -75px);
+}
+
+.exploded #part-tailgate-bumper {
+    transform: translate(130px, 20px);
+}
+
+.exploded #part-engine {
+    transform: translate(-20px, 0px);
+}
+
+.exploded #part-transmission {
+    transform: translate(0px, 15px);
+}
+
+.exploded #part-driveshaft {
+    transform: translate(25px, 25px);
+}
+
+.exploded #part-front-suspension {
+    transform: translate(-20px, 60px);
+}
+
+.exploded #part-rear-axle {
+    transform: translate(35px, 65px);
+}
+
+.exploded #part-fuel {
+    transform: translate(15px, 70px);
+}
+
+.exploded #part-exhaust {
+    transform: translate(25px, 50px);
+}
+
+.exploded #part-wheels {
+    transform: translate(0px, 55px);
+}
+
+.exploded #part-frame {
+    transform: translate(0px, 0px);
+}
+
+.guide-line {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    stroke-dasharray: 4 4;
+}
+
+.exploded .guide-line {
+    opacity: 0.35;
+}
+
+.exploded .guide-line.active-guide {
+    opacity: 0.95;
+    stroke: #ffffff;
+    stroke-width: 1.5;
+    stroke-dasharray: none;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #52525b;
+}
