@@ -3,74 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Parser | Matthew Calogrides</title>
+    <title>Recipe Reader | Matthew Calogrides</title>
     <link rel="stylesheet" type="text/css" href="recipe.css">
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="back-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 18 9 12 15 6"></polyline>
+    <header class="site-header">
+        <a href="index.html" class="back-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
-            Portfolio
+            <span>Portfolio</span>
         </a>
-        <div class="logo">Recipe Parser</div>
+        <div class="header-brand">&lt;Recipe Reader&gt;</div>
     </header>
 
-    <main>
+    <main class="container">
 
-        <section class="search-section">
-            <h1 class="main-title">Clean Recipe Extractor</h1>
-            <p class="tagline">Strip away ads, life stories, and popups. Get just the ingredients and instructions in a clean, interactive format.</p>
+        <section class="scanner-panel">
+            <h1 class="scanner-title">Recipe Scanner</h1>
+            <p class="scanner-subtitle">Paste a link to any recipe website to strip away the clutter and display only the raw ingredients and instructions.</p>
 
-            <div class="input-mode-tabs">
-                <button type="button" class="tab-btn active" id="tabUrlMode">From URL</button>
-                <button type="button" class="tab-btn" id="tabTextMode">Paste Text / HTML</button>
+            <div class="mode-switch">
+                <button type="button" id="modeUrlBtn" class="mode-btn active">Scan URL</button>
+                <button type="button" id="modeTextBtn" class="mode-btn">Paste Text / HTML</button>
             </div>
 
-            <!-- URL Input Container -->
-            <div id="urlInputContainer" class="input-panel">
-                <div class="url-bar">
-                    <input type="url" id="recipeUrl" placeholder="Paste recipe URL (Allrecipes, NYT Cooking, Serious Eats, Food52...)" autocomplete="off" spellcheck="false">
-                    <button type="button" id="parseBtn">Extract Recipe</button>
+            <div id="urlForm" class="scan-form">
+                <div class="input-group">
+                    <input
+                        type="url"
+                        id="urlInput"
+                        placeholder="https://www.allrecipes.com/recipe/..."
+                        autocomplete="off"
+                        spellcheck="false"
+                    >
+                    <button type="button" id="scanUrlBtn" class="primary-btn">Scan Recipe</button>
                 </div>
             </div>
 
-            <!-- Direct Paste Container -->
-            <div id="textInputContainer" class="input-panel" hidden>
-                <div class="paste-bar">
-                    <textarea id="rawRecipeInput" placeholder="Paste full recipe page HTML or plain text (with Ingredients and Instructions sections)..." rows="5"></textarea>
-                    <button type="button" id="parseTextBtn">Parse Content</button>
+            <div id="textForm" class="scan-form hidden">
+                <div class="textarea-group">
+                    <textarea
+                        id="rawInput"
+                        rows="4"
+                        placeholder="Paste raw page HTML or plain recipe text (with Ingredients and Instructions)..."
+                    ></textarea>
+                    <button type="button" id="scanTextBtn" class="primary-btn">Extract Recipe</button>
                 </div>
             </div>
 
-            <div class="sample-pills">
-                <span class="sample-label">Try an example:</span>
-                <button type="button" class="pill-btn" data-sample="cookies">Chocolate Chip Cookies</button>
-                <button type="button" class="pill-btn" data-sample="carbonara">Pasta Carbonara</button>
-                <button type="button" class="pill-btn" data-sample="guacamole">Fresh Guacamole</button>
+            <div class="preset-bar">
+                <span class="preset-label">Sample links:</span>
+                <button type="button" class="preset-chip" data-preset="cookies">Chocolate Chip Cookies</button>
+                <button type="button" class="preset-chip" data-preset="carbonara">Spaghetti Carbonara</button>
+                <button type="button" class="preset-chip" data-preset="guacamole">Fresh Guacamole</button>
             </div>
 
-            <p id="errorMsg" class="error-msg" aria-live="polite"></p>
+            <div id="statusBox" class="status-box hidden" role="status" aria-live="polite"></div>
         </section>
 
-        <section id="loadingSection" class="loading-section" hidden>
-            <div class="spinner"></div>
-            <p id="loadingText">Fetching and analyzing recipe data&hellip;</p>
-        </section>
+        <section id="recipeCard" class="recipe-card">
 
-        <section id="recipeOutput" class="recipe-output" hidden>
-
-            <div class="recipe-meta">
-                <div class="meta-header">
+            <div class="recipe-header">
+                <div class="recipe-title-row">
                     <div>
-                        <span class="badge-tag">Extracted Recipe</span>
-                        <h2 id="recipeName"></h2>
+                        <span id="recipeTag" class="recipe-tag">Scanned Recipe</span>
+                        <h2 id="recipeTitle" class="recipe-title"></h2>
                     </div>
-                    <a id="sourceLink" href="#" target="_blank" rel="noopener noreferrer" class="source-link" hidden>
-                        <span>Original Source</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <a id="recipeSourceLink" href="#" target="_blank" rel="noopener noreferrer" class="source-btn">
+                        <span>Source Link</span>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -78,38 +82,37 @@
                     </a>
                 </div>
 
-                <div class="recipe-stats" id="recipeStats"></div>
+                <div id="recipeMetaBar" class="recipe-meta-bar"></div>
 
-                <!-- Recipe Toolbar -->
-                <div class="recipe-toolbar">
-                    <div class="scale-group">
-                        <span class="toolbar-label">Servings:</span>
-                        <div class="btn-group" id="scaleGroup">
-                            <button type="button" class="scale-btn" data-scale="0.5">0.5×</button>
-                            <button type="button" class="scale-btn active" data-scale="1">1×</button>
-                            <button type="button" class="scale-btn" data-scale="1.5">1.5×</button>
-                            <button type="button" class="scale-btn" data-scale="2">2×</button>
+                <div class="controls-bar">
+                    <div class="scale-controls">
+                        <span class="control-label">Scale:</span>
+                        <div class="scale-buttons">
+                            <button type="button" class="scale-btn" data-scale="0.5">0.5&times;</button>
+                            <button type="button" class="scale-btn active" data-scale="1">1&times;</button>
+                            <button type="button" class="scale-btn" data-scale="2">2&times;</button>
+                            <button type="button" class="scale-btn" data-scale="3">3&times;</button>
                         </div>
                     </div>
 
-                    <div class="action-group">
-                        <button type="button" id="copyIngredientsBtn" class="action-btn" title="Copy ingredients to clipboard">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="utility-controls">
+                        <button type="button" id="copyBtn" class="util-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                             </svg>
-                            <span>Copy Ingredients</span>
+                            <span id="copyBtnText">Copy List</span>
                         </button>
-                        <button type="button" id="printBtn" class="action-btn" title="Print clean recipe">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <button type="button" id="printBtn" class="util-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6 9 6 2 18 2 18 9"></polyline>
                                 <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                                 <rect x="6" y="14" width="12" height="8"></rect>
                             </svg>
                             <span>Print</span>
                         </button>
-                        <button type="button" id="resetChecksBtn" class="action-btn" title="Reset all checkboxes">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <button type="button" id="resetBtn" class="util-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="1 4 1 10 7 10"></polyline>
                                 <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
                             </svg>
@@ -117,34 +120,26 @@
                         </button>
                     </div>
                 </div>
-
-                <!-- Cooking Progress Bar -->
-                <div class="progress-container" id="progressContainer">
-                    <div class="progress-bar-bg">
-                        <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
-                    </div>
-                    <span class="progress-text" id="progressText">0 of 0 steps completed</span>
-                </div>
             </div>
 
-            <div class="recipe-body">
+            <div class="recipe-columns">
 
-                <aside class="ingredients-col">
-                    <div class="section-title-row">
-                        <h2>Ingredients</h2>
-                        <span class="count-badge" id="ingredientCount">0 items</span>
+                <aside class="ingredients-panel">
+                    <div class="panel-heading">
+                        <h3>Raw Ingredients</h3>
+                        <span id="ingredientBadge" class="count-pill">0 items</span>
                     </div>
-                    <p class="checklist-tip">Tap an ingredient to check it off as you prep.</p>
-                    <ul id="ingredientList" class="checklist"></ul>
+                    <p class="panel-hint">Click items to check them off</p>
+                    <ul id="ingredientsList" class="ingredients-list"></ul>
                 </aside>
 
-                <div class="instructions-col">
-                    <div class="section-title-row">
-                        <h2>Instructions</h2>
-                        <span class="count-badge" id="instructionCount">0 steps</span>
+                <div class="instructions-panel">
+                    <div class="panel-heading">
+                        <h3>Instructions</h3>
+                        <span id="instructionBadge" class="count-pill">0 steps</span>
                     </div>
-                    <p class="checklist-tip">Tap a step to mark it completed while cooking.</p>
-                    <ol id="instructionList" class="step-list"></ol>
+                    <p class="panel-hint">Click steps as you complete them</p>
+                    <ol id="instructionsList" class="instructions-list"></ol>
                 </div>
 
             </div>
@@ -153,8 +148,8 @@
 
     </main>
 
-    <footer>
-        <p class="copyright">&copy;2023 Matthew Calogrides &middot; BLank_Dev Portfolio</p>
+    <footer class="site-footer">
+        <p>&copy;2023 Matthew Calogrides</p>
     </footer>
 
     <script src="recipe.js"></script>

@@ -1,750 +1,665 @@
-const SAMPLE_RECIPES = {
+const PRESET_RECIPES = {
     cookies: {
         name: "Classic Chewy Chocolate Chip Cookies",
         url: "https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/",
-        stats: {
-            "Prep": "20m",
-            "Cook": "10m",
-            "Total": "30m",
-            "Yield": "24 cookies"
+        meta: {
+            "Prep Time": "20 mins",
+            "Cook Time": "10 mins",
+            "Total Time": "30 mins",
+            "Servings": "24 cookies"
         },
         ingredients: [
             "1 cup unsalted butter, softened",
             "1 cup white granulated sugar",
             "1 cup packed brown sugar",
-            "2 large eggs, room temperature",
+            "2 large eggs",
             "2 teaspoons vanilla extract",
             "1 teaspoon baking soda",
             "2 teaspoons hot water",
             "1/2 teaspoon salt",
             "3 cups all-purpose flour",
             "2 cups semisweet chocolate chips",
-            "1 cup chopped walnuts (optional)"
+            "1 cup chopped walnuts"
         ],
         instructions: [
-            "Preheat your oven to 350°F (175°C) and line two large baking sheets with parchment paper.",
-            "Cream together the softened butter, white sugar, and brown sugar in a large bowl until smooth and fluffy.",
+            "Preheat oven to 350 degrees F (175 degrees C). Line two baking sheets with parchment paper.",
+            "Cream together the softened butter, white sugar, and brown sugar until smooth and light.",
             "Beat in the eggs one at a time, then stir in the vanilla extract.",
-            "Dissolve the baking soda in the hot water and add to the batter along with the salt.",
-            "Gradually stir in the flour until just combined. Fold in the chocolate chips and chopped nuts.",
-            "Drop large spoonfuls (about 2 tablespoons each) onto the prepared baking sheets, leaving 2 inches between cookies.",
-            "Bake for 9 to 11 minutes until edges are golden brown but centers are still slightly soft.",
-            "Cool on the baking sheet for 5 minutes before transferring to a wire rack to cool completely."
+            "Dissolve baking soda in hot water and add to the batter along with the salt.",
+            "Stir in the flour, chocolate chips, and chopped walnuts until evenly combined.",
+            "Drop large spoonfuls of dough 2 inches apart onto the prepared baking sheets.",
+            "Bake for about 10 minutes in the preheated oven, or until the edges are nicely browned.",
+            "Cool on the baking sheets briefly before transferring to wire racks to cool completely."
         ]
     },
     carbonara: {
-        name: "Authentic Roman Spaghetti Carbonara",
+        name: "Traditional Roman Spaghetti Carbonara",
         url: "https://www.seriouseats.com/pasta-carbonara-sauce-recipe",
-        stats: {
-            "Prep": "10m",
-            "Cook": "15m",
-            "Total": "25m",
-            "Yield": "4 servings"
+        meta: {
+            "Prep Time": "10 mins",
+            "Cook Time": "15 mins",
+            "Total Time": "25 mins",
+            "Servings": "4 servings"
         },
         ingredients: [
-            "1 pound spaghetti or rigatoni",
-            "1/2 pound guanciale or pancetta, diced into 1/4-inch pieces",
-            "4 large egg yolks plus 2 whole large eggs",
+            "1 pound dry spaghetti",
+            "1/2 pound guanciale or pancetta, diced",
+            "4 large egg yolks",
+            "2 whole large eggs",
             "1 cup freshly grated Pecorino Romano cheese",
-            "1/2 cup freshly grated Parmigiano-Reggiano cheese",
-            "1 tablespoon freshly cracked coarse black pepper",
-            "1 teaspoon kosher salt for pasta water"
+            "1/2 cup freshly grated Parmigiano-Reggiano",
+            "1 tablespoon freshly cracked black pepper",
+            "1 teaspoon kosher salt"
         ],
         instructions: [
-            "Bring a large pot of salted water to a boil. Cook pasta until 2 minutes shy of al dente.",
-            "While pasta cooks, cook the diced guanciale in a large skillet over medium-low heat until crisp and browned, about 8 minutes. Remove skillet from heat.",
-            "In a medium bowl, whisk together the egg yolks, whole eggs, grated Pecorino, Parmigiano-Reggiano, and plenty of cracked black pepper until a thick paste forms.",
-            "Reserve 1 cup of starchy pasta cooking water, then drain pasta and add directly to the skillet with the rendered pork fat and guanciale.",
-            "Toss the hot pasta with the pork for 30 seconds to coat. Allow pan to cool slightly off the heat so eggs don't scramble.",
-            "Pour the egg and cheese mixture over pasta while tossing vigorously, adding splashes of warm pasta water until a creamy, glossy emulsion forms.",
-            "Season with extra black pepper and serve immediately in warm bowls topped with extra Pecorino."
+            "Bring a large pot of salted water to a rolling boil and cook spaghetti until al dente.",
+            "While the pasta cooks, saute the diced guanciale in a large skillet over medium-low heat until crisp and rendered, about 8 minutes.",
+            "Whisk together the egg yolks, whole eggs, grated cheeses, and cracked black pepper in a bowl until a smooth paste forms.",
+            "Reserve 1 cup of starchy pasta cooking water, then drain the pasta and transfer it to the skillet with the guanciale off the heat.",
+            "Toss pasta for 30 seconds to coat in the rendered fat and allow the pan to cool slightly.",
+            "Pour in the egg and cheese mixture along with a splash of warm pasta water, tossing rapidly to create a glossy, creamy sauce.",
+            "Serve immediately topped with extra grated Pecorino Romano and black pepper."
         ]
     },
     guacamole: {
-        name: "Authentic Fresh Guacamole",
-        url: "https://www.mexicanplease.com/authentic-guacamole-recipe/",
-        stats: {
-            "Prep": "15m",
-            "Cook": "0m",
-            "Total": "15m",
-            "Yield": "4 servings"
+        name: "Fresh Molcajete Guacamole",
+        url: "https://www.simplyrecipes.com/recipes/perfect_guacamole/",
+        meta: {
+            "Prep Time": "15 mins",
+            "Cook Time": "0 mins",
+            "Total Time": "15 mins",
+            "Servings": "4 servings"
         },
         ingredients: [
             "3 ripe Hass avocados, halved and pitted",
-            "1/2 medium white onion, finely minced",
-            "2 serrano or jalapeño peppers, seeded and minced",
-            "1/2 cup fresh cilantro leaves, chopped",
-            "2 tablespoons fresh lime juice (about 1 lime)",
-            "1/2 teaspoon coarse sea salt, or to taste",
-            "1 small Roma tomato, seeded and diced (optional)"
+            "1/2 small white onion, finely diced",
+            "2 serrano chiles, stems and seeds removed, minced",
+            "1/2 cup fresh cilantro leaves, finely chopped",
+            "2 tablespoons fresh lime juice",
+            "1/2 teaspoon coarse sea salt",
+            "1 ripe Roma tomato, seeds and pulp removed, chopped"
         ],
         instructions: [
-            "In a molcajete or sturdy mixing bowl, crush half the minced onion, half the peppers, half the cilantro, and the salt with a pestle or fork into a coarse paste.",
-            "Scoop avocado flesh into the bowl. Coarsely mash with a fork, leaving plenty of chunks for authentic texture.",
-            "Gently fold in the remaining onion, chile peppers, cilantro, lime juice, and diced tomato.",
-            "Taste and adjust lime juice and salt as desired.",
-            "Serve immediately with warm crispy corn tortilla chips."
+            "Cut the avocados in half, remove the pit, and scoop the flesh into a mixing bowl.",
+            "Using a fork, coarsely mash the avocado to your desired texture, leaving some small chunks.",
+            "Add the minced onion, serrano chiles, cilantro, lime juice, and salt to the mashed avocado.",
+            "Stir gently to combine all ingredients evenly.",
+            "Fold in the chopped tomato just before serving and taste to adjust salt or lime juice."
         ]
     }
 };
 
-let currentRecipe = null;
-let currentScale = 1.0;
-let checkedIngredients = new Set();
-let completedSteps = new Set();
+let activeRecipe = null;
+let activeScale = 1;
+const checkedIngredients = new Set();
+const checkedSteps = new Set();
 
-const urlInput = document.getElementById('recipeUrl');
-const parseBtn = document.getElementById('parseBtn');
-const tabUrlMode = document.getElementById('tabUrlMode');
-const tabTextMode = document.getElementById('tabTextMode');
-const urlInputContainer = document.getElementById('urlInputContainer');
-const textInputContainer = document.getElementById('textInputContainer');
-const rawRecipeInput = document.getElementById('rawRecipeInput');
-const parseTextBtn = document.getElementById('parseTextBtn');
-const errorMsg = document.getElementById('errorMsg');
-const loadingSection = document.getElementById('loadingSection');
-const loadingText = document.getElementById('loadingText');
-const recipeOutput = document.getElementById('recipeOutput');
-const recipeName = document.getElementById('recipeName');
-const sourceLink = document.getElementById('sourceLink');
-const recipeStats = document.getElementById('recipeStats');
-const ingredientList = document.getElementById('ingredientList');
-const instructionList = document.getElementById('instructionList');
-const ingredientCount = document.getElementById('ingredientCount');
-const instructionCount = document.getElementById('instructionCount');
+const modeUrlBtn = document.getElementById('modeUrlBtn');
+const modeTextBtn = document.getElementById('modeTextBtn');
+const urlForm = document.getElementById('urlForm');
+const textForm = document.getElementById('textForm');
+const urlInput = document.getElementById('urlInput');
+const scanUrlBtn = document.getElementById('scanUrlBtn');
+const rawInput = document.getElementById('rawInput');
+const scanTextBtn = document.getElementById('scanTextBtn');
+const presetChips = document.querySelectorAll('.preset-chip');
+const statusBox = document.getElementById('statusBox');
+
+const recipeCard = document.getElementById('recipeCard');
+const recipeTitle = document.getElementById('recipeTitle');
+const recipeSourceLink = document.getElementById('recipeSourceLink');
+const recipeMetaBar = document.getElementById('recipeMetaBar');
 const scaleButtons = document.querySelectorAll('.scale-btn');
-const copyIngredientsBtn = document.getElementById('copyIngredientsBtn');
+const copyBtn = document.getElementById('copyBtn');
+const copyBtnText = document.getElementById('copyBtnText');
 const printBtn = document.getElementById('printBtn');
-const resetChecksBtn = document.getElementById('resetChecksBtn');
-const progressBarFill = document.getElementById('progressBarFill');
-const progressText = document.getElementById('progressText');
-const sampleButtons = document.querySelectorAll('.pill-btn');
+const resetBtn = document.getElementById('resetBtn');
+const ingredientBadge = document.getElementById('ingredientBadge');
+const instructionBadge = document.getElementById('instructionBadge');
+const ingredientsList = document.getElementById('ingredientsList');
+const instructionsList = document.getElementById('instructionsList');
 
-document.addEventListener('DOMContentLoaded', () => {
-    initEvents();
-    const hash = window.location.hash.replace('#', '');
-    if (SAMPLE_RECIPES[hash]) {
-        loadSampleRecipe(hash);
-    } else {
-        loadSampleRecipe('cookies');
-    }
+modeUrlBtn.addEventListener('click', () => setMode('url'));
+modeTextBtn.addEventListener('click', () => setMode('text'));
+
+scanUrlBtn.addEventListener('click', handleScanUrl);
+urlInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') handleScanUrl();
 });
 
-function initEvents() {
-    parseBtn.addEventListener('click', handleUrlParse);
-    urlInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') handleUrlParse();
+scanTextBtn.addEventListener('click', handleScanText);
+
+presetChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+        const key = chip.dataset.preset;
+        loadPreset(key);
     });
+});
 
-    parseTextBtn.addEventListener('click', handleTextParse);
-
-    tabUrlMode.addEventListener('click', () => switchTab('url'));
-    tabTextMode.addEventListener('click', () => switchTab('text'));
-
-    sampleButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const sampleKey = btn.dataset.sample;
-            if (SAMPLE_RECIPES[sampleKey]) {
-                loadSampleRecipe(sampleKey);
-            }
-        });
+scaleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const val = parseFloat(btn.dataset.scale);
+        if (!isNaN(val) && activeRecipe) {
+            activeScale = val;
+            scaleButtons.forEach(b => b.classList.toggle('active', parseFloat(b.dataset.scale) === activeScale));
+            renderIngredientsList();
+        }
     });
+});
 
-    scaleButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const scale = parseFloat(btn.dataset.scale);
-            if (!isNaN(scale) && currentRecipe) {
-                setScale(scale);
-            }
-        });
-    });
+copyBtn.addEventListener('click', copyIngredientsToClipboard);
+printBtn.addEventListener('click', () => window.print());
+resetBtn.addEventListener('click', () => {
+    checkedIngredients.clear();
+    checkedSteps.clear();
+    renderIngredientsList();
+    renderInstructionsList();
+});
 
-    copyIngredientsBtn.addEventListener('click', handleCopyIngredients);
-    printBtn.addEventListener('click', () => window.print());
-    resetChecksBtn.addEventListener('click', handleResetProgress);
-}
-
-function switchTab(mode) {
-    clearError();
+function setMode(mode) {
+    hideStatus();
     if (mode === 'url') {
-        tabUrlMode.classList.add('active');
-        tabTextMode.classList.remove('active');
-        urlInputContainer.hidden = false;
-        textInputContainer.hidden = true;
+        modeUrlBtn.classList.add('active');
+        modeTextBtn.classList.remove('active');
+        urlForm.classList.remove('hidden');
+        textForm.classList.add('hidden');
     } else {
-        tabTextMode.classList.add('active');
-        tabUrlMode.classList.remove('active');
-        textInputContainer.hidden = false;
-        urlInputContainer.hidden = true;
+        modeTextBtn.classList.add('active');
+        modeUrlBtn.classList.remove('active');
+        textForm.classList.remove('hidden');
+        urlForm.classList.add('hidden');
     }
 }
 
-function showError(msg) {
-    errorMsg.textContent = msg;
-    loadingSection.hidden = true;
+function showStatus(message, type = 'loading') {
+    statusBox.textContent = message;
+    statusBox.className = `status-box ${type}`;
 }
 
-function clearError() {
-    errorMsg.textContent = '';
+function hideStatus() {
+    statusBox.className = 'status-box hidden';
+    statusBox.textContent = '';
 }
 
-function setLoading(on, message = 'Fetching and analyzing recipe data...') {
-    loadingSection.hidden = !on;
-    loadingText.textContent = message;
-    parseBtn.disabled = on;
-    parseTextBtn.disabled = on;
+function loadPreset(key) {
+    const preset = PRESET_RECIPES[key];
+    if (!preset) return;
+    hideStatus();
+    setMode('url');
+    urlInput.value = preset.url;
+    presetChips.forEach(c => c.classList.toggle('active', c.dataset.preset === key));
+    displayRecipe(preset);
 }
 
-function loadSampleRecipe(key) {
-    const sample = SAMPLE_RECIPES[key];
-    if (!sample) return;
-    clearError();
-    urlInput.value = sample.url || '';
-    renderRecipe(sample);
-}
+async function handleScanUrl() {
+    const rawUrl = urlInput.value.trim();
+    hideStatus();
 
-async function handleUrlParse() {
-    const raw = urlInput.value.trim();
-    clearError();
-
-    if (!raw) {
-        showError('Please enter a recipe URL, or click one of the examples below.');
+    if (!rawUrl) {
+        showStatus('Please paste a recipe URL above.', 'error');
         return;
     }
 
-    let url;
+    for (const [key, preset] of Object.entries(PRESET_RECIPES)) {
+        if (preset.url.toLowerCase() === rawUrl.toLowerCase()) {
+            loadPreset(key);
+            return;
+        }
+    }
+
+    let parsedUrl;
     try {
-        url = new URL(raw);
+        parsedUrl = new URL(rawUrl);
     } catch {
-        showError('Please enter a valid URL starting with https://');
+        showStatus('Invalid URL format. Make sure the link starts with https://', 'error');
         return;
     }
 
-    setLoading(true, 'Fetching recipe from page...');
+    presetChips.forEach(c => c.classList.remove('active'));
+    scanUrlBtn.disabled = true;
+    showStatus('Scanning webpage for recipe ingredients and instructions...', 'loading');
 
     try {
-        const html = await fetchPageWithFallbacks(url.href);
-        const recipe = extractRecipeFromHtml(html, url.href);
+        const htmlContent = await fetchExternalHtml(parsedUrl.href);
+        const extracted = parseRecipeFromHtml(htmlContent, parsedUrl.href);
 
-        if (!recipe) {
-            showError('Could not find recipe structured data on that page. Try pasting the recipe HTML or text using the "Paste Text / HTML" tab.');
-            setLoading(false);
+        if (!extracted) {
+            showStatus('No structured recipe data found on that link. Switch to "Paste Text / HTML" to paste the recipe directly.', 'error');
+            scanUrlBtn.disabled = false;
             return;
         }
 
-        renderRecipe(recipe);
-        setLoading(false);
-        recipeOutput.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    } catch (err) {
-        showError('Could not access that website through CORS proxies. You can copy the recipe HTML or text directly and use the "Paste Text / HTML" tab.');
-        setLoading(false);
+        hideStatus();
+        displayRecipe(extracted);
+    } catch {
+        showStatus('Unable to reach that website due to browser CORS protection. Use the "Paste Text / HTML" tab or try a sample link above.', 'error');
+    } finally {
+        scanUrlBtn.disabled = false;
     }
 }
 
-async function fetchPageWithFallbacks(targetUrl) {
-    const proxies = [
+function handleScanText() {
+    const raw = rawInput.value.trim();
+    hideStatus();
+
+    if (!raw) {
+        showStatus('Please paste recipe HTML or plain text into the box.', 'error');
+        return;
+    }
+
+    const extracted = parseRecipeFromHtml(raw, '') || parseRecipeFromPlainText(raw);
+    if (!extracted) {
+        showStatus('Could not detect ingredients and instructions. Make sure lines are under "Ingredients" and "Instructions" headings.', 'error');
+        return;
+    }
+
+    presetChips.forEach(c => c.classList.remove('active'));
+    displayRecipe(extracted);
+}
+
+async function fetchExternalHtml(targetUrl) {
+    const proxyEndpoints = [
         async () => {
-            const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`);
-            if (!res.ok) throw new Error('Proxy 1 failed');
-            const data = await res.json();
-            if (!data.contents) throw new Error('Proxy 1 empty contents');
-            return data.contents;
+            const r = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`);
+            if (!r.ok) throw new Error('allorigins failed');
+            const j = await r.json();
+            if (!j.contents) throw new Error('empty');
+            return j.contents;
         },
         async () => {
-            const res = await fetch(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`);
-            if (!res.ok) throw new Error('Proxy 2 failed');
-            const text = await res.text();
-            if (!text || text.length < 50) throw new Error('Proxy 2 invalid content');
-            return text;
+            const r = await fetch(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`);
+            if (!r.ok) throw new Error('codetabs failed');
+            return await r.text();
         },
         async () => {
-            const res = await fetch(`https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`);
-            if (!res.ok) throw new Error('Proxy 3 failed');
-            return await res.text();
+            const r = await fetch(`https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`);
+            if (!r.ok) throw new Error('corsproxy failed');
+            return await r.text();
         }
     ];
 
-    for (const proxyFn of proxies) {
+    for (const attempt of proxyEndpoints) {
         try {
-            return await proxyFn();
+            const text = await attempt();
+            if (text && text.length > 100) return text;
         } catch {
             continue;
         }
     }
-    throw new Error('All CORS proxies failed to retrieve URL');
+    throw new Error('All proxy fetches failed');
 }
 
-function handleTextParse() {
-    const raw = rawRecipeInput.value.trim();
-    clearError();
+function parseRecipeFromHtml(htmlString, sourceUrl) {
+    if (!htmlString || !htmlString.includes('<')) return null;
 
-    if (!raw) {
-        showError('Please paste some recipe text or HTML content.');
-        return;
-    }
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, 'text/html');
 
-    setLoading(true, 'Parsing content...');
-    setTimeout(() => {
-        const recipe = extractRecipeFromHtml(raw, null) || extractRecipeFromPlainText(raw);
-
-        if (!recipe) {
-            showError('Unable to identify ingredients and instructions. Ensure sections are labeled "Ingredients" and "Instructions" / "Directions".');
-            setLoading(false);
-            return;
-        }
-
-        renderRecipe(recipe);
-        setLoading(false);
-        recipeOutput.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
-}
-
-function extractRecipeFromHtml(html, sourceUrl) {
-    if (!html || typeof html !== 'string') return null;
-
-    try {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-
-        const recipe = extractFromJsonLd(doc) || extractFromMicrodata(doc) || extractFromStandardSelectors(doc);
-        if (recipe) {
-            if (sourceUrl && !recipe.url) recipe.url = sourceUrl;
-            return recipe;
-        }
-    } catch {
-        return null;
+    const recipe = extractJsonLdRecipe(doc) || extractMicrodataRecipe(doc) || extractDomSelectorsRecipe(doc);
+    if (recipe) {
+        if (sourceUrl && !recipe.url) recipe.url = sourceUrl;
+        return recipe;
     }
     return null;
 }
 
-function extractFromJsonLd(doc) {
+function extractJsonLdRecipe(doc) {
     const scripts = doc.querySelectorAll('script[type="application/ld+json"]');
-
     for (const script of scripts) {
-        let data;
+        let json;
         try {
-            data = JSON.parse(script.textContent);
+            json = JSON.parse(script.textContent);
         } catch {
             continue;
         }
 
-        const candidates = [];
-        const inspect = (node) => {
+        const matches = [];
+        const walk = (node) => {
             if (!node || typeof node !== 'object') return;
             if (Array.isArray(node)) {
-                node.forEach(inspect);
-            } else {
-                if (isRecipeType(node['@type'])) {
-                    candidates.push(node);
-                }
-                if (node['@graph']) inspect(node['@graph']);
+                node.forEach(walk);
+                return;
             }
+            const typeVal = node['@type'];
+            const types = Array.isArray(typeVal) ? typeVal : [typeVal];
+            if (types.some(t => typeof t === 'string' && t.toLowerCase().includes('recipe'))) {
+                matches.push(node);
+            }
+            if (node['@graph']) walk(node['@graph']);
         };
 
-        inspect(data);
+        walk(json);
 
-        for (const item of candidates) {
-            const norm = normalizeJsonLd(item);
-            if (norm) return norm;
+        for (const item of matches) {
+            const formatted = formatSchemaRecipe(item);
+            if (formatted) return formatted;
         }
     }
     return null;
 }
 
-function isRecipeType(type) {
-    if (!type) return false;
-    const t = Array.isArray(type) ? type : [type];
-    return t.some(x => typeof x === 'string' && x.toLowerCase().includes('recipe'));
-}
-
-function normalizeJsonLd(data) {
-    const name = cleanText(data.name || 'Extracted Recipe');
-
+function formatSchemaRecipe(data) {
+    const name = cleanStr(data.name || 'Extracted Recipe');
     const ingredients = (data.recipeIngredient || data.ingredients || [])
-        .map(i => cleanText(i))
+        .map(cleanStr)
         .filter(Boolean);
 
-    const rawInstructions = data.recipeInstructions || data.instructions || [];
-    const instructions = flattenInstructions(rawInstructions);
-
-    const stats = {};
-    if (data.prepTime) stats['Prep'] = parseDuration(data.prepTime);
-    if (data.cookTime) stats['Cook'] = parseDuration(data.cookTime);
-    if (data.totalTime) stats['Total'] = parseDuration(data.totalTime);
-    if (data.recipeYield) {
-        const y = Array.isArray(data.recipeYield) ? data.recipeYield[0] : data.recipeYield;
-        stats['Yield'] = cleanText(String(y));
-    }
+    const instructions = parseSchemaInstructions(data.recipeInstructions || data.instructions || []);
 
     if (!ingredients.length && !instructions.length) return null;
+
+    const meta = {};
+    if (data.prepTime) meta['Prep Time'] = formatIsoDuration(data.prepTime);
+    if (data.cookTime) meta['Cook Time'] = formatIsoDuration(data.cookTime);
+    if (data.totalTime) meta['Total Time'] = formatIsoDuration(data.totalTime);
+    if (data.recipeYield) {
+        const y = Array.isArray(data.recipeYield) ? data.recipeYield[0] : data.recipeYield;
+        meta['Servings'] = cleanStr(String(y));
+    }
 
     return {
         name,
+        url: typeof data.url === 'string' ? data.url : '',
+        meta,
         ingredients,
-        instructions,
-        stats,
-        url: data.mainEntityOfPage || data.url || null
+        instructions
     };
 }
 
-function flattenInstructions(raw) {
-    const steps = [];
+function parseSchemaInstructions(raw) {
+    const result = [];
     if (typeof raw === 'string') {
-        return raw.split(/\r?\n+/).map(cleanText).filter(s => s.length > 5);
+        return raw.split(/\r?\n+/).map(cleanStr).filter(Boolean);
     }
-    if (!Array.isArray(raw)) return steps;
+    if (!Array.isArray(raw)) return result;
 
-    for (const item of raw) {
-        if (typeof item === 'string') {
-            const text = cleanText(item);
-            if (text) steps.push(text);
-        } else if (item && typeof item === 'object') {
-            if (item['@type'] === 'HowToSection' && item.itemListElement) {
-                steps.push(...flattenInstructions(item.itemListElement));
+    for (const entry of raw) {
+        if (typeof entry === 'string') {
+            const s = cleanStr(entry);
+            if (s) result.push(s);
+        } else if (entry && typeof entry === 'object') {
+            if (Array.isArray(entry.itemListElement)) {
+                result.push(...parseSchemaInstructions(entry.itemListElement));
             } else {
-                const text = cleanText(item.text || item.name || '');
-                if (text) steps.push(text);
+                const s = cleanStr(entry.text || entry.name || '');
+                if (s) result.push(s);
             }
         }
     }
-    return steps;
+    return result;
 }
 
-function extractFromMicrodata(doc) {
-    const el = doc.querySelector('[itemtype*="schema.org/Recipe"]');
-    if (!el) return null;
+function extractMicrodataRecipe(doc) {
+    const root = doc.querySelector('[itemtype*="schema.org/Recipe"]');
+    if (!root) return null;
 
-    const name = cleanText(el.querySelector('[itemprop="name"]')?.textContent || 'Extracted Recipe');
-    const ingredients = [...el.querySelectorAll('[itemprop="recipeIngredient"]')]
-        .map(e => cleanText(e.textContent))
+    const name = cleanStr(root.querySelector('[itemprop="name"]')?.textContent || 'Extracted Recipe');
+    const ingredients = [...root.querySelectorAll('[itemprop="recipeIngredient"], [itemprop="ingredients"]')]
+        .map(el => cleanStr(el.textContent))
         .filter(Boolean);
-    const instructions = [...el.querySelectorAll('[itemprop="recipeInstructions"]')]
-        .map(e => cleanText(e.textContent))
+    const instructions = [...root.querySelectorAll('[itemprop="recipeInstructions"]')]
+        .map(el => cleanStr(el.textContent))
         .filter(Boolean);
 
     if (!ingredients.length && !instructions.length) return null;
-    return { name, ingredients, instructions, stats: {} };
+    return { name, url: '', meta: {}, ingredients, instructions };
 }
 
-function extractFromStandardSelectors(doc) {
-    const ingredientSelectors = [
+function extractDomSelectorsRecipe(doc) {
+    const ingQueries = [
         '.wprm-recipe-ingredient',
         '.tasty-recipe-ingredients li',
-        '.mv-recipe-ingredients li',
+        '.mv-create-ingredients li',
+        '.mntl-structured-ingredients__list-item',
         '.recipe-ingredients li',
-        '[class*="ingredient"] li',
-        '.ingredients li',
-        '[itemprop="ingredients"]'
+        '[class*="ingredient"] li'
     ];
-
-    const instructionSelectors = [
+    const stepQueries = [
         '.wprm-recipe-instruction-text',
         '.tasty-recipe-instructions li',
-        '.mv-recipe-instructions li',
-        '.recipe-directions li',
+        '.mv-create-instructions li',
+        '.recipe-directions__list--item',
         '.recipe-instructions li',
         '[class*="instruction"] li',
-        '.instructions li'
+        '[class*="direction"] li'
     ];
 
     let ingredients = [];
-    for (const sel of ingredientSelectors) {
-        const found = [...doc.querySelectorAll(sel)].map(e => cleanText(e.textContent)).filter(Boolean);
-        if (found.length >= 2) {
-            ingredients = found;
+    for (const q of ingQueries) {
+        const list = [...doc.querySelectorAll(q)].map(el => cleanStr(el.textContent)).filter(Boolean);
+        if (list.length >= 2) {
+            ingredients = list;
             break;
         }
     }
 
     let instructions = [];
-    for (const sel of instructionSelectors) {
-        const found = [...doc.querySelectorAll(sel)].map(e => cleanText(e.textContent)).filter(Boolean);
-        if (found.length >= 1) {
-            instructions = found;
+    for (const q of stepQueries) {
+        const list = [...doc.querySelectorAll(q)].map(el => cleanStr(el.textContent)).filter(Boolean);
+        if (list.length >= 1) {
+            instructions = list;
             break;
         }
     }
 
     if (!ingredients.length && !instructions.length) return null;
-
-    const name = cleanText(
-        doc.querySelector('.wprm-recipe-name, .tasty-recipes-title, h1.recipe-title, h1.entry-title, h1')?.textContent || 'Extracted Recipe'
-    );
-
-    return { name, ingredients, instructions, stats: {} };
+    const name = cleanStr(doc.querySelector('h1')?.textContent || 'Extracted Recipe');
+    return { name, url: '', meta: {}, ingredients, instructions };
 }
 
-function extractRecipeFromPlainText(text) {
+function parseRecipeFromPlainText(text) {
     const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-    if (!lines.length) return null;
+    if (lines.length < 2) return null;
 
-    let inIngredients = false;
-    let inInstructions = false;
+    let section = 'ingredients';
     const ingredients = [];
     const instructions = [];
-    let name = lines[0].replace(/^#+\s*/, '');
+    let name = 'Custom Pasted Recipe';
 
-    for (const line of lines) {
-        const lower = line.toLowerCase();
-        if (/^(ingredients|ingredient list|what you need)[:\s]*$/i.test(lower)) {
-            inIngredients = true;
-            inInstructions = false;
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (i === 0 && !/^(ingredients|instructions|directions)/i.test(line) && line.length < 70) {
+            name = line.replace(/^#+\s*/, '');
             continue;
         }
-        if (/^(instructions|directions|method|preparation|steps)[:\s]*$/i.test(lower)) {
-            inInstructions = true;
-            inIngredients = false;
+        if (/^(ingredients|ingredient list)[:\s]*$/i.test(line)) {
+            section = 'ingredients';
+            continue;
+        }
+        if (/^(instructions|directions|steps|method|preparation)[:\s]*$/i.test(line)) {
+            section = 'instructions';
             continue;
         }
 
         const cleaned = line.replace(/^[-*•\d+.)\s]+/, '').trim();
         if (!cleaned) continue;
 
-        if (inIngredients && !inInstructions) {
+        if (section === 'ingredients') {
             ingredients.push(cleaned);
-        } else if (inInstructions) {
+        } else {
             instructions.push(cleaned);
         }
     }
 
     if (!ingredients.length && !instructions.length) return null;
-    return { name, ingredients, instructions, stats: {} };
+    return { name, url: '', meta: {}, ingredients, instructions };
 }
 
-function renderRecipe(recipe) {
-    currentRecipe = recipe;
-    currentScale = 1.0;
+function displayRecipe(recipe) {
+    activeRecipe = recipe;
+    activeScale = 1;
     checkedIngredients.clear();
-    completedSteps.clear();
+    checkedSteps.clear();
 
-    recipeName.textContent = recipe.name || 'Untitled Recipe';
+    scaleButtons.forEach(b => b.classList.toggle('active', parseFloat(b.dataset.scale) === 1));
+
+    recipeTitle.textContent = recipe.name || 'Untitled Recipe';
 
     if (recipe.url) {
-        sourceLink.href = recipe.url;
-        sourceLink.hidden = false;
+        recipeSourceLink.href = recipe.url;
+        recipeSourceLink.classList.remove('hidden');
     } else {
-        sourceLink.hidden = true;
+        recipeSourceLink.classList.add('hidden');
     }
 
-    recipeStats.innerHTML = '';
-    const stats = recipe.stats || {};
-    const statKeys = Object.keys(stats);
-
-    if (statKeys.length) {
-        statKeys.forEach(key => {
-            const val = stats[key];
-            if (!val) return;
-            const div = document.createElement('div');
-            div.className = 'stat';
-            div.innerHTML = `<span class="stat-label">${key}</span><span class="stat-value">${val}</span>`;
-            recipeStats.appendChild(div);
+    recipeMetaBar.innerHTML = '';
+    const metaEntries = Object.entries(recipe.meta || {}).filter(([, v]) => Boolean(v));
+    if (metaEntries.length) {
+        metaEntries.forEach(([label, val]) => {
+            const item = document.createElement('div');
+            item.className = 'meta-item';
+            item.innerHTML = `<span class="meta-label">${label}</span><span class="meta-val">${val}</span>`;
+            recipeMetaBar.appendChild(item);
         });
-        recipeStats.style.display = 'flex';
+        recipeMetaBar.classList.remove('hidden');
     } else {
-        recipeStats.style.display = 'none';
+        recipeMetaBar.classList.add('hidden');
     }
 
-    updateScaleButtons();
-    renderIngredients();
-    renderInstructions();
-    updateProgress();
-
-    recipeOutput.hidden = false;
+    renderIngredientsList();
+    renderInstructionsList();
+    recipeCard.classList.remove('hidden');
 }
 
-function setScale(scale) {
-    currentScale = scale;
-    updateScaleButtons();
-    renderIngredients();
-}
+function renderIngredientsList() {
+    ingredientsList.innerHTML = '';
+    const items = activeRecipe?.ingredients || [];
+    ingredientBadge.textContent = `${items.length} item${items.length === 1 ? '' : 's'}`;
 
-function updateScaleButtons() {
-    scaleButtons.forEach(btn => {
-        const val = parseFloat(btn.dataset.scale);
-        btn.classList.toggle('active', val === currentScale);
-    });
-}
-
-function renderIngredients() {
-    ingredientList.innerHTML = '';
-    const items = currentRecipe.ingredients || [];
-    ingredientCount.textContent = `${items.length} item${items.length === 1 ? '' : 's'}`;
-
-    items.forEach((item, index) => {
+    items.forEach((rawItem, idx) => {
         const li = document.createElement('li');
-        li.dataset.index = index;
-        if (checkedIngredients.has(index)) {
-            li.classList.add('checked');
-        }
+        li.className = 'ingredient-row' + (checkedIngredients.has(idx) ? ' done' : '');
 
-        const scaledText = scaleIngredientText(item, currentScale);
+        const scaledText = scaleQuantity(rawItem, activeScale);
 
         li.innerHTML = `
-            <span class="checkbox-custom">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <span class="check-box">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
             </span>
-            <span class="ingredient-text">${scaledText}</span>
+            <span class="ingredient-label">${scaledText}</span>
         `;
 
         li.addEventListener('click', () => {
-            if (checkedIngredients.has(index)) {
-                checkedIngredients.delete(index);
-                li.classList.remove('checked');
+            if (checkedIngredients.has(idx)) {
+                checkedIngredients.delete(idx);
+                li.classList.remove('done');
             } else {
-                checkedIngredients.add(index);
-                li.classList.add('checked');
+                checkedIngredients.add(idx);
+                li.classList.add('done');
             }
         });
 
-        ingredientList.appendChild(li);
+        ingredientsList.appendChild(li);
     });
 }
 
-function renderInstructions() {
-    instructionList.innerHTML = '';
-    const steps = currentRecipe.instructions || [];
-    instructionCount.textContent = `${steps.length} step${steps.length === 1 ? '' : 's'}`;
+function renderInstructionsList() {
+    instructionsList.innerHTML = '';
+    const steps = activeRecipe?.instructions || [];
+    instructionBadge.textContent = `${steps.length} step${steps.length === 1 ? '' : 's'}`;
 
-    steps.forEach((step, index) => {
+    steps.forEach((stepText, idx) => {
         const li = document.createElement('li');
-        li.className = 'step-card';
-        li.dataset.index = index;
-
-        if (completedSteps.has(index)) {
-            li.classList.add('completed');
-        }
+        li.className = 'instruction-step' + (checkedSteps.has(idx) ? ' done' : '');
 
         li.innerHTML = `
-            <div class="step-number">
-                <span>${index + 1}</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-            </div>
-            <div class="step-text">${step}</div>
+            <div class="step-badge">${idx + 1}</div>
+            <div class="step-body">${stepText}</div>
         `;
 
         li.addEventListener('click', () => {
-            if (completedSteps.has(index)) {
-                completedSteps.delete(index);
-                li.classList.remove('completed');
+            if (checkedSteps.has(idx)) {
+                checkedSteps.delete(idx);
+                li.classList.remove('done');
             } else {
-                completedSteps.add(index);
-                li.classList.add('completed');
+                checkedSteps.add(idx);
+                li.classList.add('done');
             }
-            updateProgress();
         });
 
-        instructionList.appendChild(li);
+        instructionsList.appendChild(li);
     });
 }
 
-function updateProgress() {
-    const total = currentRecipe ? (currentRecipe.instructions || []).length : 0;
-    const completed = completedSteps.size;
-    const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+function scaleQuantity(ingredient, factor) {
+    if (factor === 1) return ingredient;
 
-    progressBarFill.style.width = `${pct}%`;
-    progressText.textContent = `${completed} of ${total} step${total === 1 ? '' : 's'} completed (${pct}%)`;
+    const match = ingredient.match(/^(\d+\s+\d+\/\d+|\d+\/\d+|\d+(?:\.\d+)?)(.*)$/);
+    if (!match) return ingredient;
+
+    const numPart = match[1].trim();
+    const rest = match[2];
+
+    const value = parseFractionString(numPart);
+    if (isNaN(value)) return ingredient;
+
+    return `${formatScaledNumber(value * factor)}${rest}`;
 }
 
-function handleResetProgress() {
-    checkedIngredients.clear();
-    completedSteps.clear();
-    renderIngredients();
-    renderInstructions();
-    updateProgress();
-}
-
-function handleCopyIngredients() {
-    if (!currentRecipe || !currentRecipe.ingredients) return;
-
-    const list = currentRecipe.ingredients.map(ing => {
-        return `• ${scaleIngredientText(ing, currentScale)}`;
-    }).join('\n');
-
-    const fullText = `${currentRecipe.name} - Ingredients (Scale: ${currentScale}x):\n\n${list}`;
-
-    navigator.clipboard.writeText(fullText).then(() => {
-        const originalText = copyIngredientsBtn.querySelector('span').textContent;
-        copyIngredientsBtn.querySelector('span').textContent = 'Copied!';
-        setTimeout(() => {
-            copyIngredientsBtn.querySelector('span').textContent = originalText;
-        }, 1800);
-    }).catch(() => {
-        showError('Unable to copy automatically to clipboard.');
-    });
-}
-
-function scaleIngredientText(text, scale) {
-    if (scale === 1.0) return text;
-
-    const regex = /^(\d+\s+\d+\/\d+|\d+\/\d+|\d+(?:\.\d+)?)/;
-    const match = text.match(regex);
-    if (!match) return text;
-
-    const rawQty = match[1];
-    const rest = text.slice(rawQty.length);
-    const numeric = parseFraction(rawQty);
-    if (isNaN(numeric)) return text;
-
-    const scaled = numeric * scale;
-    const formatted = formatFraction(scaled);
-    return `${formatted}${rest}`;
-}
-
-function parseFraction(str) {
-    str = str.trim();
+function parseFractionString(str) {
     if (str.includes(' ')) {
-        const parts = str.split(/\s+/);
-        return parseFloat(parts[0]) + parseFraction(parts[1]);
+        const [whole, frac] = str.split(/\s+/);
+        return parseFloat(whole) + parseFractionString(frac);
     }
     if (str.includes('/')) {
-        const parts = str.split('/');
-        return parseFloat(parts[0]) / parseFloat(parts[1]);
+        const [num, den] = str.split('/');
+        return parseFloat(num) / parseFloat(den);
     }
     return parseFloat(str);
 }
 
-function formatFraction(val) {
-    const whole = Math.floor(val);
-    const frac = val - whole;
+function formatScaledNumber(val) {
+    const whole = Math.floor(val + 1e-6);
+    const rem = val - whole;
+    const fractions = [
+        [0.125, '1/8'],
+        [0.25, '1/4'],
+        [0.333, '1/3'],
+        [0.5, '1/2'],
+        [0.666, '2/3'],
+        [0.75, '3/4']
+    ];
 
-    const tol = 0.05;
-    let fracStr = '';
-
-    if (Math.abs(frac - 0.25) < tol) fracStr = '1/4';
-    else if (Math.abs(frac - 0.333) < tol) fracStr = '1/3';
-    else if (Math.abs(frac - 0.5) < tol) fracStr = '1/2';
-    else if (Math.abs(frac - 0.666) < tol) fracStr = '2/3';
-    else if (Math.abs(frac - 0.75) < tol) fracStr = '3/4';
-    else if (Math.abs(frac - 0.125) < tol) fracStr = '1/8';
-    else if (frac > 0.05 && frac < 0.95) {
-        return val.toFixed(1).replace(/\.0$/, '');
+    for (const [dec, label] of fractions) {
+        if (Math.abs(rem - dec) < 0.05) {
+            return whole > 0 ? `${whole} ${label}` : label;
+        }
     }
 
-    if (whole > 0 && fracStr) return `${whole} ${fracStr}`;
-    if (whole > 0 && !fracStr) return `${whole}`;
-    if (fracStr) return fracStr;
+    if (rem < 0.05) return String(whole);
     return val.toFixed(1).replace(/\.0$/, '');
 }
 
-function parseDuration(iso) {
-    if (!iso) return '';
-    const match = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?/i);
-    if (!match) return iso;
-    const h = parseInt(match[1] || 0, 10);
-    const m = parseInt(match[2] || 0, 10);
-    if (h && m) return `${h}h ${m}m`;
-    if (h) return `${h}h`;
-    if (m) return `${m}m`;
+function copyIngredientsToClipboard() {
+    if (!activeRecipe) return;
+    const lines = activeRecipe.ingredients.map(i => `- ${scaleQuantity(i, activeScale)}`);
+    const text = `${activeRecipe.name} (${activeScale}x)\n\n${lines.join('\n')}`;
+
+    navigator.clipboard.writeText(text).then(() => {
+        copyBtnText.textContent = 'Copied!';
+        setTimeout(() => {
+            copyBtnText.textContent = 'Copy List';
+        }, 1600);
+    });
+}
+
+function formatIsoDuration(iso) {
+    if (!iso || typeof iso !== 'string') return '';
+    const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?/i);
+    if (!m) return iso;
+    const hrs = parseInt(m[1] || '0', 10);
+    const mins = parseInt(m[2] || '0', 10);
+    if (hrs && mins) return `${hrs}h ${mins}m`;
+    if (hrs) return `${hrs} hr${hrs > 1 ? 's' : ''}`;
+    if (mins) return `${mins} mins`;
     return iso;
 }
 
-function cleanText(str) {
+function cleanStr(str) {
     if (!str) return '';
-    return str.replace(/\s+/g, ' ').replace(/\n/g, ' ').trim();
+    return String(str).replace(/\s+/g, ' ').trim();
 }
+
+loadPreset('cookies');
