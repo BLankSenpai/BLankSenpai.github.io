@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1995 Ford F-150 (OBS) | Accurate Schematic & Exploded View</title>
-    <!-- Tailwind CSS CDN -->
+    <title>1995 Ford F-150 XLT (OBS) | Accurate Schematic & Exploded View</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -19,7 +18,7 @@
                     },
                     colors: {
                         surface: {
-                            DEFAULT: '#09090b', // Off-black
+                            DEFAULT: '#09090b',
                             card: '#121215',
                             border: '#27272a',
                             hover: '#1c1c21',
@@ -30,160 +29,16 @@
             }
         }
     </script>
-    <style>
-        body {
-            background-color: #09090b;
-            color: #f4f4f5;
-        }
-
-        /* Subtle technical dot matrix */
-        .dot-matrix {
-            background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
-            background-size: 28px 28px;
-        }
-
-        /* SVG Part Node Transitions */
-        .part-node {
-            cursor: pointer;
-            transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), 
-                        opacity 0.3s ease, 
-                        filter 0.3s ease;
-            transform-origin: center;
-        }
-
-        .part-node path,
-        .part-node rect,
-        .part-node polygon,
-        .part-node circle,
-        .part-node line {
-            transition: stroke 0.25s ease, stroke-width 0.25s ease, fill 0.25s ease;
-        }
-
-        /* Hover Feedback */
-        .part-node:hover {
-            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.55));
-            opacity: 1 !important;
-        }
-
-        .part-node:hover path,
-        .part-node:hover rect,
-        .part-node:hover polygon,
-        .part-node:hover circle {
-            stroke: #ffffff !important;
-            stroke-width: 2.2px !important;
-        }
-
-        /* Active / Selected Part Feedback */
-        .part-node.active {
-            filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.95)) !important;
-            opacity: 1 !important;
-        }
-
-        .part-node.active path,
-        .part-node.active rect,
-        .part-node.active polygon,
-        .part-node.active circle {
-            stroke: #ffffff !important;
-            stroke-width: 2.8px !important;
-        }
-
-        /* Exploded State Transforms */
-        .exploded #part-hood {
-            transform: translate(-30px, -90px);
-        }
-        .exploded #part-bumper-front {
-            transform: translate(-110px, 20px);
-        }
-        .exploded #part-grille-lights {
-            transform: translate(-80px, -50px);
-        }
-        .exploded #part-fender-front {
-            transform: translate(-45px, -40px);
-        }
-        .exploded #part-cab {
-            transform: translate(0px, -85px);
-        }
-        .exploded #part-mirrors {
-            transform: translate(-35px, -115px);
-        }
-        .exploded #part-bed {
-            transform: translate(80px, -70px);
-        }
-        .exploded #part-tailgate-bumper {
-            transform: translate(120px, 20px);
-        }
-        .exploded #part-engine {
-            transform: translate(-15px, 0px);
-        }
-        .exploded #part-transmission {
-            transform: translate(0px, 15px);
-        }
-        .exploded #part-driveshaft {
-            transform: translate(25px, 25px);
-        }
-        .exploded #part-front-suspension {
-            transform: translate(-15px, 55px);
-        }
-        .exploded #part-rear-axle {
-            transform: translate(35px, 60px);
-        }
-        .exploded #part-fuel {
-            transform: translate(15px, 65px);
-        }
-        .exploded #part-exhaust {
-            transform: translate(20px, 45px);
-        }
-        .exploded #part-wheels {
-            transform: translate(0px, 50px);
-        }
-        .exploded #part-frame {
-            transform: translate(0px, 0px);
-        }
-
-        /* Explode Projection Guide Lines */
-        .guide-line {
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
-            stroke-dasharray: 4 4;
-        }
-
-        .exploded .guide-line {
-            opacity: 0.35;
-        }
-
-        .exploded .guide-line.active-guide {
-            opacity: 0.9;
-            stroke: #ffffff;
-            stroke-width: 1.5;
-            stroke-dasharray: none;
-        }
-
-        /* Custom minimal scrollbar */
-        ::-webkit-scrollbar {
-            width: 4px;
-            height: 4px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #09090b;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #27272a;
-            border-radius: 2px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #52525b;
-        }
-    </style>
+    <link rel="stylesheet" href="f150.css">
+    <script src="f150.js" defer></script>
 </head>
 <body class="dot-matrix min-h-screen flex flex-col font-sans antialiased selection:bg-white selection:text-black">
 
-    <!-- Top Navigation Header -->
     <header class="border-b border-surface-border bg-surface/90 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-4">
                 <a href="index.html" class="flex items-center space-x-2 text-zinc-400 hover:text-white transition-colors group text-xs font-mono">
-                    <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg width="16" height="16" class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                     </svg>
                     <span>Portfolio</span>
@@ -191,7 +46,7 @@
                 <span class="text-zinc-800">/</span>
                 <div class="flex items-center space-x-2.5">
                     <span class="text-sm font-semibold tracking-wider uppercase text-white font-mono">
-                        1995 F-150
+                        1995 F-150 XLT
                     </span>
                     <span class="text-[11px] font-mono text-zinc-400 bg-surface-subtle px-2 py-0.5 rounded border border-surface-border">
                         9th Gen OBS (1992-1996)
@@ -199,11 +54,14 @@
                 </div>
             </div>
 
-            <!-- Controls: Explode Model Toggle & Reset -->
-            <div class="flex items-center space-x-3 text-xs font-mono">
-                <!-- Explode Toggle Button -->
+            <div class="flex items-center space-x-2.5 text-xs font-mono">
+                <button id="trimToggleBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-surface-border bg-surface-card hover:bg-surface-hover text-zinc-300 hover:text-white transition-colors" title="Toggle Classic Two-Tone Paint Trim">
+                    <span class="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-zinc-900 via-zinc-400 to-zinc-900 border border-zinc-600 inline-block"></span>
+                    <span id="trimToggleText">Classic Two-Tone</span>
+                </button>
+
                 <button id="explodeBtn" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-zinc-700 bg-white text-black font-semibold hover:bg-zinc-200 transition-all shadow-sm">
-                    <svg id="explodeIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg id="explodeIcon" width="16" height="16" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
                     </svg>
                     <span id="explodeBtnText">Explode Model</span>
@@ -216,13 +74,10 @@
         </div>
     </header>
 
-    <!-- Main Workspace -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-grow flex flex-col gap-5 w-full">
 
-        <!-- Minimal Sub-bar: Category Tabs & Search -->
         <div class="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center border-b border-surface-border pb-4">
             
-            <!-- Category Filter Pills -->
             <div class="flex items-center gap-1.5 overflow-x-auto text-xs font-mono">
                 <button data-category="all" class="filter-tab active px-3 py-1.5 rounded-md bg-white text-black font-medium transition-all">
                     All Components
@@ -241,7 +96,6 @@
                 </button>
             </div>
 
-            <!-- Search Field -->
             <div class="relative w-full sm:w-64">
                 <input type="text" id="searchInput" placeholder="Search part or symptom..." 
                     class="w-full bg-surface-card border border-surface-border rounded-lg px-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white transition-colors font-mono">
@@ -249,19 +103,18 @@
             </div>
         </div>
 
-        <!-- Central Grid: Schematic Canvas (Left) & Inspector (Right) -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            <!-- Schematic Canvas Container -->
             <div class="lg:col-span-8 bg-surface-card border border-surface-border rounded-xl p-4 sm:p-6 relative flex flex-col">
                 
-                <!-- Canvas Status Bar -->
                 <div class="flex items-center justify-between pb-3 mb-2 border-b border-zinc-800 text-[11px] font-mono text-zinc-400">
                     <div class="flex items-center space-x-2">
                         <span id="modelStatePill" class="w-1.5 h-1.5 rounded-full bg-white"></span>
                         <span id="modelStateLabel" class="text-white font-medium uppercase tracking-wider">Assembled View</span>
                         <span class="text-zinc-600">|</span>
-                        <span class="text-zinc-500">1992–1996 OBS Regular Cab Short Bed (116.8" WB)</span>
+                        <span id="trimStyleLabel" class="text-zinc-400">Two-Tone XLT Package</span>
+                        <span class="text-zinc-600">|</span>
+                        <span class="text-zinc-500">116.8" Wheelbase (Short Bed)</span>
                     </div>
 
                     <div id="hoverReadout" class="text-zinc-300 font-mono transition-opacity opacity-0 truncate max-w-[200px] sm:max-w-xs">
@@ -269,373 +122,308 @@
                     </div>
                 </div>
 
-                <!-- SVG Canvas Viewport -->
-                <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[380px] max-h-[580px] flex items-center justify-center bg-black/60 rounded-lg border border-zinc-900 overflow-hidden">
+                <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[400px] max-h-[600px] flex items-center justify-center bg-black/70 rounded-lg border border-zinc-900 overflow-hidden">
                     
-                    <!-- HIGH-PRECISION 1992-1996 OBS FORD F-150 VECTOR SCHEMATIC -->
-                    <svg id="truckSvg" class="w-full h-full select-none" viewBox="0 0 1150 600" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="truckSvg" class="w-full h-full select-none" viewBox="0 0 1200 620" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <!-- Authentic Monochromatic Charcoal & Metal Sheens -->
-                            <linearGradient id="bodySheen" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#2a2a32" />
-                                <stop offset="45%" stop-color="#18181e" />
-                                <stop offset="100%" stop-color="#0f0f13" />
+                            <linearGradient id="bodyDark" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#2d2d37" />
+                                <stop offset="30%" stop-color="#1c1c24" />
+                                <stop offset="70%" stop-color="#14141a" />
+                                <stop offset="100%" stop-color="#09090d" />
                             </linearGradient>
 
-                            <linearGradient id="accentSwage" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#121216" />
-                                <stop offset="50%" stop-color="#27272f" />
-                                <stop offset="100%" stop-color="#121216" />
+                            <linearGradient id="twoToneBand" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#f4f4f5" />
+                                <stop offset="25%" stop-color="#e4e4e7" />
+                                <stop offset="75%" stop-color="#cbd5e1" />
+                                <stop offset="100%" stop-color="#94a3b8" />
+                            </linearGradient>
+
+                            <linearGradient id="chromePolish" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#ffffff" />
+                                <stop offset="25%" stop-color="#e2e8f0" />
+                                <stop offset="50%" stop-color="#94a3b8" />
+                                <stop offset="75%" stop-color="#64748b" />
+                                <stop offset="100%" stop-color="#334155" />
                             </linearGradient>
 
                             <linearGradient id="glassSmoked" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#3f3f46" stop-opacity="0.45" />
-                                <stop offset="50%" stop-color="#27272a" stop-opacity="0.65" />
-                                <stop offset="100%" stop-color="#18181b" stop-opacity="0.85" />
+                                <stop offset="0%" stop-color="#475569" stop-opacity="0.4" />
+                                <stop offset="40%" stop-color="#1e293b" stop-opacity="0.75" />
+                                <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9" />
                             </linearGradient>
 
-                            <linearGradient id="chromeMinimal" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#ffffff" />
-                                <stop offset="35%" stop-color="#d4d4d8" />
-                                <stop offset="70%" stop-color="#71717a" />
-                                <stop offset="100%" stop-color="#3f3f46" />
-                            </linearGradient>
-
-                            <linearGradient id="wheelTire" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <linearGradient id="tireRubber" x1="0%" y1="0%" x2="0%" y2="100%">
                                 <stop offset="0%" stop-color="#27272a" />
                                 <stop offset="50%" stop-color="#18181b" />
                                 <stop offset="100%" stop-color="#09090b" />
                             </linearGradient>
+
+                            <radialGradient id="alcoaDish" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#09090b" />
+                                <stop offset="65%" stop-color="#1e293b" />
+                                <stop offset="85%" stop-color="#64748b" />
+                                <stop offset="100%" stop-color="#cbd5e1" />
+                            </radialGradient>
                         </defs>
 
-                        <!-- Ground Surface Baseline -->
-                        <line x1="50" y1="480" x2="1100" y2="480" stroke="#27272a" stroke-width="1.5" stroke-dasharray="6 6" />
+                        <line x1="50" y1="490" x2="1150" y2="490" stroke="#27272a" stroke-width="1.5" stroke-dasharray="6 6" />
 
-                        <!-- ============================================== -->
-                        <!-- EXPLODE GUIDE PROJECTION LINES                 -->
-                        <!-- ============================================== -->
                         <g id="guideLinesGroup">
-                            <line id="guide-hood" class="guide-line" x1="330" y1="290" x2="300" y2="200" stroke="#71717a" />
-                            <line id="guide-cab" class="guide-line" x1="530" y1="270" x2="530" y2="185" stroke="#71717a" />
-                            <line id="guide-bed" class="guide-line" x1="800" y1="280" x2="880" y2="210" stroke="#71717a" />
-                            <line id="guide-bumper-front" class="guide-line" x1="165" y1="375" x2="55" y2="395" stroke="#71717a" />
-                            <line id="guide-grille" class="guide-line" x1="185" y1="315" x2="105" y2="265" stroke="#71717a" />
-                            <line id="guide-tailgate" class="guide-line" x1="990" y1="380" x2="1110" y2="400" stroke="#71717a" />
-                            <line id="guide-front-suspension" class="guide-line" x1="290" y1="395" x2="275" y2="450" stroke="#71717a" />
-                            <line id="guide-rear-axle" class="guide-line" x1="770" y1="405" x2="805" y2="465" stroke="#71717a" />
-                            <line id="guide-fuel" class="guide-line" x1="560" y1="385" x2="575" y2="450" stroke="#71717a" />
+                            <line id="guide-hood" class="guide-line" x1="330" y1="290" x2="295" y2="195" stroke="#71717a" />
+                            <line id="guide-cab" class="guide-line" x1="550" y1="270" x2="550" y2="180" stroke="#71717a" />
+                            <line id="guide-bed" class="guide-line" x1="820" y1="280" x2="910" y2="205" stroke="#71717a" />
+                            <line id="guide-bumper-front" class="guide-line" x1="165" y1="380" x2="45" y2="400" stroke="#71717a" />
+                            <line id="guide-grille" class="guide-line" x1="185" y1="315" x2="95" y2="265" stroke="#71717a" />
+                            <line id="guide-tailgate" class="guide-line" x1="1000" y1="380" x2="1130" y2="400" stroke="#71717a" />
+                            <line id="guide-front-suspension" class="guide-line" x1="300" y1="405" x2="280" y2="465" stroke="#71717a" />
+                            <line id="guide-rear-axle" class="guide-line" x1="800" y1="415" x2="835" y2="480" stroke="#71717a" />
+                            <line id="guide-fuel" class="guide-line" x1="580" y1="395" x2="595" y2="465" stroke="#71717a" />
                         </g>
 
-                        <!-- ============================================== -->
-                        <!-- 1. CHASSIS FRAME RAILS (Underneath Backbone)   -->
-                        <!-- ============================================== -->
                         <g id="part-frame" class="part-node" data-id="frame">
                             <title>High-Strength Carbon Steel C-Channel Ladder Frame</title>
-                            <!-- Frame Rail with accurate kick-up over front and rear axles -->
-                            <path d="M 170 380 L 250 376 L 330 376 L 430 382 L 700 382 L 840 374 L 980 385 L 980 401 L 840 390 L 700 398 L 430 398 L 330 392 L 250 392 L 170 396 Z" 
+                            <path d="M 175 390 L 260 385 L 340 385 L 440 392 L 730 392 L 870 384 L 1000 395 L 1000 411 L 870 400 L 730 408 L 440 408 L 340 402 L 260 402 L 175 406 Z" 
                                   fill="#18181b" stroke="#71717a" stroke-width="1.8" />
-                            <!-- Frame crossmembers & spring hangers -->
-                            <rect x="270" y="375" width="20" height="24" fill="#27272a" stroke="#a1a1aa" stroke-width="1.2" />
-                            <rect x="490" y="380" width="18" height="20" fill="#27272a" stroke="#a1a1aa" stroke-width="1.2" />
-                            <rect x="710" y="380" width="18" height="20" fill="#27272a" stroke="#a1a1aa" stroke-width="1.2" />
-                            <rect x="915" y="382" width="16" height="22" fill="#27272a" stroke="#a1a1aa" stroke-width="1.2" />
+                            <rect x="280" y="384" width="22" height="26" fill="#27272a" stroke="#a1a1aa" stroke-width="1.2" />
+                            <rect x="500" y="390" width="18" height="20" fill="#27272a" stroke="#a1a1aa" stroke-width="1.2" />
+                            <rect x="735" y="390" width="18" height="20" fill="#27272a" stroke="#a1a1aa" stroke-width="1.2" />
+                            <rect x="940" y="392" width="16" height="22" fill="#27272a" stroke="#a1a1aa" stroke-width="1.2" />
                         </g>
 
-                        <!-- ============================================== -->
-                        <!-- 2. MECHANICAL & DRIVETRAIN                     -->
-                        <!-- ============================================== -->
-                        
-                        <!-- Engine: 5.0L / 5.8L Windsor V8 / 4.9L I6 -->
                         <g id="part-engine" class="part-node" data-id="engine">
                             <title>5.0L / 5.8L Windsor V8 Powertrain & EFI Bay</title>
-                            <!-- Engine Block & Cylinder Heads -->
-                            <rect x="245" y="300" width="105" height="78" rx="4" fill="#18181b" stroke="#a1a1aa" stroke-width="1.8" />
-                            <!-- Upper EFI Intake Manifold (Curved runners) -->
-                            <path d="M 265 285 L 340 285 L 332 300 L 255 300 Z" fill="#27272a" stroke="#e4e4e7" stroke-width="1.8" />
-                            <!-- Distributor with 8 plug wires & serpentine pulley -->
-                            <circle cx="240" cy="335" r="14" fill="#18181b" stroke="#e4e4e7" stroke-width="1.8" />
-                            <!-- Oil Pan -->
-                            <path d="M 270 378 L 325 378 L 315 392 L 280 392 Z" fill="#121215" stroke="#71717a" stroke-width="1.4" />
-                            <text x="295" y="342" fill="#a1a1aa" font-size="9" font-family="JetBrains Mono" text-anchor="middle">5.0L EFI</text>
+                            <rect x="250" y="310" width="110" height="80" rx="4" fill="#18181b" stroke="#a1a1aa" stroke-width="1.8" />
+                            <path d="M 270 295 L 345 295 L 338 310 L 260 310 Z" fill="#27272a" stroke="#e4e4e7" stroke-width="1.8" />
+                            <circle cx="245" cy="345" r="14" fill="#18181b" stroke="#e4e4e7" stroke-width="1.8" />
+                            <path d="M 275 388 L 330 388 L 320 402 L 285 402 Z" fill="#121215" stroke="#71717a" stroke-width="1.4" />
+                            <text x="300" y="352" fill="#a1a1aa" font-size="9" font-family="JetBrains Mono" text-anchor="middle">5.0L EFI</text>
                         </g>
 
-                        <!-- Transmission & Transfer Case -->
                         <g id="part-transmission" class="part-node" data-id="transmission">
                             <title>Transmission (E4OD Automatic / M5OD-R2 Manual) & Transfer Case</title>
-                            <!-- Bellhousing -->
-                            <path d="M 350 310 L 385 330 L 385 382 L 350 387 Z" fill="#18181b" stroke="#a1a1aa" stroke-width="1.8" />
-                            <!-- Transmission Main Body -->
-                            <rect x="385" y="335" width="95" height="46" rx="4" fill="#18181b" stroke="#a1a1aa" stroke-width="1.8" />
-                            <!-- BorgWarner 1356 4x4 Transfer Case -->
-                            <rect x="480" y="348" width="48" height="40" rx="4" fill="#27272a" stroke="#e4e4e7" stroke-width="1.8" />
-                            <text x="432" y="362" fill="#a1a1aa" font-size="9" font-family="JetBrains Mono" text-anchor="middle">E4OD / M5OD</text>
+                            <path d="M 360 320 L 395 340 L 395 392 L 360 397 Z" fill="#18181b" stroke="#a1a1aa" stroke-width="1.8" />
+                            <rect x="395" y="345" width="100" height="48" rx="4" fill="#18181b" stroke="#a1a1aa" stroke-width="1.8" />
+                            <rect x="495" y="358" width="50" height="42" rx="4" fill="#27272a" stroke="#e4e4e7" stroke-width="1.8" />
+                            <text x="445" y="372" fill="#a1a1aa" font-size="9" font-family="JetBrains Mono" text-anchor="middle">E4OD / M5OD</text>
                         </g>
 
-                        <!-- Driveshaft & Spicer U-Joints -->
                         <g id="part-driveshaft" class="part-node" data-id="driveshaft">
                             <title>Driveshaft, Slip Yoke & Spicer 1330 U-Joints</title>
-                            <line x1="528" y1="368" x2="755" y2="408" stroke="#71717a" stroke-width="6.5" stroke-linecap="round" />
-                            <!-- Front U-Joint -->
-                            <circle cx="532" cy="369" r="5" fill="#e4e4e7" stroke="#18181b" stroke-width="1.5" />
-                            <!-- Rear U-Joint at Pinion Flange -->
-                            <circle cx="755" cy="408" r="5" fill="#e4e4e7" stroke="#18181b" stroke-width="1.5" />
+                            <line x1="545" y1="378" x2="785" y2="418" stroke="#71717a" stroke-width="6.5" stroke-linecap="round" />
+                            <circle cx="550" cy="379" r="5" fill="#e4e4e7" stroke="#18181b" stroke-width="1.5" />
+                            <circle cx="785" cy="418" r="5" fill="#e4e4e7" stroke="#18181b" stroke-width="1.5" />
                         </g>
 
-                        <!-- Dual Fuel Tanks (Midship & Rear Overhang) -->
                         <g id="part-fuel" class="part-node" data-id="fuel">
                             <title>Dual Fuel Tanks (Midship 19 Gal & Rear 18.2 Gal)</title>
-                            <!-- Midship 19 Gal Tank (Inside left frame rail) -->
-                            <rect x="520" y="382" width="115" height="28" rx="4" fill="#18181b" stroke="#a1a1aa" stroke-width="1.6" />
-                            <text x="577" y="400" fill="#71717a" font-size="8" font-family="JetBrains Mono" text-anchor="middle">19 GAL TANK</text>
-                            <!-- Rear Overhang 18.2 Gal Tank (Behind rear axle) -->
-                            <rect x="805" y="388" width="100" height="26" rx="4" fill="#18181b" stroke="#a1a1aa" stroke-width="1.6" />
-                            <text x="855" y="404" fill="#71717a" font-size="8" font-family="JetBrains Mono" text-anchor="middle">18.2 GAL TANK</text>
+                            <rect x="540" y="392" width="120" height="28" rx="4" fill="#18181b" stroke="#a1a1aa" stroke-width="1.6" />
+                            <text x="600" y="410" fill="#71717a" font-size="8" font-family="JetBrains Mono" text-anchor="middle">19 GAL TANK</text>
+                            <rect x="830" y="398" width="105" height="26" rx="4" fill="#18181b" stroke="#a1a1aa" stroke-width="1.6" />
+                            <text x="882" y="414" fill="#71717a" font-size="8" font-family="JetBrains Mono" text-anchor="middle">18.2 GAL TANK</text>
                         </g>
 
-                        <!-- Exhaust System & Catalytic Converter -->
                         <g id="part-exhaust" class="part-node" data-id="exhaust">
                             <title>Exhaust System, Y-Pipe & Tailpipe</title>
-                            <path d="M 335 372 Q 370 402 415 402 L 480 402" fill="none" stroke="#52525b" stroke-width="4" />
-                            <!-- Main Converter -->
-                            <rect x="480" y="397" width="46" height="13" rx="3" fill="#27272a" stroke="#71717a" stroke-width="1.5" />
-                            <!-- Muffler -->
-                            <rect x="640" y="395" width="92" height="19" rx="5" fill="#18181b" stroke="#71717a" stroke-width="1.8" />
-                            <!-- Tailpipe turn down behind rear tire -->
-                            <path d="M 732 404 L 805 404 Q 825 404 835 422" fill="none" stroke="#a1a1aa" stroke-width="3.5" />
+                            <path d="M 345 382 Q 380 412 425 412 L 490 412" fill="none" stroke="#52525b" stroke-width="4" />
+                            <rect x="490" y="407" width="48" height="13" rx="3" fill="#27272a" stroke="#71717a" stroke-width="1.5" />
+                            <rect x="660" y="405" width="95" height="19" rx="5" fill="#18181b" stroke="#71717a" stroke-width="1.8" />
+                            <path d="M 755 414 L 835 414 Q 855 414 865 432" fill="none" stroke="#a1a1aa" stroke-width="3.5" />
                         </g>
 
-                        <!-- Front Suspension: Dana 44 TTB (Twin-Traction Beam) / Twin I-Beam & Radius Arms -->
                         <g id="part-front-suspension" class="part-node" data-id="front-suspension">
                             <title>Dana 44 Twin-Traction Beam (TTB) / Twin I-Beam & Radius Arm</title>
-                            <!-- Radius Arm extending rearward to frame bracket -->
-                            <polygon points="395,388 290,412 295,420 400,394" fill="#27272a" stroke="#a1a1aa" stroke-width="1.5" />
-                            <!-- Radius Arm Frame Bushing -->
-                            <circle cx="398" cy="391" r="6" fill="#e4e4e7" stroke="#18181b" stroke-width="1.5" />
-                            <!-- Front Heavy Coil Spring -->
-                            <path d="M 290 330 Q 300 336 290 342 Q 280 348 290 354 Q 300 360 290 366 Q 280 372 290 378 Q 300 384 290 390 Q 280 396 290 402 L 290 415" 
+                            <polygon points="410,398 300,422 305,430 415,404" fill="#27272a" stroke="#a1a1aa" stroke-width="1.5" />
+                            <circle cx="413" cy="401" r="6" fill="#e4e4e7" stroke="#18181b" stroke-width="1.5" />
+                            <path d="M 300 340 Q 310 346 300 352 Q 290 358 300 364 Q 310 370 300 376 Q 290 382 300 388 Q 310 394 300 400 Q 290 406 300 412 L 300 425" 
                                   fill="none" stroke="#e4e4e7" stroke-width="3.5" stroke-linecap="round" />
-                            <!-- Telescopic Shock Absorber -->
-                            <line x1="305" y1="330" x2="305" y2="415" stroke="#71717a" stroke-width="3" />
+                            <line x1="315" y1="340" x2="315" y2="425" stroke="#71717a" stroke-width="3" />
                         </g>
 
-                        <!-- Rear Suspension: Ford 8.8 Differential & Leaf Springs -->
                         <g id="part-rear-axle" class="part-node" data-id="rear-axle">
                             <title>Ford 8.8-Inch Rear Differential Housing & Multi-Leaf Springs</title>
-                            <!-- Progressive Multi-Leaf Spring Arch -->
-                            <path d="M 685 392 Q 770 435 855 392" fill="none" stroke="#a1a1aa" stroke-width="4.5" stroke-linecap="round" />
-                            <!-- Front & Rear Spring Shackles and Hanger Brackets -->
-                            <circle cx="685" cy="392" r="5" fill="#e4e4e7" stroke="#18181b" stroke-width="1" />
-                            <circle cx="855" cy="392" r="5" fill="#e4e4e7" stroke="#18181b" stroke-width="1" />
-                            <!-- Ford 8.8 Center Differential Pumpkin -->
-                            <circle cx="770" cy="418" r="18" fill="#18181b" stroke="#e4e4e7" stroke-width="2.2" />
-                            <!-- 10-Bolt Differential Cover Ring -->
-                            <circle cx="770" cy="418" r="11" fill="#27272a" stroke="#71717a" stroke-width="1.5" stroke-dasharray="2 3" />
+                            <path d="M 715 402 Q 800 445 885 402" fill="none" stroke="#a1a1aa" stroke-width="4.5" stroke-linecap="round" />
+                            <circle cx="715" cy="402" r="5" fill="#e4e4e7" stroke="#18181b" stroke-width="1" />
+                            <circle cx="885" cy="402" r="5" fill="#e4e4e7" stroke="#18181b" stroke-width="1" />
+                            <circle cx="800" cy="428" r="19" fill="#18181b" stroke="#e4e4e7" stroke-width="2.2" />
+                            <circle cx="800" cy="428" r="11" fill="#27272a" stroke="#71717a" stroke-width="1.5" stroke-dasharray="2 3" />
                         </g>
 
-                        <!-- Wheels & Tires: Authentic Ford 15" OBS Deep-Dish 10-Hole Alcoa Wheels -->
                         <g id="part-wheels" class="part-node" data-id="wheels">
                             <title>Authentic 15" OBS 10-Hole Forged Aluminum Wheels & All-Terrain Tires</title>
+                            <circle cx="300" cy="428" r="62" fill="url(#tireRubber)" stroke="#27272a" stroke-width="4" />
+                            <circle cx="300" cy="428" r="58" fill="none" stroke="#18181b" stroke-width="3" stroke-dasharray="6 3.5" />
+                            <circle cx="300" cy="428" r="52" fill="none" stroke="#121215" stroke-width="1.5" />
+                            <circle cx="300" cy="428" r="40" fill="url(#chromePolish)" stroke="#52525b" stroke-width="2" />
+                            <circle cx="300" cy="428" r="34" fill="url(#alcoaDish)" stroke="#18181b" stroke-width="1.5" />
+                            <circle cx="300" cy="428" r="24" fill="#18181b" stroke="#ffffff" stroke-width="2.2" stroke-dasharray="5.8 3.4" />
+                            <circle cx="300" cy="428" r="13" fill="#121215" stroke="#ffffff" stroke-width="1.8" />
+                            <circle cx="300" cy="428" r="8" fill="#e4e4e7" stroke="#18181b" stroke-width="1" />
+                            <rect x="296" y="424" width="8" height="8" rx="1.5" fill="#ffffff" stroke="#18181b" stroke-width="1" />
                             
-                            <!-- FRONT WHEEL (Wheelbase Center X=290, Y=420) -->
-                            <!-- Rugged Tire Outer Profile (60px radius, touches ground at 480) -->
-                            <circle cx="290" cy="420" r="58" fill="url(#wheelTire)" stroke="#27272a" stroke-width="4" />
-                            <!-- All-Terrain Outer Tread Lugs -->
-                            <circle cx="290" cy="420" r="55" fill="none" stroke="#18181b" stroke-width="2.5" stroke-dasharray="6 3" />
-                            <circle cx="290" cy="420" r="50" fill="none" stroke="#121215" stroke-width="1.5" />
-                            <!-- Deep-Dish 15" Rim Stepped Lip -->
-                            <circle cx="290" cy="420" r="37" fill="url(#chromeMinimal)" stroke="#52525b" stroke-width="2" />
-                            <circle cx="290" cy="420" r="32" fill="#27272a" stroke="#18181b" stroke-width="1.5" />
-                            <!-- The Famous 10-Hole Bullet Holes Circle -->
-                            <circle cx="290" cy="420" r="23" fill="#18181b" stroke="#d4d4d8" stroke-width="2" stroke-dasharray="5.5 3.5" />
-                            <!-- Center 4x4 Manual Locking Hub / Cap -->
-                            <circle cx="290" cy="420" r="12" fill="#121215" stroke="#ffffff" stroke-width="1.5" />
-                            <rect x="286" y="416" width="8" height="8" rx="1" fill="#e4e4e7" stroke="#18181b" stroke-width="1" />
-                            
-                            <!-- REAR WHEEL (Wheelbase Center X=770, Y=420) -->
-                            <!-- Rugged Tire Outer Profile -->
-                            <circle cx="770" cy="420" r="58" fill="url(#wheelTire)" stroke="#27272a" stroke-width="4" />
-                            <!-- All-Terrain Outer Tread Lugs -->
-                            <circle cx="770" cy="420" r="55" fill="none" stroke="#18181b" stroke-width="2.5" stroke-dasharray="6 3" />
-                            <circle cx="770" cy="420" r="50" fill="none" stroke="#121215" stroke-width="1.5" />
-                            <!-- Deep-Dish 15" Rim Stepped Lip -->
-                            <circle cx="770" cy="420" r="37" fill="url(#chromeMinimal)" stroke="#52525b" stroke-width="2" />
-                            <circle cx="770" cy="420" r="32" fill="#27272a" stroke="#18181b" stroke-width="1.5" />
-                            <!-- The Famous 10-Hole Bullet Holes Circle -->
-                            <circle cx="770" cy="420" r="23" fill="#18181b" stroke="#d4d4d8" stroke-width="2" stroke-dasharray="5.5 3.5" />
-                            <!-- Center Hub Cap with 5 Lug Nuts -->
-                            <circle cx="770" cy="420" r="12" fill="#121215" stroke="#ffffff" stroke-width="1.5" />
-                            <circle cx="770" cy="420" r="6" fill="#e4e4e7" />
+                            <circle cx="800" cy="428" r="62" fill="url(#tireRubber)" stroke="#27272a" stroke-width="4" />
+                            <circle cx="800" cy="428" r="58" fill="none" stroke="#18181b" stroke-width="3" stroke-dasharray="6 3.5" />
+                            <circle cx="800" cy="428" r="52" fill="none" stroke="#121215" stroke-width="1.5" />
+                            <circle cx="800" cy="428" r="40" fill="url(#chromePolish)" stroke="#52525b" stroke-width="2" />
+                            <circle cx="800" cy="428" r="34" fill="url(#alcoaDish)" stroke="#18181b" stroke-width="1.5" />
+                            <circle cx="800" cy="428" r="24" fill="#18181b" stroke="#ffffff" stroke-width="2.2" stroke-dasharray="5.8 3.4" />
+                            <circle cx="800" cy="428" r="13" fill="#121215" stroke="#ffffff" stroke-width="1.8" />
+                            <circle cx="800" cy="428" r="7" fill="#e4e4e7" />
                         </g>
 
-                        <!-- ============================================== -->
-                        <!-- 3. AUTHENTIC 1992-1996 OBS EXTERIOR BODYWORK   -->
-                        <!-- ============================================== -->
-
-                        <!-- Front Chrome Step Bumper & Air Inlets -->
                         <g id="part-bumper-front" class="part-node" data-id="bumper-front">
                             <title>Front Aerodynamic Chrome Step Bumper with Air Cutouts</title>
-                            <!-- Aerodynamic Wrapped Bumper Shell -->
-                            <path d="M 125 348 L 175 348 L 175 408 L 140 408 Q 125 400 125 368 Z" fill="url(#chromeMinimal)" stroke="#ffffff" stroke-width="1.8" />
-                            <!-- Dual Horizontal Rectangular Air Cooling Slots (Iconic OBS Feature) -->
-                            <rect x="133" y="364" width="30" height="7" rx="2" fill="#09090b" stroke="#52525b" stroke-width="0.8" />
-                            <rect x="133" y="378" width="30" height="7" rx="2" fill="#09090b" stroke="#52525b" stroke-width="0.8" />
-                            <!-- Lower Flexible Rubber Air Deflector / Valence -->
-                            <path d="M 142 408 L 175 408 L 175 422 L 150 422 Z" fill="#121215" stroke="#3f3f46" stroke-width="1.2" />
+                            <path d="M 115 355 L 175 355 L 175 415 L 138 415 Q 115 408 115 375 Z" fill="url(#chromePolish)" stroke="#ffffff" stroke-width="1.8" />
+                            <rect x="126" y="372" width="34" height="8" rx="2" fill="#09090b" stroke="#52525b" stroke-width="0.8" />
+                            <rect x="126" y="386" width="34" height="8" rx="2" fill="#09090b" stroke="#52525b" stroke-width="0.8" />
+                            <rect x="163" y="365" width="6" height="34" rx="1" fill="#09090b" />
+                            <path d="M 135 415 L 175 415 L 175 432 L 145 432 Z" fill="#121215" stroke="#3f3f46" stroke-width="1.2" />
                         </g>
 
-                        <!-- 1992-1996 OBS Front Aero Grille, Composite Headlamps & Side Markers -->
                         <g id="part-grille-lights" class="part-node" data-id="headlights-grille">
                             <title>Aero Composite Headlamp, Amber Signal & OBS Chrome Grille</title>
-                            <!-- Flush Aerodynamic Polycarbonate Headlamp Lens -->
-                            <path d="M 138 296 L 188 293 L 188 338 L 142 338 Q 134 316 138 296 Z" fill="#f4f4f5" stroke="#ffffff" stroke-width="1.8" />
-                            <!-- Inner Parabolic Reflector & 9007 Halogen Bulb -->
-                            <rect x="150" y="303" width="26" height="25" rx="3" fill="#ffffff" stroke="#a1a1aa" stroke-width="1" />
-                            <!-- Lower Horizontal Amber Turn Signal Housing -->
-                            <rect x="142" y="338" width="46" height="10" rx="1.5" fill="#71717a" stroke="#d4d4d8" stroke-width="1" />
-                            <!-- Wraparound Amber Corner Side Marker -->
-                            <path d="M 134 300 L 138 296 L 142 338 L 134 335 Z" fill="#52525b" stroke="#a1a1aa" stroke-width="1" />
-                            <!-- 1992-1996 Horizontal Slatted Chrome Grille -->
-                            <rect x="175" y="295" width="20" height="48" fill="url(#chromeMinimal)" stroke="#71717a" stroke-width="1.5" />
-                            <line x1="175" y1="305" x2="195" y2="305" stroke="#09090b" stroke-width="1.8" />
-                            <line x1="175" y1="316" x2="195" y2="316" stroke="#09090b" stroke-width="1.8" />
-                            <line x1="175" y1="327" x2="195" y2="327" stroke="#09090b" stroke-width="1.8" />
-                            <line x1="175" y1="338" x2="195" y2="338" stroke="#09090b" stroke-width="1.8" />
-                            <!-- Central Ford Blue Oval Emblem -->
-                            <ellipse cx="185" cy="321" rx="7" ry="4.5" fill="#18181b" stroke="#ffffff" stroke-width="1" />
+                            <path d="M 130 304 L 188 300 L 188 346 L 134 346 Q 126 324 130 304 Z" fill="#f4f4f5" stroke="#ffffff" stroke-width="1.8" />
+                            <rect x="144" y="311" width="30" height="26" rx="3" fill="#ffffff" stroke="#a1a1aa" stroke-width="1" />
+                            <circle cx="159" cy="324" r="5" fill="#f8fafc" stroke="#64748b" stroke-width="1" />
+                            <rect x="134" y="346" width="54" height="11" rx="1.5" fill="#f59e0b" stroke="#d97706" stroke-width="1" />
+                            <path d="M 126 308 L 130 304 L 134 346 L 126 342 Z" fill="#d97706" stroke="#b45309" stroke-width="1" />
+                            <rect x="175" y="302" width="22" height="52" fill="url(#chromePolish)" stroke="#71717a" stroke-width="1.5" />
+                            <line x1="175" y1="312" x2="197" y2="312" stroke="#09090b" stroke-width="2" />
+                            <line x1="175" y1="324" x2="197" y2="324" stroke="#09090b" stroke-width="2" />
+                            <line x1="175" y1="336" x2="197" y2="336" stroke="#09090b" stroke-width="2" />
+                            <line x1="175" y1="348" x2="197" y2="348" stroke="#09090b" stroke-width="2" />
+                            <ellipse cx="186" cy="329" rx="8" ry="5" fill="#002C6C" stroke="#ffffff" stroke-width="1.2" />
+                            <text x="186" y="331.5" fill="#ffffff" font-size="4" font-family="sans-serif" font-weight="bold" text-anchor="middle">Ford</text>
                         </g>
 
-                        <!-- Stamped Steel Hood Assembly & Slotted Cowl -->
                         <g id="part-hood" class="part-node" data-id="hood-fender">
                             <title>Aerodynamic Stamped Steel Hood & Cowl Induction Screen</title>
-                            <!-- Hood Contour: aerodynamic nose sloping forward into grille -->
-                            <path d="M 148 294 Q 280 291 415 288 L 415 276 L 392 276 L 158 285 Z" fill="url(#bodySheen)" stroke="#ffffff" stroke-width="1.8" />
-                            <!-- Center Hood Raised Cowl Character Lines -->
-                            <line x1="168" y1="289" x2="410" y2="283" stroke="#3f3f46" stroke-width="1.4" />
-                            <!-- Slotted HVAC Air Intake Cowl Screen -->
-                            <rect x="392" y="274" width="23" height="7" fill="#18181b" stroke="#52525b" stroke-width="1" />
+                            <path d="M 142 302 Q 280 298 418 294 L 418 282 L 392 282 L 152 293 Z" fill="url(#bodyDark)" stroke="#ffffff" stroke-width="1.8" />
+                            <line x1="162" y1="297" x2="412" y2="289" stroke="#52525b" stroke-width="1.4" />
+                            <rect x="392" y="280" width="26" height="8" fill="#18181b" stroke="#52525b" stroke-width="1" />
                         </g>
 
-                        <!-- Front Quarter Fender with Wheel Arch Eyebrow Flare & Emblem -->
                         <g id="part-fender-front" class="part-node" data-id="hood-fender">
                             <title>Front Quarter Fender with Wheel Flare Lip & F-150 Emblem</title>
-                            <path d="M 175 298 L 415 295 L 415 395 L 355 395 
-                                     A 65 65 0 0 0 225 395 L 175 395 Z" 
-                                  fill="url(#bodySheen)" stroke="#ffffff" stroke-width="1.8" />
-                            <!-- THE ICONIC OBS BODY SWAGE CREASE LINE (Front Section) -->
-                            <path d="M 175 342 L 415 342" stroke="url(#accentSwage)" stroke-width="3" />
-                            <line x1="175" y1="340.5" x2="415" y2="340.5" stroke="#71717a" stroke-width="1" />
-                            <line x1="175" y1="343.5" x2="415" y2="343.5" stroke="#3f3f46" stroke-width="1" />
-                            <!-- Authentic Stamped Wheel Arch Eyebrow Flare Lip -->
-                            <path d="M 225 395 A 65 65 0 0 1 355 395" fill="none" stroke="#71717a" stroke-width="2.5" />
-                            <!-- Chrome 'F-150 XLT' Fender Badge -->
-                            <rect x="375" y="325" width="28" height="7" rx="1.5" fill="url(#chromeMinimal)" stroke="#18181b" stroke-width="0.8" />
-                            <text x="389" y="330.5" fill="#09090b" font-size="5" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">F-150</text>
+                            <path d="M 175 306 L 418 302 L 418 340 L 175 340 Z" fill="url(#bodyDark)" stroke="#ffffff" stroke-width="1.8" />
+                            
+                            <rect class="two-tone-element" x="175" y="340" width="243" height="42" fill="url(#twoToneBand)" stroke="#ffffff" stroke-width="1.4" />
+                            <line x1="175" y1="340" x2="418" y2="340" stroke="#09090b" stroke-width="3" />
+                            <line x1="175" y1="340" x2="418" y2="340" stroke="#ffffff" stroke-width="1" />
+                            <line x1="175" y1="382" x2="418" y2="382" stroke="#09090b" stroke-width="3" />
+                            <line x1="175" y1="382" x2="418" y2="382" stroke="#ffffff" stroke-width="1" />
+
+                            <path d="M 175 382 L 418 382 L 418 410 L 370 410 
+                                     A 70 70 0 0 0 230 410 L 175 410 Z" 
+                                  fill="url(#bodyDark)" stroke="#ffffff" stroke-width="1.8" />
+
+                            <path d="M 230 410 A 70 70 0 0 1 370 410" fill="none" stroke="#71717a" stroke-width="3.5" />
+                            <path d="M 231 410 A 69 69 0 0 1 369 410" fill="none" stroke="#ffffff" stroke-width="1.2" />
+
+                            <rect x="375" y="325" width="32" height="9" rx="1.5" fill="url(#chromePolish)" stroke="#18181b" stroke-width="0.8" />
+                            <rect x="377" y="331" width="28" height="2" fill="#ef4444" />
+                            <text x="391" y="330" fill="#09090b" font-size="5" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">F-150</text>
                         </g>
 
-                        <!-- Regular Cab, Doors, Drip Rail & Glass -->
                         <g id="part-cab" class="part-node" data-id="cab">
                             <title>OBS Regular Cab, Wing Vent Window, Paddle Handle & Roof Drip Rail</title>
-                            <!-- Roof, A-Pillar Rake (~58°), Drip Rail & Rear Cab Wall -->
-                            <path d="M 415 282 L 470 188 Q 545 184 615 188 L 615 290 L 415 290 Z" fill="url(#bodySheen)" stroke="#ffffff" stroke-width="1.8" />
-                            <!-- Lower Door Shell & Rocker Panel -->
-                            <path d="M 415 290 L 615 290 L 615 400 L 415 400 Z" fill="url(#bodySheen)" stroke="#ffffff" stroke-width="1.8" />
-                            <!-- Roof Integrated Drip Rail Gutter Molding -->
-                            <path d="M 465 190 Q 540 186 612 190 L 612 288" fill="none" stroke="#71717a" stroke-width="1.8" />
-                            <!-- THE ICONIC OBS BODY SWAGE CREASE LINE (Door Section) -->
-                            <path d="M 415 342 L 615 342" stroke="url(#accentSwage)" stroke-width="3" />
-                            <line x1="415" y1="340.5" x2="615" y2="340.5" stroke="#71717a" stroke-width="1" />
-                            <line x1="415" y1="343.5" x2="615" y2="343.5" stroke="#3f3f46" stroke-width="1" />
-                            <!-- Raked Windshield Glass Frame -->
-                            <polygon points="422,279 468,195 492,195 460,279" fill="url(#glassSmoked)" stroke="#a1a1aa" stroke-width="1.5" />
-                            <!-- The Famous OBS Triangular Wing Vent Window -->
-                            <polygon points="470,276 496,197 515,197 515,276" fill="url(#glassSmoked)" stroke="#a1a1aa" stroke-width="1.5" />
-                            <!-- Vent Window Vertical Divider Bar -->
-                            <line x1="515" y1="197" x2="515" y2="276" stroke="#e4e4e7" stroke-width="2" />
-                            <!-- Main Roll-down Side Glass -->
-                            <rect x="520" y="197" width="88" height="79" rx="2" fill="url(#glassSmoked)" stroke="#a1a1aa" stroke-width="1.5" />
-                            <!-- Interior Silhouette: Curved Dashboard & Steering Wheel Column -->
-                            <path d="M 480 274 Q 505 260 525 274" fill="none" stroke="#52525b" stroke-width="2.5" />
-                            <circle cx="515" cy="242" r="9" fill="none" stroke="#52525b" stroke-width="2" />
-                            <!-- Bench Seat / Headrest Silhouette -->
-                            <rect x="575" y="228" width="18" height="26" rx="4" fill="#18181b" stroke="#3f3f46" stroke-width="1.2" />
-                            <!-- Flush Paddle Door Handle (Rear edge of door above swage) -->
-                            <rect x="572" y="302" width="28" height="10" rx="2" fill="url(#chromeMinimal)" stroke="#18181b" stroke-width="1.2" />
-                            <!-- Key Lock Cylinder -->
-                            <circle cx="578" cy="320" r="2.5" fill="url(#chromeMinimal)" stroke="#18181b" stroke-width="0.8" />
-                            <!-- Vertical Cab-to-Bed Structural Seam (Rear Cab Gap) -->
-                            <line x1="615" y1="188" x2="615" y2="400" stroke="#ffffff" stroke-width="1.8" />
+                            <path d="M 418 290 L 475 190 Q 550 186 630 190 L 630 300 L 418 300 Z" fill="url(#bodyDark)" stroke="#ffffff" stroke-width="1.8" />
+                            
+                            <path d="M 418 300 L 630 300 L 630 340 L 418 340 Z" fill="url(#bodyDark)" stroke="#ffffff" stroke-width="1.8" />
+
+                            <rect class="two-tone-element" x="418" y="340" width="212" height="42" fill="url(#twoToneBand)" stroke="#ffffff" stroke-width="1.4" />
+                            <line x1="418" y1="340" x2="630" y2="340" stroke="#09090b" stroke-width="3" />
+                            <line x1="418" y1="340" x2="630" y2="340" stroke="#ffffff" stroke-width="1" />
+                            <line x1="418" y1="382" x2="630" y2="382" stroke="#09090b" stroke-width="3" />
+                            <line x1="418" y1="382" x2="630" y2="382" stroke="#ffffff" stroke-width="1" />
+
+                            <path d="M 418 382 L 630 382 L 630 415 L 418 415 Z" fill="url(#bodyDark)" stroke="#ffffff" stroke-width="1.8" />
+
+                            <path d="M 470 192 Q 545 188 625 192 L 625 296" fill="none" stroke="#71717a" stroke-width="1.8" />
+
+                            <polygon points="426,286 473,197 498,197 465,286" fill="url(#glassSmoked)" stroke="#a1a1aa" stroke-width="1.5" />
+                            
+                            <polygon points="475,283 502,199 522,199 522,283" fill="url(#glassSmoked)" stroke="#a1a1aa" stroke-width="1.5" />
+                            <line x1="522" y1="199" x2="522" y2="283" stroke="#ffffff" stroke-width="2.2" />
+                            <rect x="518" y="260" width="5" height="7" rx="1" fill="#e4e4e7" stroke="#18181b" stroke-width="0.8" />
+
+                            <rect x="528" y="199" width="94" height="84" rx="2" fill="url(#glassSmoked)" stroke="#a1a1aa" stroke-width="1.5" />
+                            <line x1="540" y1="205" x2="595" y2="275" stroke="#ffffff" stroke-width="1" stroke-opacity="0.35" />
+
+                            <path d="M 488 281 Q 512 268 532 281" fill="none" stroke="#52525b" stroke-width="2.5" />
+                            <circle cx="522" cy="248" r="9" fill="none" stroke="#52525b" stroke-width="2" />
+                            <rect x="585" y="235" width="20" height="28" rx="4" fill="#18181b" stroke="#3f3f46" stroke-width="1.2" />
+
+                            <rect x="580" y="306" width="30" height="11" rx="2" fill="url(#chromePolish)" stroke="#18181b" stroke-width="1.2" />
+                            <rect x="583" y="309" width="18" height="5" rx="1" fill="#09090b" />
+                            <circle cx="586" cy="326" r="2.5" fill="url(#chromePolish)" stroke="#18181b" stroke-width="0.8" />
+
+                            <line x1="630" y1="190" x2="630" y2="415" stroke="#ffffff" stroke-width="1.8" />
                         </g>
 
-                        <!-- OBS Low-Mount Breakaway Paddle Side Mirror -->
                         <g id="part-mirrors" class="part-node" data-id="mirrors">
                             <title>OBS Aerodynamic Low-Mount Paddle Breakaway Mirror</title>
-                            <!-- Door Sail Panel Triangle Mount -->
-                            <path d="M 452 277 L 438 260 L 438 290 L 452 285 Z" fill="#18181b" stroke="#a1a1aa" stroke-width="1.4" />
-                            <!-- Aerodynamic Mirror Housing Shell -->
-                            <rect x="428" y="254" width="14" height="42" rx="3.5" fill="url(#chromeMinimal)" stroke="#ffffff" stroke-width="1.5" />
-                            <line x1="435" y1="256" x2="435" y2="294" stroke="#18181b" stroke-width="1" />
+                            <path d="M 458 284 L 442 266 L 442 298 L 458 292 Z" fill="#18181b" stroke="#a1a1aa" stroke-width="1.4" />
+                            <rect x="432" y="260" width="15" height="44" rx="4" fill="url(#chromePolish)" stroke="#ffffff" stroke-width="1.5" />
+                            <line x1="439" y1="262" x2="439" y2="302" stroke="#18181b" stroke-width="1" />
                         </g>
 
-                        <!-- 6.5ft Styleside Bed with Dual Fuel Doors & Stake Pockets -->
                         <g id="part-bed" class="part-node" data-id="bed">
                             <title>Styleside 6.5ft Cargo Bed with Dual Fuel Doors & Stake Pockets</title>
-                            <!-- Bed Exterior Sheet Metal (Aligns with cab beltline at y=280) -->
-                            <path d="M 627 274 L 980 274 L 980 400 L 835 400 
-                                     A 65 65 0 0 0 705 400 L 627 400 Z" 
-                                  fill="url(#bodySheen)" stroke="#ffffff" stroke-width="1.8" />
-                            <!-- Top Bed Rail Cap with Rolled Edge -->
-                            <rect x="627" y="270" width="353" height="6" rx="1.5" fill="#27272a" stroke="#71717a" stroke-width="1" />
-                            <!-- Front & Rear Stake Pockets in Bed Rail -->
-                            <rect x="640" y="271" width="10" height="4" rx="0.5" fill="#09090b" stroke="#52525b" stroke-width="0.8" />
-                            <rect x="955" y="271" width="10" height="4" rx="0.5" fill="#09090b" stroke="#52525b" stroke-width="0.8" />
-                            <!-- THE ICONIC OBS BODY SWAGE CREASE LINE (Bed Section) -->
-                            <path d="M 627 342 L 980 342" stroke="url(#accentSwage)" stroke-width="3" />
-                            <line x1="627" y1="340.5" x2="980" y2="340.5" stroke="#71717a" stroke-width="1" />
-                            <line x1="627" y1="343.5" x2="980" y2="343.5" stroke="#3f3f46" stroke-width="1" />
-                            <!-- Stamped Rear Wheel Arch Eyebrow Flare Lip -->
-                            <path d="M 705 400 A 65 65 0 0 1 835 400" fill="none" stroke="#71717a" stroke-width="2.5" />
-                            <!-- Front Fuel Pocket Door (Midship 19 Gal Tank) -->
-                            <rect x="660" y="306" width="26" height="24" rx="4" fill="#18181b" stroke="#ffffff" stroke-width="1.5" />
-                            <circle cx="682" cy="318" r="1.5" fill="#71717a" />
-                            <text x="673" y="321" fill="#a1a1aa" font-size="7" font-family="JetBrains Mono" text-anchor="middle">F1</text>
-                            <!-- Rear Fuel Pocket Door (Aft 18.2 Gal Tank) -->
-                            <rect x="880" y="306" width="26" height="24" rx="4" fill="#18181b" stroke="#ffffff" stroke-width="1.5" />
-                            <circle cx="902" cy="318" r="1.5" fill="#71717a" />
-                            <text x="893" y="321" fill="#a1a1aa" font-size="7" font-family="JetBrains Mono" text-anchor="middle">F2</text>
+                            <path d="M 642 282 L 995 282 L 995 340 L 642 340 Z" fill="url(#bodyDark)" stroke="#ffffff" stroke-width="1.8" />
+                            
+                            <rect class="two-tone-element" x="642" y="340" width="353" height="42" fill="url(#twoToneBand)" stroke="#ffffff" stroke-width="1.4" />
+                            <line x1="642" y1="340" x2="995" y2="340" stroke="#09090b" stroke-width="3" />
+                            <line x1="642" y1="340" x2="995" y2="340" stroke="#ffffff" stroke-width="1" />
+                            <line x1="642" y1="382" x2="995" y2="382" stroke="#09090b" stroke-width="3" />
+                            <line x1="642" y1="382" x2="995" y2="382" stroke="#ffffff" stroke-width="1" />
+
+                            <path d="M 642 382 L 995 382 L 995 410 L 870 410 
+                                     A 70 70 0 0 0 730 410 L 642 410 Z" 
+                                  fill="url(#bodyDark)" stroke="#ffffff" stroke-width="1.8" />
+
+                            <rect x="642" y="278" width="353" height="6" rx="1.5" fill="#27272a" stroke="#71717a" stroke-width="1" />
+                            <rect x="655" y="279" width="11" height="4" rx="0.5" fill="#09090b" stroke="#52525b" stroke-width="0.8" />
+                            <rect x="970" y="279" width="11" height="4" rx="0.5" fill="#09090b" stroke="#52525b" stroke-width="0.8" />
+
+                            <path d="M 730 410 A 70 70 0 0 1 870 410" fill="none" stroke="#71717a" stroke-width="3.5" />
+                            <path d="M 731 410 A 69 69 0 0 1 869 410" fill="none" stroke="#ffffff" stroke-width="1.2" />
+
+                            <rect x="680" y="312" width="28" height="25" rx="4" fill="#18181b" stroke="#ffffff" stroke-width="1.5" />
+                            <circle cx="704" cy="324" r="1.5" fill="#71717a" />
+                            <text x="694" y="328" fill="#a1a1aa" font-size="7" font-family="JetBrains Mono" text-anchor="middle">F1</text>
+                            
+                            <rect x="910" y="312" width="28" height="25" rx="4" fill="#18181b" stroke="#ffffff" stroke-width="1.5" />
+                            <circle cx="934" cy="324" r="1.5" fill="#71717a" />
+                            <text x="893" y="328" fill="#a1a1aa" font-size="7" font-family="JetBrains Mono" text-anchor="middle">F2</text>
                         </g>
 
-                        <!-- Tailgate, Aluminum XLT Finish Panel & Rear Step Bumper -->
                         <g id="part-tailgate-bumper" class="part-node" data-id="tailgate">
                             <title>Tailgate, Wrap-around 3-Tier Taillights & Rear Step Bumper</title>
-                            <!-- Tailgate Bed End Post Seam -->
-                            <path d="M 980 274 L 992 277 L 992 395 L 980 398 Z" fill="#18181b" stroke="#ffffff" stroke-width="1.8" />
-                            <!-- 3-Tier Wrap-around Vertical Taillight Assembly -->
-                            <rect x="978" y="286" width="11" height="52" rx="2" fill="#71717a" stroke="#a1a1aa" stroke-width="1.4" />
-                            <!-- Top Brake / Tail Light Section -->
-                            <rect x="979" y="288" width="9" height="18" rx="1" fill="#ffffff" />
-                            <!-- Center Reverse Backup Lamp -->
-                            <rect x="979" y="308" width="9" height="10" rx="0.5" fill="#d4d4d8" />
-                            <!-- Bottom Turn / Marker Lens -->
-                            <rect x="979" y="320" width="9" height="16" rx="1" fill="#a1a1aa" />
-                            <!-- Brushed Aluminum XLT Tailgate Finish Banner -->
-                            <rect x="982" y="342" width="8" height="24" fill="url(#chromeMinimal)" stroke="#52525b" stroke-width="0.8" />
-                            <!-- Heavy Chrome Rear Step Bumper with Dropped Center Section -->
-                            <path d="M 980 395 L 1008 395 L 1008 418 L 975 418 Z" fill="url(#chromeMinimal)" stroke="#ffffff" stroke-width="1.8" />
-                            <!-- Textured Black Step Pads & Hitch Hole -->
-                            <rect x="984" y="393" width="20" height="3" rx="0.5" fill="#09090b" />
-                            <circle cx="996" cy="404" r="3" fill="#09090b" stroke="#3f3f46" stroke-width="1" />
+                            <path d="M 995 282 L 1007 285 L 1007 405 L 995 408 Z" fill="#18181b" stroke="#ffffff" stroke-width="1.8" />
+                            
+                            <rect x="993" y="294" width="12" height="54" rx="2.5" fill="#71717a" stroke="#a1a1aa" stroke-width="1.4" />
+                            <rect x="994" y="296" width="10" height="19" rx="1" fill="#ef4444" />
+                            <rect x="994" y="316" width="10" height="11" rx="0.5" fill="#f8fafc" />
+                            <rect x="994" y="328" width="10" height="18" rx="1" fill="#b91c1c" />
+                            
+                            <rect x="998" y="340" width="8" height="42" fill="url(#chromePolish)" stroke="#52525b" stroke-width="0.8" />
+                            <rect x="1000" y="374" width="4" height="6" fill="#ef4444" />
+                            
+                            <path d="M 995 405 L 1025 405 L 1025 428 L 990 428 Z" fill="url(#chromePolish)" stroke="#ffffff" stroke-width="1.8" />
+                            <rect x="1000" y="403" width="22" height="3.5" rx="0.5" fill="#09090b" />
+                            <circle cx="1012" cy="414" r="3.5" fill="#09090b" stroke="#3f3f46" stroke-width="1" />
                         </g>
 
                     </svg>
 
-                    <!-- Hint / Explode Status Pill -->
                     <div class="absolute bottom-3 left-4 bg-surface/90 border border-surface-border px-3 py-1.5 rounded-md text-[11px] font-mono text-zinc-400 flex items-center gap-2 pointer-events-none">
                         <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
-                        <span id="canvasHint">Click parts to inspect • Toggle Explode view to separate components</span>
+                        <span id="canvasHint">Click parts to inspect • Toggle Two-Tone trim or Explode view</span>
                     </div>
                 </div>
 
-                <!-- Fast-Select Component Bar -->
                 <div class="mt-4 pt-3 border-t border-surface-border flex flex-wrap items-center gap-1.5 text-xs font-mono">
                     <span class="text-zinc-500 mr-1 text-[11px]">JUMP:</span>
                     <button class="jump-pill px-2.5 py-1 rounded border border-surface-border bg-surface-subtle hover:bg-surface-hover text-zinc-300 hover:text-white transition-colors" data-id="engine">Engine V8</button>
@@ -644,17 +432,14 @@
                     <button class="jump-pill px-2.5 py-1 rounded border border-surface-border bg-surface-subtle hover:bg-surface-hover text-zinc-300 hover:text-white transition-colors" data-id="rear-axle">Ford 8.8"</button>
                     <button class="jump-pill px-2.5 py-1 rounded border border-surface-border bg-surface-subtle hover:bg-surface-hover text-zinc-300 hover:text-white transition-colors" data-id="fuel">Dual Tanks</button>
                     <button class="jump-pill px-2.5 py-1 rounded border border-surface-border bg-surface-subtle hover:bg-surface-hover text-zinc-300 hover:text-white transition-colors" data-id="headlights-grille">OBS Grille</button>
-                    <button class="jump-pill px-2.5 py-1 rounded border border-surface-border bg-surface-subtle hover:bg-surface-hover text-zinc-300 hover:text-white transition-colors" data-id="wheels">10-Hole Wheels</button>
+                    <button class="jump-pill px-2.5 py-1 rounded border border-surface-border bg-surface-subtle hover:bg-surface-hover text-zinc-300 hover:text-white transition-colors" data-id="wheels">10-Hole Alcoas</button>
                 </div>
             </div>
 
-            <!-- RIGHT: Component Inspector Card & Directory -->
             <div class="lg:col-span-4 flex flex-col gap-4">
                 
-                <!-- Inspector Card Panel -->
                 <div id="inspectorPanel" class="bg-surface-card border border-surface-border rounded-xl p-5 relative shadow-lg">
                     
-                    <!-- Dynamic Component Header -->
                     <div class="flex items-start justify-between gap-3 border-b border-surface-border pb-3.5">
                         <div>
                             <span id="partCategory" class="inline-block text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-semibold mb-1">
@@ -669,7 +454,6 @@
                         </span>
                     </div>
 
-                    <!-- Metadata Grid -->
                     <div class="grid grid-cols-2 gap-2 my-3 text-xs font-mono">
                         <div class="bg-surface-subtle p-2.5 rounded-lg border border-surface-border">
                             <span class="text-zinc-500 block text-[10px] uppercase">OEM Casting / Part #</span>
@@ -681,7 +465,6 @@
                         </div>
                     </div>
 
-                    <!-- Functional Description -->
                     <div class="space-y-3 text-xs leading-relaxed text-zinc-300">
                         <div>
                             <h3 class="font-mono text-zinc-500 uppercase text-[10px] font-semibold mb-1">System Description</h3>
@@ -690,10 +473,9 @@
                             </p>
                         </div>
 
-                        <!-- 1995 OBS Quirk / Critical Tech Note -->
                         <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
                             <div class="flex items-center gap-1.5 text-white font-mono text-[11px] font-semibold mb-1">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg width="14" height="14" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                 </svg>
                                 <span>1992-1996 OBS Technical Quirk</span>
@@ -703,7 +485,6 @@
                             </p>
                         </div>
 
-                        <!-- Technical Specs, Fluids & Capacities -->
                         <div>
                             <h3 class="font-mono text-zinc-500 uppercase text-[10px] font-semibold mb-1">Specs & Maintenance Data</h3>
                             <ul id="partSpecsList" class="space-y-1.5 font-mono text-[11px] bg-surface-subtle/50 p-3 rounded-lg border border-surface-border">
@@ -723,10 +504,9 @@
                         </div>
                     </div>
 
-                    <!-- Action Bar -->
                     <div class="mt-4 pt-3 border-t border-surface-border flex gap-2">
                         <button id="copyOemBtn" class="flex-1 py-2 px-3 rounded-lg border border-surface-border bg-surface-subtle hover:bg-surface-hover text-white font-mono text-xs font-medium transition-colors flex items-center justify-center gap-1.5">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg width="14" height="14" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
                             </svg>
                             Copy Part #
@@ -737,15 +517,12 @@
                     </div>
                 </div>
 
-                <!-- Minimal Assembly Directory List -->
                 <div class="bg-surface-card border border-surface-border rounded-xl p-4">
                     <div class="flex items-center justify-between mb-2 pb-2 border-b border-surface-border">
                         <span class="font-mono text-xs uppercase tracking-wider text-zinc-400 font-medium">Part Directory</span>
                         <span id="directoryCount" class="text-[10px] font-mono text-zinc-500">14 parts</span>
                     </div>
-                    <div id="directoryContainer" class="space-y-1 max-h-56 overflow-y-auto pr-1">
-                        <!-- Rendered by script -->
-                    </div>
+                    <div id="directoryContainer" class="space-y-1 max-h-56 overflow-y-auto pr-1"></div>
                 </div>
 
             </div>
@@ -753,10 +530,9 @@
 
     </main>
 
-    <!-- Minimalist Footer -->
     <footer class="border-t border-surface-border bg-surface py-6 text-xs text-zinc-500 font-mono mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p>1992–1996 Ford F-150 OBS (Old Body Style) Technical Architecture Explorer.</p>
+            <p>1992–1996 Ford F-150 XLT OBS (Old Body Style) Technical Architecture Explorer.</p>
             <div class="flex items-center space-x-3 text-zinc-400">
                 <a href="index.html" class="hover:text-white transition-colors">Portfolio</a>
                 <span>•</span>
@@ -765,563 +541,5 @@
         </div>
     </footer>
 
-    <!-- Interactive Logic & Ford F-150 OBS Database -->
-    <script>
-        // Complete 1992-1996 Ford F-150 OBS Parts Specification Database
-        const F150_PARTS = {
-            "engine": {
-                id: "engine",
-                name: "5.0L / 5.8L Windsor V8 & EFI Bay",
-                category: "powertrain",
-                categoryLabel: "POWERTRAIN",
-                oemRef: "F4TZ-6007-ARM / E7TE",
-                diag: "EEC-IV OBD-I",
-                years: "'92-'96 OBS",
-                description: "The 1995 F-150 powertrain featured roller-cam 302ci (5.0L) and 351W (5.8L) small-block V8s, or the durable 4.9L 300 Inline-6, all equipped with Speed-Density or Mass Air Flow (MAF) Multi-Port Electronic Fuel Injection (EFI).",
-                quirk: "1995 California models and some 5.0L automatics received true Mass Air Flow (MAF) sequential EFI with dual oxygen sensors, while most 49-state models remained Speed Density with bank-fire injection. Remote TFI ignition module sits on the driver inner fender well with an aluminum heatsink.",
-                specs: [
-                    { label: "Oil Capacity", value: "6.0 Quarts (10W-30 / 5W-30)" },
-                    { label: "Firing Order (5.0L)", value: "1-3-7-2-6-5-4-8 (HO Order)" },
-                    { label: "Timing Base", value: "10° BTDC with SPOUT removed" },
-                    { label: "Common Issue", value: "PIP Stator Distributor Failure" }
-                ]
-            },
-            "transmission": {
-                id: "transmission",
-                name: "E4OD 4-Speed Auto / M5OD-R2 Manual",
-                category: "powertrain",
-                categoryLabel: "POWERTRAIN",
-                oemRef: "F5TZ-7000 / BorgWarner 1356",
-                diag: "Trans Solenoid Pack (EEC-IV)",
-                years: "'89-'97 OBS",
-                description: "The electronic 4-speed automatic (E4OD) features a locking torque converter and overdrive cancel button on the gearshift stalk. Manual models use the rugged Mazda-designed M5OD-R2 5-speed with internal hydraulic concentric slave cylinder.",
-                quirk: "1995 was the updated E4OD year featuring improved center support bushings and upgraded solenoid packs. Overdrive (OD) OFF light flashing on the shifter tip indicates an active diagnostic trouble code stored in the EEC-IV computer.",
-                specs: [
-                    { label: "Fluid Type (Auto)", value: "Mercon V ATF (15.5-16.5 qts total)" },
-                    { label: "Fluid Type (Manual)", value: "Mercon ATF (3.8 qts in M5OD)" },
-                    { label: "Transfer Case", value: "BorgWarner 1356 (Manual / Electric)" },
-                    { label: "Common Issue", value: "M5OD rubber shift top plugs leaking" }
-                ]
-            },
-            "driveshaft": {
-                id: "driveshaft",
-                name: "Driveshaft, Slip Yoke & Universal Joints",
-                category: "powertrain",
-                categoryLabel: "POWERTRAIN",
-                oemRef: "F4TZ-4602-A / Spicer 1330",
-                diag: "Mechanical Balance",
-                years: "'92-'96 OBS",
-                description: "Heavy-duty steel or aluminum drive tube connecting the transmission or transfer case to the rear differential. Uses Spicer 1330 series external snap-ring universal joints.",
-                quirk: "SuperCab and Long Bed configurations feature a 2-piece split driveshaft with a rubber-isolated center carrier bearing. A common 'clunk' when accelerating from a stop is caused by dry slip-yoke splines needing Ford PTFE Teflon grease.",
-                specs: [
-                    { label: "U-Joint Series", value: "Spicer 1330 (3.625\" cap width)" },
-                    { label: "Fastener Torque", value: "Pinion flange bolts: 70-95 lb-ft" },
-                    { label: "Service Interval", value: "Lube greaseable zerks every 5k mi" },
-                    { label: "Common Issue", value: "Slip yoke spline binding clunk" }
-                ]
-            },
-            "front-suspension": {
-                id: "front-suspension",
-                name: "Twin-Traction Beam (TTB) / Twin I-Beam",
-                category: "suspension",
-                categoryLabel: "SUSPENSION",
-                oemRef: "Dana 44 TTB / Ford Twin I-Beam",
-                diag: "Alignment Camber Bushings",
-                years: "'80-'96 F-150",
-                description: "Ford's proprietary independent front suspension. 2WD models utilize stamped Twin I-Beams, while 4WD models use the articulated Dana 44 Twin-Traction Beam (TTB) with coil springs and elongated stamped steel radius arms.",
-                quirk: "TTB suspension beams swing in opposite arcs. Any suspension lift or sagging coil spring immediately changes both camber and toe angles. Adjustable eccentric upper ball joint alignment bushings are essential for proper tire wear.",
-                specs: [
-                    { label: "Spring Type", value: "Progressive Rate Front Coils" },
-                    { label: "Front Axle (4x4)", value: "Dana 44 TTB Reverse Spiral Bevel" },
-                    { label: "Radius Arm Nut", value: "Torque: 80-120 lb-ft" },
-                    { label: "Common Issue", value: "Degraded radius arm rubber bushings" }
-                ]
-            },
-            "rear-axle": {
-                id: "rear-axle",
-                name: "Ford 8.8-Inch Rear Differential & Leaf Springs",
-                category: "suspension",
-                categoryLabel: "SUSPENSION",
-                oemRef: "F2TZ-4001 / Ford 8.8 31-Spline",
-                diag: "VSS Sensor (Top Housing)",
-                years: "'83-'96 F-150",
-                description: "The venerable Ford 8.8-inch semi-floating rear axle equipped with 31-spline axle shafts and 2.5-inch wide progressive multi-leaf rear springs. Available in 3.08, 3.31, 3.55, and 4.10 gear ratios, both open and Traction-Lok limited slip.",
-                quirk: "The Vehicle Speed Sensor (VSS / ABS sensor) is mounted directly to the top of the rear differential pumpkin. If your speedometer bounces, cruise control fails, or E4OD shifts erratically, this sensor or the tone ring is usually dirty or faulty.",
-                specs: [
-                    { label: "Gear Lubricant", value: "75W-90 / 80W-90 Gear Oil (5.5 pts)" },
-                    { label: "Friction Modifier", value: "4 oz Ford XL-3 for Traction-Lok" },
-                    { label: "Cover Bolts", value: "10-bolt cover (28-38 lb-ft)" },
-                    { label: "Spring Rate", value: "Multi-leaf pack with factory blocks" }
-                ]
-            },
-            "wheels": {
-                id: "wheels",
-                name: "15\" Forged 10-Hole Alcoa Wheels & Brakes",
-                category: "suspension",
-                categoryLabel: "SUSPENSION",
-                oemRef: "F4TZ-1007 / 5x5.5 Pattern",
-                diag: "Rear RABS (Anti-Lock)",
-                years: "'92-'96 OBS",
-                description: "The world-famous factory 15x7.5 forged aluminum 10-hole bullet-hole rims with deep dish offset, red/black 4x4 manual locking hubs, and all-terrain tires. Front 11.5\" vented disc brakes, rear 11x2.25\" finned drums.",
-                quirk: "The F-150 uses a classic 5-lug on 5.5-inch (5x139.7mm) bolt circle with 1/2\"-20 studs. 4x4 models feature manual locking hubs or automatic three-screw plastic locking hubs that often freeze if not exercised annually.",
-                specs: [
-                    { label: "Lug Pattern", value: "5 on 5.5\" (5x139.7 mm)" },
-                    { label: "Lug Nut Torque", value: "100 lb-ft (1/2-20 thread)" },
-                    { label: "Brake Type", value: "Front Disc / Rear 11\" Drum (RABS)" },
-                    { label: "Tire Pressure", value: "32-35 PSI Cold" }
-                ]
-            },
-            "fuel": {
-                id: "fuel",
-                name: "Dual Fuel Tanks & High-Pressure Delivery",
-                category: "fuel",
-                categoryLabel: "FUEL SYSTEM",
-                oemRef: "F4TZ-9H307 / F1UZ-9B263",
-                diag: "Dashboard Dual Tank Switch",
-                years: "'90-'96 OBS",
-                description: "Famous dual tank setup: midship 19-gallon tank inside the driver frame rail and rear 18.2-gallon tank mounted aft of the rear axle. Each tank contains an integrated high-pressure electric fuel pump and fuel level sender.",
-                quirk: "The infamous 'cross-tank filling' condition occurs when a faulty internal check valve in one fuel delivery module allows the active pump to send return fuel into the other tank, causing it to overflow. Solved with Ford recall module kits.",
-                specs: [
-                    { label: "Front Tank Size", value: "19 Gallons (Midship)" },
-                    { label: "Rear Tank Size", value: "18.2 Gallons (Rear overhang)" },
-                    { label: "Operating Pressure", value: "35-45 PSI EFI pressure" },
-                    { label: "Selector Switch", value: "Rocker switch on dash trim" }
-                ]
-            },
-            "exhaust": {
-                id: "exhaust",
-                name: "Exhaust System & Catalytic Converters",
-                category: "fuel",
-                categoryLabel: "EXHAUST & EMISSIONS",
-                oemRef: "F4TZ-5230 / E9TZ-5E212",
-                diag: "HEGO Oxygen Sensor",
-                years: "'92-'96 OBS",
-                description: "Dual tubular exhaust manifolds feeding into a single Y-pipe, dual catalytic converter assembly (pre-cat and main three-way catalyst), oval reverse-flow muffler, and single 2.25-inch tailpipe exiting behind the passenger rear wheel.",
-                quirk: "The secondary air injection (Smog / Thermactor) pump pumps fresh air through crossover tubes on the rear of cylinder heads and directly into the catalytic converter. Check the crossover pipe for rust pinholes causing exhaust ticking.",
-                specs: [
-                    { label: "O2 Sensor", value: "Single Heated HEGO (Dual on MAF)" },
-                    { label: "Pipe Diameter", value: "2.25\" to 2.5\" OD aluminized steel" },
-                    { label: "Hanger Type", value: "Heavy-duty rubber isolators" },
-                    { label: "Common Issue", value: "Exhaust manifold bolt cracking" }
-                ]
-            },
-            "frame": {
-                id: "frame",
-                name: "High-Strength Steel Ladder Chassis Frame",
-                category: "body",
-                categoryLabel: "CHASSIS & FRAME",
-                oemRef: "Ford Truck Heavy Channel",
-                diag: "Visual Inspection",
-                years: "'80-'96 Platform",
-                description: "Full-perimeter carbon steel ladder chassis featuring heavy C-channel side rails reinforced with stamped steel crossmembers, providing superior torsional rigidity and payload capacity up to 2,000 lbs.",
-                quirk: "Rear spring shackle brackets riveted to the rear frame rails above the fuel tank are notorious for catching road salt and rotting out, causing the rear leaf spring to punch upward through the truck bed floor.",
-                specs: [
-                    { label: "Material", value: "High-Tensile Carbon Steel C-Channel" },
-                    { label: "Wheelbase", value: "116.8\" (Short) / 133\" (Long Bed)" },
-                    { label: "Tow Capacity", value: "Up to 7,500 lbs (with 5.8L & 3.55+)" },
-                    { label: "Common Issue", value: "Rusted rear leaf spring hangers" }
-                ]
-            },
-            "bumper-front": {
-                id: "bumper-front",
-                name: "Front Chrome Step Bumper & Air Dam",
-                category: "body",
-                categoryLabel: "BODY & TRIM",
-                oemRef: "F2TZ-17757-B",
-                diag: "Frame Horn Mounting",
-                years: "'92-'96 OBS",
-                description: "Heavy-gauge die-stamped chrome steel bumper featuring the aerodynamic 1992-1996 contour. Features dual horizontal air intake cooling cutouts for the radiator and an aerodynamic black lower plastic air deflector.",
-                quirk: "Mounted directly to the crumpled frame horns. Diesel and heavy tow models received twin cutout slots with rubber protective rub strips; aftermarket push bars bolt directly to existing bumper mount bolts.",
-                specs: [
-                    { label: "Finish", value: "Triple Nickel Chrome Plate" },
-                    { label: "Lower Valence", value: "Flexible textured ABS plastic" },
-                    { label: "Mounting Bolts", value: "Grade 5 carriage bolts (45-55 lb-ft)" },
-                    { label: "Air Slots", value: "Engine cooling and trans cooler draft" }
-                ]
-            },
-            "headlights-grille": {
-                id: "headlights-grille",
-                name: "OBS Aero Headlights & Chrome Grille",
-                category: "body",
-                categoryLabel: "BODY & LIGHTING",
-                oemRef: "F2TZ-13008 / F2TZ-8200",
-                diag: "Headlight Adjuster Screws",
-                years: "'92-'96 OBS",
-                description: "The hallmark of the 9th-generation 'OBS' F-150: flush aerodynamic composite polycarbonate headlamp lenses, wraparound amber corner parking/turn signal assemblies, and bright argent/chrome egg-crate front grille with centered Ford Blue Oval badge.",
-                quirk: "The plastic header panel (core support header) holds all headlights, turn signals, and the grille. If you bump something, this plastic panel cracks easily, causing headlamps to point downward.",
-                specs: [
-                    { label: "Headlight Bulb", value: "9007 Dual-Filament Halogen (HB5)" },
-                    { label: "Turn Signal Bulb", value: "3157NA Amber Dual-Filament" },
-                    { label: "Grille Material", value: "Chrome Plated Injection Molded ABS" },
-                    { label: "Ford Emblem", value: "7-Inch Acrylic Blue Oval badge" }
-                ]
-            },
-            "hood-fender": {
-                id: "hood-fender",
-                name: "Aerodynamic Steel Hood & Front Fenders",
-                category: "body",
-                categoryLabel: "BODY PANELS",
-                oemRef: "F2TZ-16612-A / F2TZ-16005",
-                diag: "Hood Hinge & Spring Tension",
-                years: "'92-'96 OBS",
-                description: "Smooth sloping steel hood engineered for lower wind noise and improved aerodynamic drag over the boxy 8th-gen (brick-nose). Front fenders incorporate the famous continuous swage line and stamped wheel eyebrow flares.",
-                quirk: "The hood safety latch mechanism in the center core support requires regular white lithium grease. Dry latches can stick open or fail to engage the secondary safety catch.",
-                specs: [
-                    { label: "Panel Gauge", value: "Heavy 18-gauge stamped steel" },
-                    { label: "Hinge Style", value: "Torsion assist spring hinges" },
-                    { label: "Emblems", value: "Chrome 'F-150' badge on fender sides" },
-                    { label: "Cowl Vent", value: "Stamped slotted air intake for HVAC" }
-                ]
-            },
-            "cab": {
-                id: "cab",
-                name: "Standard Cab, Driver Door & OBS Interior",
-                category: "body",
-                categoryLabel: "CAB & INTERIOR",
-                oemRef: "F2TZ-Cab Structure",
-                diag: "Instrument Cluster Gauges",
-                years: "'92-'96 OBS",
-                description: "The 1992-1996 redesigned cab features a driver-oriented wrap-around dashboard, triangular front wing vent windows on the doors, flush paddle door handles, integrated roof drip rail molding, and analog instrument cluster.",
-                quirk: "The driver door striker bushing made of white plastic wears out, causing the door to rattle loudly over bumps and requiring you to slam the door. Replacing the $5 plastic door striker bushing cures it immediately!",
-                specs: [
-                    { label: "Windshield", value: "Raked laminated safety solar glass (58°)" },
-                    { label: "Wing Vent Window", value: "Pivoting triangular front glass pane" },
-                    { label: "Door Bushing", value: "Common striker plastic sleeve wear" },
-                    { label: "Dashboard", value: "Ergonomic curved OBS instrument cluster" }
-                ]
-            },
-            "mirrors": {
-                id: "mirrors",
-                name: "OBS Low-Mount Paddle Side Mirrors",
-                category: "body",
-                categoryLabel: "EXTERIOR TRIM",
-                oemRef: "F2TZ-17682 / Swing-Lock",
-                diag: "Manual / Power Adjustment",
-                years: "'92-'96 OBS",
-                description: "Aerodynamic black or chrome low-mount paddle swing mirrors designed for low wind noise and wide-angle field of view. Available in standard manual and dual electric remote power adjustments.",
-                quirk: "Unlike the older heavy stainless steel 3-point towing mirrors ('western style'), these sleek paddle mirrors fold flat against the cab for automatic car washes and tight trails.",
-                specs: [
-                    { label: "Mounting", value: "Two-bolt door shell mount" },
-                    { label: "Control", value: "Electric joystick switch on door armrest" },
-                    { label: "Option", value: "Manual or Power Heated Glass" },
-                    { label: "Style", value: "Aerodynamic low-mount breakaway" }
-                ]
-            },
-            "bed": {
-                id: "bed",
-                name: "6.5ft Styleside Bed & Dual Fuel Doors",
-                category: "body",
-                categoryLabel: "CARGO BED",
-                oemRef: "F2TZ-Bed Assembly",
-                diag: "Bed Mounting Carriage Bolts",
-                years: "'87-'96 Styleside",
-                description: "Double-walled welded steel cargo box featuring smooth outer bodyside panels, top bed rail with stake pockets, continuous swage line, stamped wheel arch flares, and dual fuel filler doors on the driver side.",
-                quirk: "Contains dual fuel filler pocket doors on the driver side bed flank. The bed is secured to the frame rails using six large Torx T-50 or T-55 carriage bolts that frequently freeze in place with rust.",
-                specs: [
-                    { label: "Bed Length", value: "6.5 Feet (Short Bed) / 8 Feet (Long Bed)" },
-                    { label: "Width Between Wells", value: "49.0 Inches (fits 4x8 sheets)" },
-                    { label: "Dual Filler Doors", value: "Front & Rear filler neck doors" },
-                    { label: "Hardware", value: "6x Torx T-50/55 frame carriage bolts" }
-                ]
-            },
-            "tailgate": {
-                id: "tailgate",
-                name: "Tailgate & Rear Step Bumper Assembly",
-                category: "body",
-                categoryLabel: "REAR ASSEMBLY",
-                oemRef: "F2TZ-9940700 / XLT Trim",
-                diag: "Tailgate Latch Cables",
-                years: "'87-'96 OBS",
-                description: "Heavy-duty removable steel tailgate featuring center paddle release handle, internal release rods, support cables, 3-tier vertical wraparound taillights, and on XLT trims, the brushed aluminum decorative finish panel.",
-                quirk: "The steel tailgate support cables can rust and snap under heavy loading. Inspect the dual cables regularly before loading heavy equipment or sitting on the tailgate!",
-                specs: [
-                    { label: "Trim Panel", value: "Brushed Aluminum with Ford Oval (XLT)" },
-                    { label: "Support", value: "Dual vinyl-coated braided steel cables" },
-                    { label: "Step Bumper", value: "Chrome steel with 5,000 lb hitch ball hole" },
-                    { label: "Taillights", value: "3-tier vertical red/white lenses" }
-                ]
-            }
-        };
-
-        // State tracking
-        let isExploded = false;
-        let selectedPartId = "engine";
-        let activeCategoryFilter = "all";
-
-        // DOM elements
-        const truckSvg = document.getElementById('truckSvg');
-        const explodeBtn = document.getElementById('explodeBtn');
-        const explodeBtnText = document.getElementById('explodeBtnText');
-        const resetBtn = document.getElementById('resetBtn');
-        const modelStateLabel = document.getElementById('modelStateLabel');
-        const modelStatePill = document.getElementById('modelStatePill');
-        const hoverReadout = document.getElementById('hoverReadout');
-        const canvasHint = document.getElementById('canvasHint');
-        const searchInput = document.getElementById('searchInput');
-        const directoryContainer = document.getElementById('directoryContainer');
-        const directoryCount = document.getElementById('directoryCount');
-        const copyOemBtn = document.getElementById('copyOemBtn');
-        const isolatePartBtn = document.getElementById('isolatePartBtn');
-
-        // Inspector elements
-        const partCategory = document.getElementById('partCategory');
-        const partTitle = document.getElementById('partTitle');
-        const partGeneration = document.getElementById('partGeneration');
-        const partOem = document.getElementById('partOem');
-        const partDiag = document.getElementById('partDiag');
-        const partDesc = document.getElementById('partDesc');
-        const partQuirk = document.getElementById('partQuirk');
-        const partSpecsList = document.getElementById('partSpecsList');
-
-        const partNodes = document.querySelectorAll('.part-node');
-        const guideLines = document.querySelectorAll('.guide-line');
-
-        // Toggle Exploded View
-        function setExploded(state) {
-            isExploded = state;
-            if (isExploded) {
-                truckSvg.classList.add('exploded');
-                explodeBtn.className = "flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-white bg-white text-black font-semibold shadow-md transition-all";
-                explodeBtnText.textContent = "Assemble Model";
-                modelStateLabel.textContent = "Exploded View";
-                modelStatePill.className = "w-1.5 h-1.5 rounded-full bg-white animate-ping";
-                canvasHint.textContent = "Exploded mode active • All OBS subsystems separated for clear inspection";
-                isolatePartBtn.textContent = "Assemble";
-            } else {
-                truckSvg.classList.remove('exploded');
-                explodeBtn.className = "flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-zinc-700 bg-surface-subtle text-white font-medium hover:bg-surface-hover transition-all";
-                explodeBtnText.textContent = "Explode Model";
-                modelStateLabel.textContent = "Assembled View";
-                modelStatePill.className = "w-1.5 h-1.5 rounded-full bg-zinc-400";
-                canvasHint.textContent = "Click parts to inspect • Toggle Explode view to separate components";
-                isolatePartBtn.textContent = "Explode";
-            }
-            updateGuideLineHighlight();
-        }
-
-        explodeBtn.addEventListener('click', () => setExploded(!isExploded));
-        isolatePartBtn.addEventListener('click', () => setExploded(!isExploded));
-
-        // Keyboard Shortcut: 'E' to toggle explode
-        window.addEventListener('keydown', (e) => {
-            if (e.target.tagName === 'INPUT') return;
-            if (e.key === 'e' || e.key === 'E') {
-                setExploded(!isExploded);
-            }
-            if (e.key === '/') {
-                e.preventDefault();
-                searchInput.focus();
-            }
-        });
-
-        // Select and Highlight a Component
-        function selectPart(id) {
-            const data = F150_PARTS[id];
-            if (!data) return;
-
-            selectedPartId = id;
-
-            // Highlight in SVG
-            partNodes.forEach(node => {
-                if (node.dataset.id === id) {
-                    node.classList.add('active');
-                } else {
-                    node.classList.remove('active');
-                }
-            });
-
-            // Populate Inspector Panel
-            partCategory.textContent = data.categoryLabel;
-            partTitle.textContent = data.name;
-            partGeneration.textContent = data.years;
-            partOem.textContent = data.oemRef;
-            partDiag.textContent = data.diag;
-            partDesc.textContent = data.description;
-            partQuirk.textContent = data.quirk;
-
-            // Rebuild Specs List
-            partSpecsList.innerHTML = "";
-            data.specs.forEach((item, index) => {
-                const li = document.createElement('li');
-                li.className = `flex justify-between ${index !== data.specs.length - 1 ? 'border-b border-surface-border pb-1' : ''}`;
-                li.innerHTML = `
-                    <span class="text-zinc-500">${item.label}:</span>
-                    <span class="text-white font-medium">${item.value}</span>
-                `;
-                partSpecsList.appendChild(li);
-            });
-
-            // Update Active Projection Line in Exploded View
-            updateGuideLineHighlight();
-
-            // Refresh Directory List
-            renderDirectory(activeCategoryFilter, searchInput.value);
-
-            hoverReadout.textContent = `SELECTED: ${data.name.toUpperCase()}`;
-            hoverReadout.classList.remove('opacity-0');
-        }
-
-        // Highlight matching guide line when exploded
-        function updateGuideLineHighlight() {
-            guideLines.forEach(line => line.classList.remove('active-guide'));
-            if (!isExploded) return;
-
-            const guideMap = {
-                'hood-fender': 'guide-hood',
-                'cab': 'guide-cab',
-                'bed': 'guide-bed',
-                'bumper-front': 'guide-bumper-front',
-                'headlights-grille': 'guide-grille',
-                'tailgate': 'guide-tailgate',
-                'front-suspension': 'guide-front-suspension',
-                'rear-axle': 'guide-rear-axle',
-                'fuel': 'guide-fuel'
-            };
-
-            const guideId = guideMap[selectedPartId];
-            if (guideId) {
-                const guideEl = document.getElementById(guideId);
-                if (guideEl) guideEl.classList.add('active-guide');
-            }
-        }
-
-        // Render Directory List
-        function renderDirectory(filter = "all", query = "") {
-            directoryContainer.innerHTML = "";
-            let count = 0;
-            const term = query.toLowerCase().trim();
-
-            Object.values(F150_PARTS).forEach(part => {
-                const matchesCategory = (filter === "all") || (part.category === filter);
-                const matchesSearch = !term || 
-                    part.name.toLowerCase().includes(term) ||
-                    part.oemRef.toLowerCase().includes(term) ||
-                    part.description.toLowerCase().includes(term) ||
-                    part.quirk.toLowerCase().includes(term);
-
-                if (matchesCategory && matchesSearch) {
-                    count++;
-                    const isSelected = (part.id === selectedPartId);
-                    const btn = document.createElement('button');
-                    btn.className = `w-full text-left p-2 rounded-lg font-mono text-xs transition-all flex items-center justify-between border ${
-                        isSelected 
-                            ? 'bg-white text-black font-semibold border-white shadow-sm' 
-                            : 'bg-surface-subtle text-zinc-300 border-surface-border hover:bg-surface-hover hover:text-white'
-                    }`;
-
-                    btn.innerHTML = `
-                        <div class="flex items-center space-x-2 truncate">
-                            <span class="w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-black' : 'bg-zinc-500'}"></span>
-                            <span class="truncate">${part.name}</span>
-                        </div>
-                        <span class="text-[9px] uppercase px-1.5 py-0.5 rounded border ml-2 ${
-                            isSelected ? 'border-zinc-300 text-zinc-700' : 'border-zinc-800 text-zinc-500 bg-black/40'
-                        }">
-                            ${part.category}
-                        </span>
-                    `;
-
-                    btn.addEventListener('click', () => selectPart(part.id));
-                    directoryContainer.appendChild(btn);
-                }
-            });
-
-            directoryCount.textContent = `${count} parts`;
-        }
-
-        // Attach SVG Node Events
-        partNodes.forEach(node => {
-            const id = node.dataset.id;
-            const data = F150_PARTS[id];
-
-            node.addEventListener('click', (e) => {
-                e.stopPropagation();
-                selectPart(id);
-            });
-
-            node.addEventListener('mouseenter', () => {
-                if (data) {
-                    hoverReadout.textContent = data.name;
-                    hoverReadout.classList.remove('opacity-0');
-                }
-            });
-
-            node.addEventListener('mouseleave', () => {
-                if (selectedPartId && F150_PARTS[selectedPartId]) {
-                    hoverReadout.textContent = `SELECTED: ${F150_PARTS[selectedPartId].name.toUpperCase()}`;
-                } else {
-                    hoverReadout.classList.add('opacity-0');
-                }
-            });
-        });
-
-        // Jump Pills
-        document.querySelectorAll('.jump-pill').forEach(pill => {
-            pill.addEventListener('click', () => selectPart(pill.dataset.id));
-        });
-
-        // Category Filter Tabs
-        document.querySelectorAll('.filter-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.filter-tab').forEach(t => {
-                    t.className = "filter-tab px-3 py-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-surface-card transition-all";
-                });
-                tab.className = "filter-tab active px-3 py-1.5 rounded-md bg-white text-black font-medium transition-all";
-
-                activeCategoryFilter = tab.dataset.category;
-                renderDirectory(activeCategoryFilter, searchInput.value);
-
-                // Dim non-matching parts on SVG
-                partNodes.forEach(node => {
-                    const id = node.dataset.id;
-                    const part = F150_PARTS[id];
-                    if (activeCategoryFilter === "all" || (part && part.category === activeCategoryFilter)) {
-                        node.style.opacity = "1";
-                    } else {
-                        node.style.opacity = "0.18";
-                    }
-                });
-            });
-        });
-
-        // Search Input
-        searchInput.addEventListener('input', (e) => {
-            renderDirectory(activeCategoryFilter, e.target.value);
-        });
-
-        // Copy OEM Button
-        copyOemBtn.addEventListener('click', () => {
-            const part = F150_PARTS[selectedPartId];
-            if (part) {
-                navigator.clipboard.writeText(part.oemRef);
-                const originalText = copyOemBtn.innerHTML;
-                copyOemBtn.innerHTML = `
-                    <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                    Copied!
-                `;
-                copyOemBtn.classList.add('border-white', 'text-white');
-                setTimeout(() => {
-                    copyOemBtn.innerHTML = originalText;
-                    copyOemBtn.classList.remove('border-white');
-                }, 1400);
-            }
-        });
-
-        // Reset View Button
-        resetBtn.addEventListener('click', () => {
-            setExploded(false);
-            selectPart('engine');
-            document.querySelector('[data-category="all"]').click();
-            searchInput.value = "";
-            renderDirectory('all', '');
-        });
-
-        // Initial Setup
-        setExploded(false);
-        selectPart('engine');
-        renderDirectory();
-    </script>
 </body>
 </html>
