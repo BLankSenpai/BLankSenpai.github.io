@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Parser | Matthew Calogrides</title>
+    <link rel="stylesheet" type="text/css" href="recipe.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            Portfolio
+        </a>
+        <div class="logo">Recipe Parser</div>
+    </header>
+
+    <main>
+
+        <section class="search-section">
+            <h1 class="main-title">Clean Recipe Extractor</h1>
+            <p class="tagline">Strip away ads, life stories, and popups. Get just the ingredients and instructions in a clean, interactive format.</p>
+
+            <div class="input-mode-tabs">
+                <button type="button" class="tab-btn active" id="tabUrlMode">From URL</button>
+                <button type="button" class="tab-btn" id="tabTextMode">Paste Text / HTML</button>
+            </div>
+
+            <!-- URL Input Container -->
+            <div id="urlInputContainer" class="input-panel">
+                <div class="url-bar">
+                    <input type="url" id="recipeUrl" placeholder="Paste recipe URL (Allrecipes, NYT Cooking, Serious Eats, Food52...)" autocomplete="off" spellcheck="false">
+                    <button type="button" id="parseBtn">Extract Recipe</button>
+                </div>
+            </div>
+
+            <!-- Direct Paste Container -->
+            <div id="textInputContainer" class="input-panel" hidden>
+                <div class="paste-bar">
+                    <textarea id="rawRecipeInput" placeholder="Paste full recipe page HTML or plain text (with Ingredients and Instructions sections)..." rows="5"></textarea>
+                    <button type="button" id="parseTextBtn">Parse Content</button>
+                </div>
+            </div>
+
+            <div class="sample-pills">
+                <span class="sample-label">Try an example:</span>
+                <button type="button" class="pill-btn" data-sample="cookies">Chocolate Chip Cookies</button>
+                <button type="button" class="pill-btn" data-sample="carbonara">Pasta Carbonara</button>
+                <button type="button" class="pill-btn" data-sample="guacamole">Fresh Guacamole</button>
+            </div>
+
+            <p id="errorMsg" class="error-msg" aria-live="polite"></p>
+        </section>
+
+        <section id="loadingSection" class="loading-section" hidden>
+            <div class="spinner"></div>
+            <p id="loadingText">Fetching and analyzing recipe data&hellip;</p>
+        </section>
+
+        <section id="recipeOutput" class="recipe-output" hidden>
+
+            <div class="recipe-meta">
+                <div class="meta-header">
+                    <div>
+                        <span class="badge-tag">Extracted Recipe</span>
+                        <h2 id="recipeName"></h2>
+                    </div>
+                    <a id="sourceLink" href="#" target="_blank" rel="noopener noreferrer" class="source-link" hidden>
+                        <span>Original Source</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="recipe-stats" id="recipeStats"></div>
+
+                <!-- Recipe Toolbar -->
+                <div class="recipe-toolbar">
+                    <div class="scale-group">
+                        <span class="toolbar-label">Servings:</span>
+                        <div class="btn-group" id="scaleGroup">
+                            <button type="button" class="scale-btn" data-scale="0.5">0.5×</button>
+                            <button type="button" class="scale-btn active" data-scale="1">1×</button>
+                            <button type="button" class="scale-btn" data-scale="1.5">1.5×</button>
+                            <button type="button" class="scale-btn" data-scale="2">2×</button>
+                        </div>
+                    </div>
+
+                    <div class="action-group">
+                        <button type="button" id="copyIngredientsBtn" class="action-btn" title="Copy ingredients to clipboard">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            <span>Copy Ingredients</span>
+                        </button>
+                        <button type="button" id="printBtn" class="action-btn" title="Print clean recipe">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                                <rect x="6" y="14" width="12" height="8"></rect>
+                            </svg>
+                            <span>Print</span>
+                        </button>
+                        <button type="button" id="resetChecksBtn" class="action-btn" title="Reset all checkboxes">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="1 4 1 10 7 10"></polyline>
+                                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                            </svg>
+                            <span>Reset</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cooking Progress Bar -->
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+                    </div>
+                    <span class="progress-text" id="progressText">0 of 0 steps completed</span>
+                </div>
+            </div>
+
+            <div class="recipe-body">
+
+                <aside class="ingredients-col">
+                    <div class="section-title-row">
+                        <h2>Ingredients</h2>
+                        <span class="count-badge" id="ingredientCount">0 items</span>
+                    </div>
+                    <p class="checklist-tip">Tap an ingredient to check it off as you prep.</p>
+                    <ul id="ingredientList" class="checklist"></ul>
+                </aside>
+
+                <div class="instructions-col">
+                    <div class="section-title-row">
+                        <h2>Instructions</h2>
+                        <span class="count-badge" id="instructionCount">0 steps</span>
+                    </div>
+                    <p class="checklist-tip">Tap a step to mark it completed while cooking.</p>
+                    <ol id="instructionList" class="step-list"></ol>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p class="copyright">&copy;2023 Matthew Calogrides &middot; BLank_Dev Portfolio</p>
+    </footer>
+
+    <script src="recipe.js"></script>
+</body>
+</html>
