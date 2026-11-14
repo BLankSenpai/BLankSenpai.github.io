@@ -41,4 +41,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // Dark mode toggle
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        const updateToggleState = (isDark) => {
+            document.documentElement.classList.toggle('dark-mode', isDark);
+            themeToggle.setAttribute('aria-pressed', String(isDark));
+            themeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        };
+
+        updateToggleState(localStorage.getItem('theme') === 'dark');
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = !document.documentElement.classList.contains('dark-mode');
+            updateToggleState(isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+    }
 });

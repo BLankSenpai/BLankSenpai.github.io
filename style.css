@@ -8,6 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 header {
@@ -19,6 +20,7 @@ header {
     align-items: center;
     padding: 0 1.5rem;
     box-sizing: border-box;
+    transition: background-color 0.25s ease;
 }
 
 nav {
@@ -353,4 +355,135 @@ img {
         font-size: 130%;
         letter-spacing: 1px;
     }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: none;
+    border-radius: 9999px;
+    background: transparent;
+    color: #666f7e;
+    cursor: pointer;
+    z-index: 15;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+    color: #18181b;
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid #666f7e;
+    outline-offset: 2px;
+}
+
+.theme-toggle svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.theme-toggle .icon-sun {
+    display: block;
+}
+
+.theme-toggle .icon-moon {
+    display: none;
+}
+
+/* Dark Mode (Comfortable Off-Black) */
+html.dark-mode,
+html.dark-mode body {
+    background-color: #141416;
+    color: #a1a1aa;
+}
+
+html.dark-mode header {
+    background-color: #1c1c1f;
+}
+
+html.dark-mode .theme-toggle {
+    color: #a1a1aa;
+}
+
+html.dark-mode .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #f0f0f2;
+}
+
+html.dark-mode .theme-toggle:focus-visible {
+    outline-color: #a1a1aa;
+}
+
+html.dark-mode .theme-toggle .icon-sun {
+    display: none;
+}
+
+html.dark-mode .theme-toggle .icon-moon {
+    display: block;
+}
+
+html.dark-mode .logo {
+    color: #a1a1aa;
+}
+
+html.dark-mode .text {
+    color: #f0f0f2;
+}
+
+html.dark-mode .text1 {
+    color: #a1a1aa;
+}
+
+html.dark-mode .caption,
+html.dark-mode .caption1 {
+    color: #a1a1aa;
+    border-bottom-color: #a1a1aa;
+}
+
+html.dark-mode .caption:hover,
+html.dark-mode .caption1:hover {
+    color: #e4e4e7;
+    border-bottom-color: #e4e4e7;
+}
+
+html.dark-mode img {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.6), 0 4px 10px -2px rgba(0, 0, 0, 0.45);
+}
+
+html.dark-mode .copyright {
+    background-color: #1c1c1f;
+    color: #a1a1aa;
+}
+
+html.dark-mode #menuToggle span {
+    background: #a1a1aa;
+}
+
+html.dark-mode #menuToggle input:checked ~ span {
+    background: #f0f0f2;
+}
+
+html.dark-mode #menu {
+    background: #1c1c1f;
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.55);
+}
+
+html.dark-mode #menuToggle a {
+    color: #e4e4e7;
+}
+
+html.dark-mode #menuToggle a:hover {
+    color: #93c5fd;
 }
