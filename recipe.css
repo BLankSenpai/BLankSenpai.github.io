@@ -664,3 +664,14 @@ a {
         gap: 1.5rem;
     }
 }
+.copyright {
+    font-family: Arial;
+    font-weight: lighter;
+    letter-spacing: 5px;
+    font-size: 80%;
+    bottom: 0;
+    width: 100%;
+    color: #666f7e;
+    background-color: #f8f8f8; /* Added background for visibility */
+    padding: 10px 0;
+}
