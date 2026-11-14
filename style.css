@@ -288,8 +288,16 @@ img {
 
 @media (max-width: 768px) {
     header {
-        padding: 0 1rem;
-        height: 3.5rem;
+        padding: max(env(safe-area-inset-top, 0px), 0.75rem) 1rem 0 1rem;
+        height: calc(3.5rem + max(env(safe-area-inset-top, 0px), 0.75rem));
+    }
+
+    .theme-toggle {
+        top: calc(50% + max(env(safe-area-inset-top, 0px), 0.75rem) / 2);
+    }
+
+    #menu {
+        padding-top: calc(100px + env(safe-area-inset-top, 0px));
     }
 
     .logo {
