@@ -929,4 +929,27 @@ function cleanStepStr(str) {
         .trim();
 }
 
+const recipeThemeToggle = document.getElementById('themeToggle');
+if (recipeThemeToggle) {
+    const updateToggleState = (isDark) => {
+        document.documentElement.classList.toggle('dark-mode', isDark);
+        recipeThemeToggle.setAttribute('aria-pressed', String(isDark));
+        recipeThemeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+
+    let savedTheme = null;
+    try {
+        savedTheme = localStorage.getItem('theme');
+    } catch (e) {}
+    updateToggleState(savedTheme === 'dark');
+
+    recipeThemeToggle.addEventListener('click', () => {
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        updateToggleState(isDark);
+        try {
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        } catch (e) {}
+    });
+}
+
 loadPreset('salmon');

@@ -27,7 +27,22 @@
     --radius-lg: 12px;
 }
 
-body {
+html.dark-mode {
+    --ink: #f0f0f2;
+    --ink-secondary: #a1a1aa;
+    --ink-muted: #71717a;
+    --surface: #141416;
+    --surface-subtle: #1c1c1f;
+    --surface-muted: #242429;
+    --border: #2c2c32;
+    --border-strong: #3f3f46;
+    --accent: #f0f0f2;
+    --error-bg: #2a1416;
+    --error-border: #5c2327;
+    --error-text: #f87171;
+}
+
+html, body {
     background-color: var(--surface);
     color: var(--ink);
     font-family: "Avenir Next", "Avenir", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -36,6 +51,7 @@ body {
     flex-direction: column;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 a {
@@ -661,6 +677,85 @@ a {
     bottom: 0;
     width: 100%;
     color: #666f7e;
-    background-color: #f8f8f8; /* Added background for visibility */
+    background-color: var(--surface-subtle);
     padding: 10px 0;
+}
+
+/* Theme Toggle & Dark Mode Overrides */
+.theme-toggle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: none;
+    border-radius: 9999px;
+    background: transparent;
+    color: #666f7e;
+    cursor: pointer;
+    z-index: 15;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+    color: var(--ink);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid #666f7e;
+    outline-offset: 2px;
+}
+
+.theme-toggle svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.theme-toggle .icon-sun {
+    display: block;
+}
+
+.theme-toggle .icon-moon {
+    display: none;
+}
+
+html.dark-mode .theme-toggle {
+    color: #a1a1aa;
+}
+
+html.dark-mode .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--ink);
+}
+
+html.dark-mode .theme-toggle .icon-sun {
+    display: none;
+}
+
+html.dark-mode .theme-toggle .icon-moon {
+    display: block;
+}
+
+html.dark-mode .back-btn,
+html.dark-mode .header-brand,
+html.dark-mode .recipe-tag,
+html.dark-mode .copyright {
+    color: #a1a1aa;
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        padding: max(env(safe-area-inset-top, 0px), 0.75rem) 1rem 0 1rem;
+        height: calc(3.5rem + max(env(safe-area-inset-top, 0px), 0.75rem));
+    }
+
+    .theme-toggle {
+        top: calc(50% + max(env(safe-area-inset-top, 0px), 0.75rem) / 2);
+    }
 }

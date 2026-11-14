@@ -201,4 +201,27 @@ document.querySelectorAll('.kanban-column').forEach(colEl => {
     });
 });
 
+const kanbanThemeToggle = document.getElementById('themeToggle');
+if (kanbanThemeToggle) {
+    const updateToggleState = (isDark) => {
+        document.documentElement.classList.toggle('dark-mode', isDark);
+        kanbanThemeToggle.setAttribute('aria-pressed', String(isDark));
+        kanbanThemeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+
+    let savedTheme = null;
+    try {
+        savedTheme = localStorage.getItem('theme');
+    } catch (e) {}
+    updateToggleState(savedTheme === 'dark');
+
+    kanbanThemeToggle.addEventListener('click', () => {
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        updateToggleState(isDark);
+        try {
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        } catch (e) {}
+    });
+}
+
 renderBoard();

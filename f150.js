@@ -327,18 +327,16 @@ function setExploded(state) {
     isExploded = state;
     if (isExploded) {
         truckSvg.classList.add('exploded');
-        explodeBtn.className = "flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-white bg-white text-black font-semibold shadow-md transition-all";
         explodeBtnText.textContent = "Assemble Model";
         modelStateLabel.textContent = "Exploded View";
-        modelStatePill.className = "w-1.5 h-1.5 rounded-full bg-white animate-ping";
+        modelStatePill.classList.add('active');
         canvasHint.textContent = "Exploded view active • All 14 OBS subsystems separated for clear inspection";
         isolatePartBtn.textContent = "Assemble";
     } else {
         truckSvg.classList.remove('exploded');
-        explodeBtn.className = "flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-zinc-700 bg-surface-subtle text-white font-medium hover:bg-surface-hover transition-all";
         explodeBtnText.textContent = "Explode Model";
         modelStateLabel.textContent = "Assembled View";
-        modelStatePill.className = "w-1.5 h-1.5 rounded-full bg-zinc-400";
+        modelStatePill.classList.remove('active');
         canvasHint.textContent = "Click parts to inspect • Toggle Two-Tone trim or Explode view";
         isolatePartBtn.textContent = "Explode";
     }
@@ -385,12 +383,12 @@ function selectPart(id) {
     partQuirk.textContent = data.quirk;
 
     partSpecsList.innerHTML = "";
-    data.specs.forEach((item, index) => {
+    data.specs.forEach((item) => {
         const li = document.createElement('li');
-        li.className = `flex justify-between ${index !== data.specs.length - 1 ? 'border-b border-surface-border pb-1' : ''}`;
+        li.className = "spec-row";
         li.innerHTML = `
-            <span class="text-zinc-500">${item.label}:</span>
-            <span class="text-white font-medium">${item.value}</span>
+            <span class="spec-label">${item.label}:</span>
+            <span class="spec-val">${item.value}</span>
         `;
         partSpecsList.appendChild(li);
     });
@@ -432,7 +430,7 @@ function renderDirectory(filter = "all", query = "") {
 
     Object.values(F150_PARTS).forEach(part => {
         const matchesCategory = (filter === "all") || (part.category === filter);
-        const matchesSearch = !term || 
+        const matchesSearch = !term ||
             part.name.toLowerCase().includes(term) ||
             part.oemRef.toLowerCase().includes(term) ||
             part.description.toLowerCase().includes(term) ||
@@ -442,22 +440,15 @@ function renderDirectory(filter = "all", query = "") {
             count++;
             const isSelected = (part.id === selectedPartId);
             const btn = document.createElement('button');
-            btn.className = `w-full text-left p-2 rounded-lg font-mono text-xs transition-all flex items-center justify-between border ${
-                isSelected 
-                    ? 'bg-white text-black font-semibold border-white shadow-sm' 
-                    : 'bg-surface-subtle text-zinc-300 border-surface-border hover:bg-surface-hover hover:text-white'
-            }`;
+            btn.type = "button";
+            btn.className = `directory-item${isSelected ? ' active' : ''}`;
 
             btn.innerHTML = `
-                <div class="flex items-center space-x-2 truncate">
-                    <span class="w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-black' : 'bg-zinc-500'}"></span>
-                    <span class="truncate">${part.name}</span>
+                <div class="directory-item-left">
+                    <span class="directory-dot"></span>
+                    <span class="directory-name">${part.name}</span>
                 </div>
-                <span class="text-[9px] uppercase px-1.5 py-0.5 rounded border ml-2 ${
-                    isSelected ? 'border-zinc-300 text-zinc-700' : 'border-zinc-800 text-zinc-500 bg-black/40'
-                }">
-                    ${part.category}
-                </span>
+                <span class="directory-badge">${part.category}</span>
             `;
 
             btn.addEventListener('click', () => selectPart(part.id));
@@ -500,9 +491,9 @@ document.querySelectorAll('.jump-pill').forEach(pill => {
 document.querySelectorAll('.filter-tab').forEach(tab => {
     tab.addEventListener('click', () => {
         document.querySelectorAll('.filter-tab').forEach(t => {
-            t.className = "filter-tab px-3 py-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-surface-card transition-all";
+            t.classList.remove('active');
         });
-        tab.className = "filter-tab active px-3 py-1.5 rounded-md bg-white text-black font-medium transition-all";
+        tab.classList.add('active');
 
         activeCategoryFilter = tab.dataset.category;
         renderDirectory(activeCategoryFilter, searchInput.value);
@@ -529,15 +520,13 @@ copyOemBtn.addEventListener('click', () => {
         navigator.clipboard.writeText(part.oemRef);
         const originalText = copyOemBtn.innerHTML;
         copyOemBtn.innerHTML = `
-            <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            Copied!
+            <span>Copied!</span>
         `;
-        copyOemBtn.classList.add('border-white', 'text-white');
         setTimeout(() => {
             copyOemBtn.innerHTML = originalText;
-            copyOemBtn.classList.remove('border-white');
         }, 1400);
     }
 });
@@ -550,6 +539,29 @@ resetBtn.addEventListener('click', () => {
     searchInput.value = "";
     renderDirectory('all', '');
 });
+
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+    const updateToggleState = (isDark) => {
+        document.documentElement.classList.toggle('dark-mode', isDark);
+        themeToggle.setAttribute('aria-pressed', String(isDark));
+        themeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+
+    let savedTheme = null;
+    try {
+        savedTheme = localStorage.getItem('theme');
+    } catch (e) {}
+    updateToggleState(savedTheme === 'dark');
+
+    themeToggle.addEventListener('click', () => {
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        updateToggleState(isDark);
+        try {
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        } catch (e) {}
+    });
+}
 
 setExploded(false);
 setTwoTone(true);
