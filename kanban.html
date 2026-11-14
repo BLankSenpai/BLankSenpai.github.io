@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Kanban Board | Matthew Calogrides</title>
+    <link rel="stylesheet" type="text/css" href="kanban.css">
+    <script>
+        window.addEventListener('pageshow', (e) => {
+            if (e.persisted) window.location.reload();
+        });
+        if ('caches' in window) {
+            caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+        }
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+        }
+        if (location.protocol.startsWith('http')) {
+            const ts = Date.now();
+            const freshCss = document.createElement('link');
+            freshCss.rel = 'stylesheet';
+            freshCss.type = 'text/css';
+            freshCss.href = 'kanban.css?v=' + ts;
+            document.head.appendChild(freshCss);
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('a[href$=".html"]').forEach(a => {
+                    const href = a.getAttribute('href');
+                    if (href && !href.startsWith('http')) {
+                        a.setAttribute('href', href.split('?')[0] + '?v=' + ts);
+                    }
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="index.html" class="back-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Portfolio</span>
+        </a>
+        <div class="header-brand">&lt;Kanban Board&gt;</div>
+    </header>
+
+    <main class="container">
+
+        <section class="board-controls">
+            <div class="board-intro">
+                <h1 class="board-title">Task Board</h1>
+                <p class="board-subtitle">Minimalist workflow across three stages. Drag cards or use arrows to move tasks.</p>
+            </div>
+
+            <form id="addTaskForm" class="add-task-form">
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="Add a new task..."
+                    maxlength="140"
+                    autocomplete="off"
+                >
+                <select id="columnSelect" aria-label="Target column">
+                    <option value="do">Do</option>
+                    <option value="doing">Doing</option>
+                    <option value="done">Done</option>
+                </select>
+                <button type="submit" class="primary-btn">Add Task</button>
+            </form>
+
+            <div class="board-actions">
+                <button type="button" id="clearDoneBtn" class="util-btn">Clear Done</button>
+                <button type="button" id="resetBoardBtn" class="util-btn">Reset Demo</button>
+            </div>
+        </section>
+
+        <section class="kanban-board" aria-label="Kanban Board">
+
+            <div class="kanban-column" data-column="do">
+                <div class="column-header">
+                    <h2>Do</h2>
+                    <span class="count-pill" id="count-do">0</span>
+                </div>
+                <div class="card-list" id="list-do" data-column="do"></div>
+            </div>
+
+            <div class="kanban-column" data-column="doing">
+                <div class="column-header">
+                    <h2>Doing</h2>
+                    <span class="count-pill" id="count-doing">0</span>
+                </div>
+                <div class="card-list" id="list-doing" data-column="doing"></div>
+            </div>
+
+            <div class="kanban-column" data-column="done">
+                <div class="column-header">
+                    <h2>Done</h2>
+                    <span class="count-pill" id="count-done">0</span>
+                </div>
+                <div class="card-list" id="list-done" data-column="done"></div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy;2023 Matthew Calogrides</p>
+    </footer>
+
+    <script>
+        (function() {
+            const s = document.createElement('script');
+            s.src = 'kanban.js' + (location.protocol.startsWith('http') ? '?v=' + Date.now() : '');
+            document.body.appendChild(s);
+        })();
+    </script>
+</body>
+</html>
