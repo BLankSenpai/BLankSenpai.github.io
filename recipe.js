@@ -147,15 +147,17 @@ const instructionBadge = document.getElementById('instructionBadge');
 const ingredientsList = document.getElementById('ingredientsList');
 const instructionsList = document.getElementById('instructionsList');
 
-modeUrlBtn.addEventListener('click', () => setMode('url'));
-modeTextBtn.addEventListener('click', () => setMode('text'));
+if (modeUrlBtn) modeUrlBtn.addEventListener('click', () => setMode('url'));
+if (modeTextBtn) modeTextBtn.addEventListener('click', () => setMode('text'));
 
-scanUrlBtn.addEventListener('click', handleScanUrl);
-urlInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') handleScanUrl();
-});
+if (scanUrlBtn) scanUrlBtn.addEventListener('click', handleScanUrl);
+if (urlInput) {
+    urlInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') handleScanUrl();
+    });
+}
 
-scanTextBtn.addEventListener('click', handleScanText);
+if (scanTextBtn) scanTextBtn.addEventListener('click', handleScanText);
 
 presetChips.forEach(chip => {
     chip.addEventListener('click', () => {
@@ -187,15 +189,15 @@ resetBtn.addEventListener('click', () => {
 function setMode(mode) {
     hideStatus();
     if (mode === 'url') {
-        modeUrlBtn.classList.add('active');
-        modeTextBtn.classList.remove('active');
-        urlForm.classList.remove('hidden');
-        textForm.classList.add('hidden');
+        if (modeUrlBtn) modeUrlBtn.classList.add('active');
+        if (modeTextBtn) modeTextBtn.classList.remove('active');
+        if (urlForm) urlForm.classList.remove('hidden');
+        if (textForm) textForm.classList.add('hidden');
     } else {
-        modeTextBtn.classList.add('active');
-        modeUrlBtn.classList.remove('active');
-        textForm.classList.remove('hidden');
-        urlForm.classList.add('hidden');
+        if (modeTextBtn) modeTextBtn.classList.add('active');
+        if (modeUrlBtn) modeUrlBtn.classList.remove('active');
+        if (textForm) textForm.classList.remove('hidden');
+        if (urlForm) urlForm.classList.add('hidden');
     }
 }
 
