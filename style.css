@@ -116,6 +116,12 @@ main {
     width: 100%;
 }
 
+.project-card--centered {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 1.25rem);
+    margin: 0 auto;
+}
+
 .project-card > a {
     display: block;
     width: 100%;
@@ -320,6 +326,10 @@ img {
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 2.5rem;
+    }
+
+    .project-card--centered {
+        max-width: 100%;
     }
 
     img {

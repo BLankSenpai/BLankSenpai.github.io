@@ -16,7 +16,7 @@
         } catch (e) {}
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="script.js?v=20261114"></script>
+    <script src="script.js?v=20261114b"></script>
     <script>
         window.addEventListener('pageshow', (e) => {
             if (e.persisted) window.location.reload();
@@ -102,7 +102,7 @@
         <div class="projects-grid">
             <div class="project-card flex flex-col items-center">
                 <a href="f150.html" class="block w-full group">
-                    <img src="f150-preview.png" alt="OBS F-150 Parts Diagram" class="main-content rounded-lg shadow-lg mb-4 group-hover:opacity-95 transition-opacity">
+                    <img src="f150-preview.png" data-light-src="f150-preview.png" data-dark-src="f150-preview-dark.png" alt="OBS F-150 Parts Diagram" class="main-content rounded-lg shadow-lg mb-4 group-hover:opacity-95 transition-opacity">
                 </a>
                 <div class="caption-wrap">
                     <a href="f150.html" class="caption main-content hover:text-blue-600 transition-colors">OBS F-150 Parts Diagram</a>
@@ -110,10 +110,18 @@
             </div>
             <div class="project-card flex flex-col items-center">
                 <a href="recipe.html" class="block w-full group">
-                    <img src="recipe-preview.png" alt="Recipe's Simplified" class="main-content rounded-lg shadow-lg mb-4 group-hover:opacity-95 transition-opacity">
+                    <img src="recipe-preview.png" data-light-src="recipe-preview.png" data-dark-src="recipe-preview-dark.png" alt="Recipe's Simplified" class="main-content rounded-lg shadow-lg mb-4 group-hover:opacity-95 transition-opacity">
                 </a>
                 <div class="caption-wrap">
                     <a href="recipe.html" class="caption1 main-content hover:text-blue-600 transition-colors">Recipe Simplifier</a>
+                </div>
+            </div>
+            <div class="project-card project-card--centered flex flex-col items-center">
+                <a href="kanban.html" class="block w-full group">
+                    <img src="kanban-preview.png" data-light-src="kanban-preview.png" data-dark-src="kanban-preview-dark.png" alt="Kanban Board" class="main-content rounded-lg shadow-lg mb-4 group-hover:opacity-95 transition-opacity">
+                </a>
+                <div class="caption-wrap">
+                    <a href="kanban.html" class="caption main-content hover:text-blue-600 transition-colors">Kanban Board</a>
                 </div>
             </div>
         </div>
