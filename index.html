@@ -9,12 +9,14 @@
     <title>BLank_Studio</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script>
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.classList.add('dark-mode');
-        }
+        try {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+            }
+        } catch (e) {}
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=20261114"></script>
     <script>
         window.addEventListener('pageshow', (e) => {
             if (e.persisted) window.location.reload();
