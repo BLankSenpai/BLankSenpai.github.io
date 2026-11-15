@@ -9,7 +9,7 @@
     <title>Kanban Board | Matthew Calogrides</title>
     <script>
         try {
-            if (localStorage.getItem('theme') === 'dark') {
+            if (localStorage.getItem('theme') === 'dark' || new URLSearchParams(location.search).get('theme') === 'dark') {
                 document.documentElement.classList.add('dark-mode');
             }
         } catch (e) {}
@@ -22,7 +22,7 @@
         html.dark-mode .theme-toggle .icon-sun { display: none; }
         html.dark-mode .theme-toggle .icon-moon { display: block; }
     </style>
-    <link rel="stylesheet" type="text/css" href="kanban.css?v=20261114d">
+    <link rel="stylesheet" type="text/css" href="kanban.css?v=20261114f">
 </head>
 <body>
 
@@ -34,6 +34,7 @@
             </svg>
             <span>Portfolio</span>
         </a>
+        <div class="header-brand">&lt;Kanban Board&gt;</div>
         <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode">
             <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="4"></circle>
@@ -50,7 +51,6 @@
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
         </button>
-        <div class="header-brand">&lt;Kanban Board&gt;</div>
     </header>
 
     <main class="container">

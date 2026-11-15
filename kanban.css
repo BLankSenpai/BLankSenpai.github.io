@@ -55,9 +55,9 @@ a {
     border-bottom: 1px solid var(--border);
     height: 4rem;
     padding: 0 1.5rem;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
     position: sticky;
     top: 0;
     z-index: 40;
@@ -66,10 +66,12 @@ a {
 .back-btn {
     display: inline-flex;
     align-items: center;
+    justify-self: start;
     gap: 0.45rem;
     font-family: Arial, sans-serif;
     font-size: 0.8rem;
     letter-spacing: 2px;
+    line-height: 1;
     text-transform: uppercase;
     color: #666f7e;
     transition: color 0.2s ease;
@@ -83,7 +85,12 @@ a {
     font-family: Arial, sans-serif;
     font-size: 0.9rem;
     letter-spacing: 5px;
+    text-indent: 5px;
     color: #666f7e;
+    justify-self: center;
+    text-align: center;
+    line-height: 1;
+    white-space: nowrap;
 }
 
 .container {
@@ -368,13 +375,19 @@ a {
 }
 
 @media (max-width: 580px) {
-    .site-header {
-        padding: 0 1rem;
+    .back-btn span {
+        display: none;
+    }
+
+    .back-btn svg {
+        width: 18px;
+        height: 18px;
     }
 
     .header-brand {
-        font-size: 0.72rem;
+        font-size: 0.75rem;
         letter-spacing: 3px;
+        text-indent: 3px;
     }
 
     .container {
@@ -402,15 +415,14 @@ a {
 
 /* Theme Toggle & Dark Mode Overrides */
 .theme-toggle {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    justify-self: end;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 2.25rem;
     height: 2.25rem;
+    margin-right: -0.375rem;
     padding: 0;
     border: none;
     border-radius: 9999px;
@@ -477,9 +489,5 @@ html.dark-mode .card-btn.delete-btn:hover {
     .site-header {
         padding: max(env(safe-area-inset-top, 0px), 0.75rem) 1rem 0 1rem;
         height: calc(3.5rem + max(env(safe-area-inset-top, 0px), 0.75rem));
-    }
-
-    .theme-toggle {
-        top: calc(50% + max(env(safe-area-inset-top, 0px), 0.75rem) / 2);
     }
 }

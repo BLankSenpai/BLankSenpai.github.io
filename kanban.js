@@ -211,7 +211,7 @@ if (kanbanThemeToggle) {
 
     let savedTheme = null;
     try {
-        savedTheme = localStorage.getItem('theme');
+        savedTheme = localStorage.getItem('theme') || new URLSearchParams(location.search).get('theme');
     } catch (e) {}
     updateToggleState(savedTheme === 'dark');
 
