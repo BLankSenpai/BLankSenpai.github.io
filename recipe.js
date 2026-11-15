@@ -950,6 +950,12 @@ if (recipeThemeToggle) {
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         } catch (e) {}
     });
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            document.documentElement.classList.add('theme-ready');
+        });
+    });
 }
 
 loadPreset('salmon');

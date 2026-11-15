@@ -44,6 +44,10 @@ html, body {
     flex-direction: column;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+}
+
+html.theme-ready,
+html.theme-ready body {
     transition: background-color 0.25s ease, color 0.25s ease;
 }
 

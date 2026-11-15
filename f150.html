@@ -7,39 +7,22 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>OBS F-150 Parts Diagram | Matthew Calogrides</title>
-    <link rel="stylesheet" type="text/css" href="f150.css">
     <script>
         try {
             if (localStorage.getItem('theme') === 'dark') {
                 document.documentElement.classList.add('dark-mode');
             }
         } catch (e) {}
-        window.addEventListener('pageshow', (e) => {
-            if (e.persisted) window.location.reload();
-        });
-        if ('caches' in window) {
-            caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
-        }
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
-        }
-        if (location.protocol.startsWith('http')) {
-            const ts = Date.now();
-            const freshCss = document.createElement('link');
-            freshCss.rel = 'stylesheet';
-            freshCss.type = 'text/css';
-            freshCss.href = 'f150.css?v=' + ts;
-            document.head.appendChild(freshCss);
-            document.addEventListener('DOMContentLoaded', () => {
-                document.querySelectorAll('a[href$=".html"]').forEach(a => {
-                    const href = a.getAttribute('href');
-                    if (href && !href.startsWith('http')) {
-                        a.setAttribute('href', href.split('?')[0] + '?v=' + ts);
-                    }
-                });
-            });
-        }
     </script>
+    <style>
+        html, body { margin: 0; padding: 0; background: #ffffff; }
+        html.dark-mode, html.dark-mode body { background: #141416; }
+        .theme-toggle svg { width: 20px; height: 20px; }
+        .theme-toggle .icon-moon { display: none; }
+        html.dark-mode .theme-toggle .icon-sun { display: none; }
+        html.dark-mode .theme-toggle .icon-moon { display: block; }
+    </style>
+    <link rel="stylesheet" type="text/css" href="f150.css?v=20261114d">
 </head>
 <body>
 
@@ -52,7 +35,7 @@
             <span>Portfolio</span>
         </a>
         <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode">
-            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="4"></circle>
                 <line x1="12" y1="2" x2="12" y2="4"></line>
                 <line x1="12" y1="20" x2="12" y2="22"></line>
@@ -63,7 +46,7 @@
                 <line x1="6.34" y1="17.66" x2="4.93" y2="19.07"></line>
                 <line x1="19.07" y1="4.93" x2="17.66" y2="6.34"></line>
             </svg>
-            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
         </button>
@@ -513,6 +496,6 @@
         <p class="copyright">&copy;2023 Matthew Calogrides</p>
     </footer>
 
-    <script src="f150.js?v=20261114"></script>
+    <script src="f150.js?v=20261114d"></script>
 </body>
 </html>

@@ -1,43 +1,44 @@
-// JavaScript for main-content animation on scroll
+window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+        const menuInput = document.querySelector('#menuToggle input[type="checkbox"]');
+        if (menuInput) menuInput.checked = false;
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Scroll entrance animation for project cards and captions
     const mainContents = document.querySelectorAll('.main-content');
 
-    const observerOptions = {
-        root: null, // viewport
-        rootMargin: '0px',
-        threshold: 0.1 // 10% of the item visible
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-                // Optional: Stop observing once shown if you only want it to animate once
-                // observer.unobserve(entry.target);
-            } else {
-                // Optional: Remove 'show' class if you want it to re-animate on scroll back
-                // entry.target.classList.remove('show');
-            }
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
         });
-    }, observerOptions);
 
-    mainContents.forEach(content => {
-        observer.observe(content);
-    });
+        mainContents.forEach(content => observer.observe(content));
+    } else {
+        mainContents.forEach(content => content.classList.add('show'));
+    }
 
-    // Basic JavaScript for the menu toggle
+    // Navigation menu cleanup
     const menuToggle = document.getElementById('menuToggle');
     if (menuToggle) {
         const menuInput = menuToggle.querySelector('input[type="checkbox"]');
-        const menu = document.getElementById('menu');
-
-        if (menuInput && menu) {
-            menuInput.addEventListener('change', function() {
-                if (this.checked) {
-                    menu.style.transform = 'none';
-                } else {
-                    menu.style.transform = 'translate(-100%, 0)';
-                }
+        const menuLinks = menuToggle.querySelectorAll('#menu a');
+        if (menuInput) {
+            menuInput.checked = false;
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menuInput.checked = false;
+                });
             });
         }
     }
@@ -65,4 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (e) {}
         });
     }
+
+    // Enable CSS theme/menu transitions only after first paint to prevent load glitches
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            document.documentElement.classList.add('theme-ready');
+        });
+    });
 });

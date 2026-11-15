@@ -8,7 +8,6 @@ body {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 header {
@@ -20,7 +19,13 @@ header {
     align-items: center;
     padding: 0 1.5rem;
     box-sizing: border-box;
-    transition: background-color 0.25s ease;
+}
+
+html.theme-ready,
+html.theme-ready body,
+html.theme-ready header,
+html.theme-ready .copyright {
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 nav {
@@ -158,8 +163,11 @@ main {
     position: absolute;
     inset: 0;
     opacity: 0;
-    transition: opacity 0.25s ease;
     pointer-events: none;
+}
+
+html.theme-ready .preview-dark {
+    transition: opacity 0.25s ease;
 }
 
 html.dark-mode .preview-dark {
@@ -312,10 +320,17 @@ html.dark-mode .preview-dark {
     -webkit-font-smoothing: antialiased;
     transform-origin: 0% 0%;
     transform: translate(-100%, 0);
-    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    visibility: hidden;
+    pointer-events: none;
     box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
     z-index: 20;
     box-sizing: border-box;
+}
+
+html.theme-ready #menu {
+    transition: transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+                background-color 0.25s ease,
+                visibility 0.4s;
 }
 
 #menu li {
@@ -325,6 +340,8 @@ html.dark-mode .preview-dark {
 
 #menuToggle input:checked ~ ul {
     transform: none;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 @media (max-width: 768px) {

@@ -7,7 +7,6 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>BLank_Studio</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
     <script>
         try {
             if (localStorage.getItem('theme') === 'dark') {
@@ -15,47 +14,23 @@
             }
         } catch (e) {}
     </script>
-    <script src="script.js?v=20261114c" defer></script>
-    <script>
-        window.addEventListener('pageshow', (e) => {
-            if (e.persisted) window.location.reload();
-        });
-        if ('caches' in window) {
-            caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
-        }
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            if (location.protocol.startsWith('http')) {
-                const ts = Date.now();
-                document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href && !href.startsWith('http')) {
-                        link.setAttribute('href', href.split('?')[0] + '?v=' + ts);
-                    }
-                });
-                document.querySelectorAll('img').forEach(img => {
-                    const src = img.getAttribute('src');
-                    if (src && !src.startsWith('http') && !src.startsWith('data:')) {
-                        img.setAttribute('src', src.split('?')[0] + '?v=' + ts);
-                    }
-                });
-                document.querySelectorAll('a[href$=".html"]').forEach(a => {
-                    const href = a.getAttribute('href');
-                    if (href && !href.startsWith('http')) {
-                        a.setAttribute('href', href.split('?')[0] + '?v=' + ts);
-                    }
-                });
-            }
-        });
-    </script>
+    <style>
+        html, body { margin: 0; padding: 0; background: #ffffff; }
+        html.dark-mode, html.dark-mode body { background: #141416; }
+        #menu { position: fixed; top: 0; left: 0; transform: translate(-100%, 0); visibility: hidden; }
+        .theme-toggle svg { width: 20px; height: 20px; }
+        .theme-toggle .icon-moon { display: none; }
+        html.dark-mode .theme-toggle .icon-sun { display: none; }
+        html.dark-mode .theme-toggle .icon-moon { display: block; }
+    </style>
+    <link rel="stylesheet" type="text/css" href="style.css?v=20261114d">
+    <script src="script.js?v=20261114d" defer></script>
 </head>
-<body class="min-h-screen flex flex-col">
+<body>
     <header>
         <nav role="navigation">
             <div id="menuToggle">
-                <input type="checkbox" />
+                <input type="checkbox" autocomplete="off" aria-label="Toggle navigation menu" />
                 <span></span>
                 <span></span>
                 <span></span>
@@ -68,7 +43,7 @@
             </div>
         </nav>
         <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode">
-            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="4"></circle>
                 <line x1="12" y1="2" x2="12" y2="4"></line>
                 <line x1="12" y1="20" x2="12" y2="22"></line>
@@ -79,7 +54,7 @@
                 <line x1="6.34" y1="17.66" x2="4.93" y2="19.07"></line>
                 <line x1="19.07" y1="4.93" x2="17.66" y2="6.34"></line>
             </svg>
-            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
         </button>
@@ -102,8 +77,8 @@
             <div class="project-card">
                 <a href="f150.html" class="preview-link">
                     <div class="preview-frame main-content">
-                        <img src="f150-preview.png" alt="OBS F-150 Parts Diagram" class="preview-img preview-light" decoding="async">
-                        <img src="f150-preview-dark.png" alt="" aria-hidden="true" class="preview-img preview-dark" decoding="async">
+                        <img src="f150-preview.png?v=20261114d" width="1280" height="820" alt="OBS F-150 Parts Diagram" class="preview-img preview-light" decoding="async">
+                        <img src="f150-preview-dark.png?v=20261114d" width="1280" height="820" alt="" aria-hidden="true" class="preview-img preview-dark" decoding="async">
                     </div>
                 </a>
                 <div class="caption-wrap">
@@ -114,8 +89,8 @@
             <div class="project-card">
                 <a href="recipe.html" class="preview-link">
                     <div class="preview-frame main-content">
-                        <img src="recipe-preview.png" alt="Recipe's Simplified" class="preview-img preview-light" decoding="async">
-                        <img src="recipe-preview-dark.png" alt="" aria-hidden="true" class="preview-img preview-dark" decoding="async">
+                        <img src="recipe-preview.png?v=20261114d" width="1280" height="820" alt="Recipe Simplifier" class="preview-img preview-light" decoding="async">
+                        <img src="recipe-preview-dark.png?v=20261114d" width="1280" height="820" alt="" aria-hidden="true" class="preview-img preview-dark" decoding="async">
                     </div>
                 </a>
                 <div class="caption-wrap">
@@ -126,8 +101,8 @@
             <div class="project-card project-card--centered">
                 <a href="kanban.html" class="preview-link">
                     <div class="preview-frame main-content">
-                        <img src="kanban-preview.png" alt="Kanban Board" class="preview-img preview-light" decoding="async">
-                        <img src="kanban-preview-dark.png" alt="" aria-hidden="true" class="preview-img preview-dark" decoding="async">
+                        <img src="kanban-preview.png?v=20261114d" width="1280" height="820" alt="Kanban Board" class="preview-img preview-light" decoding="async">
+                        <img src="kanban-preview-dark.png?v=20261114d" width="1280" height="820" alt="" aria-hidden="true" class="preview-img preview-dark" decoding="async">
                     </div>
                 </a>
                 <div class="caption-wrap">
@@ -139,7 +114,7 @@
     </main>
 
     <footer>
-        <p class="copyright">©2023 Matthew Calogrides</p>
+        <p class="copyright">&copy;2023 Matthew Calogrides</p>
     </footer>
 </body>
 </html>

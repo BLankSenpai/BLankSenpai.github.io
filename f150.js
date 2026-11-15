@@ -561,6 +561,12 @@ if (themeToggle) {
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         } catch (e) {}
     });
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            document.documentElement.classList.add('theme-ready');
+        });
+    });
 }
 
 setExploded(false);
