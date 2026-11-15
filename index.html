@@ -15,8 +15,7 @@
             }
         } catch (e) {}
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="script.js?v=20261114b"></script>
+    <script src="script.js?v=20261114c" defer></script>
     <script>
         window.addEventListener('pageshow', (e) => {
             if (e.persisted) window.location.reload();
@@ -53,7 +52,7 @@
     </script>
 </head>
 <body class="min-h-screen flex flex-col">
-    <header class="flex justify-between items-center relative">
+    <header>
         <nav role="navigation">
             <div id="menuToggle">
                 <input type="checkbox" />
@@ -61,10 +60,10 @@
                 <span></span>
                 <span></span>
                 <ul id="menu">
-                    <a href="#" class="block text-gray-800 hover:text-blue-600 transition duration-300"><li>Home</li></a>
-                    <a href="f150.html" class="block text-gray-800 hover:text-blue-600 transition duration-300"><li>'95 F-150 Schematic</li></a>
-                    <a href="recipe.html" class="block text-gray-800 hover:text-blue-600 transition duration-300"><li>Recipe Simplifier</li></a>
-                    <a href="kanban.html" class="block text-gray-800 hover:text-blue-600 transition duration-300"><li>Kanban Board</li></a>
+                    <a href="#"><li>Home</li></a>
+                    <a href="f150.html"><li>'95 F-150 Schematic</li></a>
+                    <a href="recipe.html"><li>Recipe Simplifier</li></a>
+                    <a href="kanban.html"><li>Kanban Board</li></a>
                 </ul>
             </div>
         </nav>
@@ -92,36 +91,48 @@
     <div class="space"></div>
 
     <div class="hero-section">
-        <h1 class="text">Welcome to my online portfolio</h1>
-        <p class="text1">A collection of my personal projects.</p>
+        <h1 class="text">Welcome to the studio.</h1>
+        <p class="text1">A collection of my personal projects. Functional websites, for functional people.</p>
     </div>
 
     <div class="space1"></div>
 
-    <main class="container mx-auto px-4 flex-grow">
+    <main>
         <div class="projects-grid">
-            <div class="project-card flex flex-col items-center">
-                <a href="f150.html" class="block w-full group">
-                    <img src="f150-preview.png" data-light-src="f150-preview.png" data-dark-src="f150-preview-dark.png" alt="OBS F-150 Parts Diagram" class="main-content rounded-lg shadow-lg mb-4 group-hover:opacity-95 transition-opacity">
+            <div class="project-card">
+                <a href="f150.html" class="preview-link">
+                    <div class="preview-frame main-content">
+                        <img src="f150-preview.png" alt="OBS F-150 Parts Diagram" class="preview-img preview-light" decoding="async">
+                        <img src="f150-preview-dark.png" alt="" aria-hidden="true" class="preview-img preview-dark" decoding="async">
+                    </div>
                 </a>
                 <div class="caption-wrap">
-                    <a href="f150.html" class="caption main-content hover:text-blue-600 transition-colors">OBS F-150 Parts Diagram</a>
+                    <a href="f150.html" class="caption main-content">OBS F-150 Parts Diagram</a>
+                    <p class="text1 main-content">A simple parts diagram for the OBS Ford F-150. No frills, just the parts.</p>
                 </div>
             </div>
-            <div class="project-card flex flex-col items-center">
-                <a href="recipe.html" class="block w-full group">
-                    <img src="recipe-preview.png" data-light-src="recipe-preview.png" data-dark-src="recipe-preview-dark.png" alt="Recipe's Simplified" class="main-content rounded-lg shadow-lg mb-4 group-hover:opacity-95 transition-opacity">
+            <div class="project-card">
+                <a href="recipe.html" class="preview-link">
+                    <div class="preview-frame main-content">
+                        <img src="recipe-preview.png" alt="Recipe's Simplified" class="preview-img preview-light" decoding="async">
+                        <img src="recipe-preview-dark.png" alt="" aria-hidden="true" class="preview-img preview-dark" decoding="async">
+                    </div>
                 </a>
                 <div class="caption-wrap">
-                    <a href="recipe.html" class="caption1 main-content hover:text-blue-600 transition-colors">Recipe Simplifier</a>
+                    <a href="recipe.html" class="caption1 main-content">Recipe Simplifier</a>
+                    <p class="text1 main-content">A recipe scraper for those who want the recipe and not the life story.</p>
                 </div>
             </div>
-            <div class="project-card project-card--centered flex flex-col items-center">
-                <a href="kanban.html" class="block w-full group">
-                    <img src="kanban-preview.png" data-light-src="kanban-preview.png" data-dark-src="kanban-preview-dark.png" alt="Kanban Board" class="main-content rounded-lg shadow-lg mb-4 group-hover:opacity-95 transition-opacity">
+            <div class="project-card project-card--centered">
+                <a href="kanban.html" class="preview-link">
+                    <div class="preview-frame main-content">
+                        <img src="kanban-preview.png" alt="Kanban Board" class="preview-img preview-light" decoding="async">
+                        <img src="kanban-preview-dark.png" alt="" aria-hidden="true" class="preview-img preview-dark" decoding="async">
+                    </div>
                 </a>
                 <div class="caption-wrap">
-                    <a href="kanban.html" class="caption main-content hover:text-blue-600 transition-colors">Kanban Board</a>
+                    <a href="kanban.html" class="caption main-content">Kanban Board</a>
+                    <p class="text1 main-content">The classic Kanban board for managing tasks and workflow. Simplified, functional.</p>
                 </div>
             </div>
         </div>

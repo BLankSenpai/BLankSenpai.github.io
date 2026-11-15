@@ -47,6 +47,7 @@ nav {
     font-size: clamp(1.75rem, 3.5vw, 2.75rem);
     color: #18181b;
     margin: 0 0 0.75rem 0;
+    transition: color 0.25s ease;
 }
 
 .text1 {
@@ -57,6 +58,7 @@ nav {
     font-size: clamp(1rem, 1.5vw, 1.25rem);
     color: #666f7e;
     margin: 0;
+    transition: color 0.25s ease;
 }
 
 .logo {
@@ -71,6 +73,7 @@ nav {
     align-items: center;
     justify-content: flex-end;
     line-height: 1;
+    transition: color 0.25s ease;
 }
 
 .logo h1 {
@@ -98,6 +101,7 @@ main {
     box-sizing: border-box;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    flex-grow: 1;
 }
 
 .projects-grid {
@@ -122,26 +126,52 @@ main {
     margin: 0 auto;
 }
 
-.project-card > a {
+.project-card > a,
+.preview-link {
     display: block;
     width: 100%;
+}
+
+.preview-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1280 / 820;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: opacity 0.2s ease, box-shadow 0.25s ease, border-color 0.25s ease, transform 1.5s ease-out;
+}
+
+.preview-link:hover .preview-frame {
+    opacity: 0.94;
+}
+
+.preview-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.preview-dark {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+}
+
+html.dark-mode .preview-dark {
+    opacity: 1;
 }
 
 .caption-wrap {
     margin-top: 1rem;
 }
 
-img {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: 1280 / 820;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+.caption-wrap .text1 {
+    margin-top: 0.5rem;
 }
 
 .caption, .caption1 {
@@ -154,6 +184,11 @@ img {
     padding-bottom: 0.2rem;
     margin-top: 0.75rem;
     text-align: center;
+    transition: color 0.25s ease, opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+.caption:hover, .caption1:hover {
+    color: #2563eb;
 }
 
 .copyright {
@@ -164,14 +199,15 @@ img {
     bottom: 0;
     width: 100%;
     color: #666f7e;
-    background-color: #f8f8f8; /* Added background for visibility */
+    background-color: #f8f8f8;
     padding: 10px 0;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .main-content {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    transition: color 0.25s ease, opacity 1.5s ease-out, transform 1.5s ease-out;
 }
 
 .main-content.show {
@@ -474,7 +510,7 @@ html.dark-mode .caption1:hover {
     border-bottom-color: #e4e4e7;
 }
 
-html.dark-mode img {
+html.dark-mode .preview-frame {
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.6), 0 4px 10px -2px rgba(0, 0, 0, 0.45);
 }

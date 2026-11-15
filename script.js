@@ -44,20 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Dark mode toggle
     const themeToggle = document.getElementById('themeToggle');
-    const previewImages = document.querySelectorAll('img[data-light-src][data-dark-src]');
     if (themeToggle) {
         const updateToggleState = (isDark) => {
             document.documentElement.classList.toggle('dark-mode', isDark);
             themeToggle.setAttribute('aria-pressed', String(isDark));
             themeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-
-            const ts = location.protocol.startsWith('http') ? '?v=' + Date.now() : '';
-            previewImages.forEach(img => {
-                const targetSrc = isDark ? img.dataset.darkSrc : img.dataset.lightSrc;
-                if (targetSrc) {
-                    img.setAttribute('src', targetSrc + ts);
-                }
-            });
         };
 
         let savedTheme = null;
