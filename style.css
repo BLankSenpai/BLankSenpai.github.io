@@ -269,12 +269,12 @@ html.dark-mode .preview-dark {
 
 #menuToggle span {
     display: block;
-    width: 33px;
-    height: 4px;
-    margin-bottom: 5px;
+    width: 30px;
+    height: 1.5px;
+    margin-bottom: 6.5px;
     position: relative;
     background: #666f7e;
-    border-radius: 3px;
+    border-radius: 2px;
     z-index: 25;
     transform-origin: 4px 0px;
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
@@ -293,7 +293,7 @@ html.dark-mode .preview-dark {
 
 #menuToggle input:checked ~ span {
     opacity: 1;
-    transform: rotate(45deg) translate(-2px, -1px);
+    transform: rotate(45deg) translate(-1.5px, -1.5px);
     background: #232323;
 }
 
@@ -303,7 +303,7 @@ html.dark-mode .preview-dark {
 }
 
 #menuToggle input:checked ~ span:nth-last-child(2) {
-    transform: rotate(-45deg) translate(0, -1px);
+    transform: rotate(-45deg) translate(-1.5px, 1.5px);
 }
 
 #menu {
